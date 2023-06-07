@@ -1,16 +1,23 @@
-from .typings import SESSION, AUTH_HEADER
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .HTTP import CustomSession
+
+from .typings import AUTH_HEADER
 from .Logger import Logger
 from .enums import ChannelType
 
 from asyncio import AbstractEventLoop
-from aiohttp import ClientResponse
+from aiohttp import ClientResponse, client_exceptions
 from logging import getLogger
 
 
 class UserClient:
 
-    def __init__(self, data: dict, session: SESSION, loop: AbstractEventLoop):
-        self._session: SESSION = session
+    def __init__(self, data: dict, session: CustomSession, loop: AbstractEventLoop):
+        self._session: CustomSession = session
         self._loop: AbstractEventLoop = loop
         self._logger: Logger = getLogger("Logger")
 
@@ -39,9 +46,7 @@ class UserClient:
         }
 
         response: ClientResponse = await self._session.request(
-        method="POST", url=_url, headers=self._auth_header, data=payload)
-
-        response.raise_for_status()
+        method="POST", url=_url, headers=self._auth_header, json=payload)
 
         return response
 
@@ -58,7 +63,8 @@ class UserClient:
 
         return response
 
-    async def create_channel(self, guild_id: int, name: str, channel_type: ChannelType):
+    async def create_channel(self, guild_id: int, name: str, channel_type: ChannelType,
+                             topic: str = None, user_limit: int = None, position: int = None, nsfw: bool = False):
         _url = self._endpoint + f"guilds/{guild_id}/channels"
 
         if self._logger._status:
@@ -66,12 +72,21 @@ class UserClient:
 
         payload: dict = {
             "name": name,
-            "type": channel_type.value
+            "type": channel_type.value,
+            "topic": topic,
+            "user_limit": user_limit,
+            "position": position,
+            "nsfw": nsfw
         }
 
         response: ClientResponse = await self._session.request(
             method="POST", url=_url, headers=self._auth_header, json=payload)
 
-        response.raise_for_status()
+        try:
+            response.raise_for_status()
+        except client_exceptions.ClientResponseError as exception:
+            if exception.status == 403 and self._logger._status:
+                self._logger.error(
+                f"Request POST {self} | /guilds/{guild_id}/channels failed. Missing permissions: manage_guild or manage_roles")
 
         return response

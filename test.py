@@ -1,21 +1,19 @@
-from SelfBotClient import Client, ChannelType
+from SelfBotClient import Client, ChannelType, ClientResponse, User, AUTH_HEADER
+
+from typing import Optional
 
 
-tokens = ["TOKENS"]
+tokens = ["MTA4ODE1MTM1ODg1MjU2MzA2NA.GyVast.5hDmaZ-44lrGW3Xxw3yERnvB9LXHBJ6T7p42ec",
+          "MTExNjA0MTA0ODMzOTI3MTc5MQ.GAVK5L.SensjZL0qY4ifycY3mpNKe5JeVIBt5o3QSj60c",
+          "MTExNjA1MjA1MDQ4NTE5NDg4Mg.GQFzIi.O4ZEqdM-2Ka0NIKpW09hhWJYF9waNmIwJfpBno"]
 
 selfclient = Client(api_version=10)
 selfclient.login(token=tokens)
 
 
 async def main():
-
-    for user in selfclient.users:
-        await user.create_channel(
-            guild_id=983442350963576863,
-            name="selfclient",
-            channel_type=ChannelType.TEXT_CHANNEL
-        )
+    pass
 
 
 if __name__ == "__main__":
-    selfclient.loop.run_until_complete(main())
+    selfclient.run_async(main())

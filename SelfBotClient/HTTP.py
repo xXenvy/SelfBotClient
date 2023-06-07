@@ -1,12 +1,40 @@
-from .typings import API_VERSION, SESSION, AUTH_HEADER, METHOD
+from .typings import API_VERSION, AUTH_HEADER, METHOD
 from .errors import UnSupportedApiVersion, UnSupportedTokenType, InvalidMethodType
 from .enums import Discord
 from .Logger import Logger
 from .User import UserClient
 
-from typing import Union
+from typing import Union, Awaitable, Any
 from aiohttp import ClientSession, ClientResponse
-from asyncio import AbstractEventLoop, get_event_loop
+from asyncio import AbstractEventLoop, get_event_loop, sleep
+
+
+class CustomSession(ClientSession):
+
+    def __init__(self, logger: Logger, *args: Any, **kwargs: Any):
+        self.logger: Logger = logger
+        self.logger_status = logger._status
+        super().__init__(*args, **kwargs)
+
+    async def request(self, method: str, url: str, **kwargs: Any) -> ClientResponse:
+        response = await super().request(method=method, url=url, **kwargs)
+
+        if response.headers.get("Retry-After"):
+
+            seconds = int(response.headers.get("Retry-After")) + 10
+            if self.logger_status:
+                self.logger.warning(f"Ratelimit has been reached. Awaiting {seconds} seconds before next request.")
+
+            await sleep(seconds)
+        else:
+            await sleep(0.1)
+
+        return response
+
+    async def get(self, url: str, *, allow_redirects: bool = True, **kwargs: Any) -> ClientResponse:
+        await sleep(1)
+        response = await super().get(url=url, allow_redirects=allow_redirects, **kwargs)
+        return response
 
 
 class HTTPClient:
@@ -14,7 +42,6 @@ class HTTPClient:
     def __init__(
             self,
             api_version: API_VERSION,
-            session: SESSION = None,
             loop: AbstractEventLoop = None,
             logger: bool = True
     ):
@@ -30,14 +57,13 @@ class HTTPClient:
 
         self.logger: Logger = Logger().logger
         self.logger._status = self._logger_status
-        self.session: Union[SESSION, None] = None
+        self.session: Union[CustomSession, None] = None
 
-        self.connected: bool = False
         self.users: list[UserClient] = []
-        self.loop.run_until_complete(self.create_session(session))
+        self.loop.run_until_complete(self.create_session())
 
-    async def create_session(self, session: Union[ClientSession, None]):
-        self.session: SESSION = session if session else ClientSession()
+    async def create_session(self):
+        self.session: CustomSession = CustomSession(self.logger)
 
     def _check_tokens(self):
 
@@ -50,7 +76,6 @@ class HTTPClient:
                     if self._logger_status:
                         self.logger.warning(
                             f"An invalid token has been provided: {self._tokens} | The token will be automatically deleted")
-                    self._tokens = []
                 else:
                     data = await response.json()
                     data["token"] = self._tokens
@@ -69,7 +94,6 @@ class HTTPClient:
                             self.logger.warning(
                                 f"An invalid token has been provided: {token} | The token will be automatically deleted")
 
-                        self._tokens.remove(token)
                     else:
                         data = await response.json()
                         data["token"] = token
@@ -84,10 +108,12 @@ class HTTPClient:
             raise UnSupportedTokenType
 
         self.loop.run_until_complete(_check(type(self._tokens)))
-        self.connected: bool = True
 
     def __del__(self):
         self.loop.run_until_complete(self.session.close())
+
+    def run_async(self, function: Awaitable) -> None:
+        self.loop.run_until_complete(function)
 
     async def request(self, url: str, method: METHOD, headers: dict = None, data: dict = None) -> ClientResponse:
         if method not in ("POST", "GET", "DELETE", "PATCH"):
@@ -98,7 +124,7 @@ class HTTPClient:
         if self._logger_status:
             self.logger.debug(f"Sending request: {method} -> {url}")
 
-        response: ClientResponse = await self.session.request(method=method, url=url, headers=headers, data=data)
+        response: ClientResponse = await self.session.request(method=method, url=url, headers=headers, json=data)
         response.raise_for_status()
 
         return response
