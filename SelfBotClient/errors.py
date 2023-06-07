@@ -1,7 +1,8 @@
 __all__: tuple[str, ...] = (
     "UnSupportedApiVersion",
     "UnSupportedTokenType",
-    "SelfBotClientException"
+    "SelfBotClientException",
+    "InvalidMethodType"
 )
 
 
@@ -22,4 +23,12 @@ class UnSupportedTokenType(SelfBotClientException):
     def __init__(self) -> None:
         super().__init__(
             "Invalid token/s type. Use list[str] or str."
+        )
+
+
+class InvalidMethodType(SelfBotClientException):
+
+    def __init__(self, method: str) -> None:
+        super().__init__(
+            f"Invalid method {method} type. Available methods: POST, DELETE, GET, PATCH"
         )

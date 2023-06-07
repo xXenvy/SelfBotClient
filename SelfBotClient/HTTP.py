@@ -1,5 +1,5 @@
 from .typings import API_VERSION, SESSION, AUTH_HEADER, METHOD
-from .errors import UnSupportedApiVersion, UnSupportedTokenType
+from .errors import UnSupportedApiVersion, UnSupportedTokenType, InvalidMethodType
 from .enums import Discord
 from .Logger import Logger
 from .User import UserClient
@@ -16,6 +16,7 @@ class HTTPClient:
             api_version: API_VERSION,
             session: SESSION = None,
             loop: AbstractEventLoop = None,
+            logger: bool = True
     ):
         if api_version not in (9, 10):
             raise UnSupportedApiVersion
@@ -25,7 +26,10 @@ class HTTPClient:
         self.loop: AbstractEventLoop = loop if loop else get_event_loop()
 
         self._tokens: Union[str, list, None] = None
+        self._logger_status: bool = logger
+
         self.logger: Logger = Logger().logger
+        self.logger._status = self._logger_status
         self.session: Union[SESSION, None] = None
 
         self.connected: bool = False
@@ -43,13 +47,15 @@ class HTTPClient:
                 header: AUTH_HEADER = AUTH_HEADER(authorization=self._tokens)
                 response: ClientResponse = await self.session.get(_url, headers=header)
                 if response.status != 200:
-                    self.logger.warning(
-                        f"An invalid token has been provided: {self._tokens} | The token will be automatically deleted")
+                    if self._logger_status:
+                        self.logger.warning(
+                            f"An invalid token has been provided: {self._tokens} | The token will be automatically deleted")
                     self._tokens = []
                 else:
                     data = await response.json()
                     data["token"] = self._tokens
-                    self.users.append(UserClient(data, self.session))
+                    data["endpoint"] = self.endpoint
+                    self.users.append(UserClient(data, self.session, self.loop))
 
                     self._tokens = [self._tokens]
 
@@ -59,17 +65,20 @@ class HTTPClient:
                     header: AUTH_HEADER = AUTH_HEADER(authorization=token)
                     response: ClientResponse = await self.session.get(_url, headers=header)
                     if response.status != 200:
-                        self.logger.warning(
-                            f"An invalid token has been provided: {token} | The token will be automatically deleted")
+                        if self._logger_status:
+                            self.logger.warning(
+                                f"An invalid token has been provided: {token} | The token will be automatically deleted")
 
                         self._tokens.remove(token)
                     else:
                         data = await response.json()
                         data["token"] = token
+                        data["endpoint"] = self.endpoint
 
-                        self.users.append(UserClient(data, self.session))
+                        self.users.append(UserClient(data, self.session, self.loop))
 
-            self.logger.info(f"Checking of tokens successfully completed | Loaded ({len(self.users)}) tokens)")
+            if self._logger_status:
+                self.logger.info(f"Checking of tokens successfully completed | Loaded ({len(self.users)}) tokens)")
 
         if not isinstance(self._tokens, list) and not isinstance(self._tokens, str):
             raise UnSupportedTokenType
@@ -81,8 +90,13 @@ class HTTPClient:
         self.loop.run_until_complete(self.session.close())
 
     async def request(self, url: str, method: METHOD, headers: dict = None, data: dict = None) -> ClientResponse:
+        if method not in ("POST", "GET", "DELETE", "PATCH"):
+            raise InvalidMethodType(method)
+
         url: str = self.endpoint + url
-        self.logger.debug(f"Sending request: {method} -> {url}")
+
+        if self._logger_status:
+            self.logger.debug(f"Sending request: {method} -> {url}")
 
         response: ClientResponse = await self.session.request(method=method, url=url, headers=headers, data=data)
         response.raise_for_status()

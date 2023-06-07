@@ -1,24 +1,21 @@
-from SelfBotClient import Client
+from SelfBotClient import Client, ChannelType
 
 
-tokens = ["MTExNTcxNjg2Mzk2ODY3Mzg1NA.GQHXcU.aD5JN0BKr8Ohky6YDW0IAwzoBvJjvPTvUv3jQs"]
+tokens = ["TOKENS"]
+
+selfclient = Client(api_version=10)
+selfclient.login(token=tokens)
 
 
-client = Client(api_version=10)
-client.login(token=tokens)
+async def main():
+
+    for user in selfclient.users:
+        await user.create_channel(
+            guild_id=983442350963576863,
+            name="selfclient",
+            channel_type=ChannelType.TEXT_CHANNEL
+        )
 
 
-async def execute():
-    headers = {
-        "authorization": tokens[0]
-    }
-    data = {
-        "content": "Selfbot elo"
-    }
-
-    for _ in range(10):
-        response = await client.request(url="channels/1115717164482187304/messages", method="POST", headers=headers, data=data)
-        data = await response.json()
-
-
-client.loop.run_until_complete(execute())
+if __name__ == "__main__":
+    selfclient.loop.run_until_complete(main())

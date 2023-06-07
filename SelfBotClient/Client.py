@@ -13,13 +13,19 @@ class Client(HTTPClient):
             api_version: API_VERSION,
             session: SESSION = None,
             loop: AbstractEventLoop = None,
+            logger: bool = True
     ):
-        super().__init__(api_version, session, loop)
+        super().__init__(api_version, session, loop, logger)
 
     def login(self, token: Union[str, list[str]]):
-        self.logger.info("Checking the provided tokens")
+        if self.logger._status:
+            self.logger.info("Checking the provided tokens")
         self._tokens = token
         self._check_tokens()
         sleep(1)
+
+    async def send_message(self, channel_id: int, message_content: str):
+        for user in self.users:
+            await user.send_message(channel_id, message_content)
 
 

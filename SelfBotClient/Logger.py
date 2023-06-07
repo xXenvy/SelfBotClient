@@ -3,7 +3,7 @@ from colorlog import ColoredFormatter
 
 
 class Logger:
-    __slots__ = ("logger",)
+    __slots__ = ("logger", "_status")
 
     log_level: int = DEBUG
     log_format: str = "%(log_color)s%(levelname)s | %(asctime)s > %(message)s"
@@ -17,3 +17,4 @@ class Logger:
         self.logger = getLogger('Logger')
         self.logger.setLevel(self.log_level)
         self.logger.addHandler(stream)
+        self.logger._status = True
