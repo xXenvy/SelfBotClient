@@ -1,4 +1,4 @@
-from SelfBotClient import Client, ChannelType, ClientResponse, User, AUTH_HEADER
+from SelfBotClient import Client, ChannelType, ClientResponse, User, AUTH_HEADER, RGB_COLOR
 
 from typing import Optional
 
@@ -12,7 +12,13 @@ selfclient.login(token=tokens)
 
 
 async def main():
-    pass
+
+    user: User = selfclient.users[1]
+
+    await user.create_guild_role(
+        guild_id=983442350963576863,
+        name="tes_role23"
+    )
 
 
 if __name__ == "__main__":

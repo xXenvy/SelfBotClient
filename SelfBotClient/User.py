@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .HTTP import CustomSession
 
-from .typings import AUTH_HEADER
+from .typings import AUTH_HEADER, RGB_COLOR
 from .Logger import Logger
 from .enums import ChannelType
 
@@ -46,7 +46,11 @@ class UserClient:
         }
 
         response: ClientResponse = await self._session.request(
-        method="POST", url=_url, headers=self._auth_header, json=payload)
+            method="POST", url=_url, headers=self._auth_header, json=payload)
+
+        if response.status == 403 and self._logger._status:
+            self._logger.warning(
+                f"Request POST channels/{channel_id}/messages failed.\n -> {self} user does not have permissions to write on this channel")
 
         return response
 
@@ -59,7 +63,9 @@ class UserClient:
         response: ClientResponse = await self._session.request(
             method="DELETE", url=_url, headers=self._auth_header)
 
-        response.raise_for_status()
+        if response.status == 403 and self._logger._status:
+            self._logger.error(
+                f"Request DELETE channels/{channel_id} failed.\n -> {self} user does not have Manage_guild or Manage_thread permissions")
 
         return response
 
@@ -87,6 +93,60 @@ class UserClient:
         except client_exceptions.ClientResponseError as exception:
             if exception.status == 403 and self._logger._status:
                 self._logger.error(
-                f"Request POST {self} | /guilds/{guild_id}/channels failed. Missing permissions: manage_guild or manage_roles")
+                    f"Request POST /guilds/{guild_id}/channels failed.\n -> {self} user does not have Manage_channels or Manage_roles permissions")
 
         return response
+
+    async def get_channels(self, guild_id: int):
+        _url = self._endpoint + f"guilds/{guild_id}/channels"
+
+        if self._logger._status:
+            self._logger.debug(f"Sending request: GET -> {_url}")
+
+        response: ClientResponse = await self._session.request(
+            method="GET", url=_url, headers=self._auth_header)
+
+        try:
+            response.raise_for_status()
+        except client_exceptions.ClientResponseError as exception:
+            if exception.status == 403 and self._logger._status:
+                self._logger.error(
+                    f"Request GET guilds/{guild_id}/channels failed.\n -> {self} user does not have Manage_channels permission.")
+
+        return response
+
+    async def create_guild_role(self,
+                                guild_id: int,
+                                name: str,
+                                color: RGB_COLOR = None,
+                                hoist: bool = False):
+
+        _url = self._endpoint + f"guilds/{guild_id}/roles"
+
+        if self._logger._status:
+            self._logger.debug(f"Sending request: POST -> {_url}")
+
+        if color:
+            r, g, b = color.values()
+            color = (r << 16) + (g << 8) + b
+        else:
+            color = 0
+
+        json: dict = {
+            "name": name,
+            "hoist": hoist,
+            "color": color
+        }
+
+        response: ClientResponse = await self._session.request(
+            method="POST", url=_url, headers=self._auth_header, json=json)
+
+        try:
+            response.raise_for_status()
+        except client_exceptions.ClientResponseError as exception:
+            if exception.status == 403 and self._logger._status:
+                self._logger.error(
+                    f"Request POST guilds/{guild_id}/roles failed.\n -> {self} user does not have Manage_roles permission.")
+
+        return response
+

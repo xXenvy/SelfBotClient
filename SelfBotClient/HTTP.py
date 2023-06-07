@@ -14,6 +14,12 @@ class CustomSession(ClientSession):
     def __init__(self, logger: Logger, *args: Any, **kwargs: Any):
         self.logger: Logger = logger
         self.logger_status = logger._status
+
+        self.request_latency: float = kwargs.get("latency")
+        self.ratelimit_additional_cooldown: float = kwargs.get("additional_cooldown")
+        del kwargs["latency"]
+        del kwargs["additional_cooldown"]
+
         super().__init__(*args, **kwargs)
 
     async def request(self, method: str, url: str, **kwargs: Any) -> ClientResponse:
@@ -21,13 +27,13 @@ class CustomSession(ClientSession):
 
         if response.headers.get("Retry-After"):
 
-            seconds = int(response.headers.get("Retry-After")) + 10
+            seconds = int(response.headers.get("Retry-After")) + self.ratelimit_additional_cooldown
             if self.logger_status:
                 self.logger.warning(f"Ratelimit has been reached. Awaiting {seconds} seconds before next request.")
 
             await sleep(seconds)
         else:
-            await sleep(0.1)
+            await sleep(self.request_latency)
 
         return response
 
@@ -43,10 +49,16 @@ class HTTPClient:
             self,
             api_version: API_VERSION,
             loop: AbstractEventLoop = None,
-            logger: bool = True
+            logger: bool = True,
+            request_latency: float = 0.1,
+            ratelimit_additional_cooldown: float = 10
+
     ):
         if api_version not in (9, 10):
             raise UnSupportedApiVersion
+
+        self.request_latency: float = request_latency
+        self.ratelimit_additional_cooldown: float = 10
 
         self.api_version: int = api_version
         self.endpoint: str = Discord.ENDPOINT.value.format(self.api_version)
@@ -63,7 +75,7 @@ class HTTPClient:
         self.loop.run_until_complete(self.create_session())
 
     async def create_session(self):
-        self.session: CustomSession = CustomSession(self.logger)
+        self.session: CustomSession = CustomSession(self.logger, latency=self.request_latency, additional_cooldown=self.ratelimit_additional_cooldown)
 
     def _check_tokens(self):
 
@@ -102,7 +114,7 @@ class HTTPClient:
                         self.users.append(UserClient(data, self.session, self.loop))
 
             if self._logger_status:
-                self.logger.info(f"Checking of tokens successfully completed | Loaded ({len(self.users)}) tokens)")
+                self.logger.info(f"Checking of tokens successfully completed | Loaded ({len(self.users)}) tokens")
 
         if not isinstance(self._tokens, list) and not isinstance(self._tokens, str):
             raise UnSupportedTokenType
