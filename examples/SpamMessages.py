@@ -11,8 +11,8 @@ async def spam_messages(times=100):
     times = int(times / len(selfclient.users))
 
     """
-    The .send_message method calls at 2 selfbots 100 times. We want to send a total of 100 messages not 200
-    In this case it will be 50 messages for one selfbot
+    We perform the method .send_message 100 times * number of selfbots. 
+    We want to send a total of 100 messages, not 100 * number of selfbots In this case, it will be 50 messages for one selfbot
     """
 
     for _ in range(times):
