@@ -1,11 +1,8 @@
-from SelfBotClient import Client, ChannelType, ClientResponse, User, AUTH_HEADER, RGB_COLOR
+from SelfBotClient import Client, ChannelType, \
+    ClientResponse, User, AUTH_HEADER, RGB_COLOR, Permissions, PermissionBuilder
 
-from typing import Optional
 
-
-tokens = ["MTA4ODE1MTM1ODg1MjU2MzA2NA.GyVast.5hDmaZ-44lrGW3Xxw3yERnvB9LXHBJ6T7p42ec",
-          "MTExNjA0MTA0ODMzOTI3MTc5MQ.GAVK5L.SensjZL0qY4ifycY3mpNKe5JeVIBt5o3QSj60c",
-          "MTExNjA1MjA1MDQ4NTE5NDg4Mg.GQFzIi.O4ZEqdM-2Ka0NIKpW09hhWJYF9waNmIwJfpBno"]
+tokens = ["MTExNjUwOTUyMTY4NzM2Nzc2Mw.GFZdMn.6v2Bbvk0FAVkxTvSSyqxVhNOvav_tEn4CK0zU0"]
 
 selfclient = Client(api_version=10)
 selfclient.login(token=tokens)
@@ -13,12 +10,10 @@ selfclient.login(token=tokens)
 
 async def main():
 
-    user: User = selfclient.users[1]
-
-    await user.create_guild_role(
-        guild_id=983442350963576863,
-        name="tes_role23"
-    )
+    async for response in selfclient.kick_member(
+                                            guild_id=983442350963576863,
+                                            user_id=1043898474019692584):
+        print(response.status)
 
 
 if __name__ == "__main__":

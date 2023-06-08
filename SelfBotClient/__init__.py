@@ -1,6 +1,7 @@
 from .Client import Client
-from .enums import ChannelType
+from .enums import ChannelType, Permissions
 from .typings import ClientResponse, AUTH_HEADER, RGB_COLOR
+from .PermissionBuilder import PermissionBuilder
 
 
 __all__: tuple[str, ...] = (
@@ -8,5 +9,7 @@ __all__: tuple[str, ...] = (
     "ChannelType",
     "ClientResponse",
     "AUTH_HEADER",
-    "RGB_COLOR"
+    "RGB_COLOR",
+    "Permissions",
+    "PermissionBuilder"
 )

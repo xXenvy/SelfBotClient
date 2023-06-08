@@ -9,6 +9,15 @@ class Logger:
     log_format: str = "%(log_color)s%(levelname)s | %(asctime)s > %(message)s"
 
     def __init__(self):
+        """
+        The __init__ function is called when the class is instantiated.
+        It sets up the logger with a colored formatter and stream handler,
+        and then adds that handler to the logger. It also sets up a status variable.
+
+        :param self: Represent the instance of the class
+        :return: The logger, which is an instance of the logger class
+        """
+
         formatter = ColoredFormatter(self.log_format, datefmt='%H:%M:%S')
         stream = StreamHandler()
         stream.setLevel(self.log_level)
