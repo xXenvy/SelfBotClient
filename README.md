@@ -14,7 +14,7 @@
 ```shell
 pip install -U selfbotclient
 ```
-# 💫 Examples
+# 💫 Usage
 ```py
 from SelfBotClient import Client
 
