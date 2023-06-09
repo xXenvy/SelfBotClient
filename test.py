@@ -1,20 +1,25 @@
-from SelfBotClient import Client, ChannelType, \
-    ClientResponse, User, AUTH_HEADER, RGB_COLOR, Permissions, PermissionBuilder
+from SelfBotClient import Client, ClientResponse, ChannelType
+from threading import Thread
 
 
-tokens = ["MTExNjUwOTUyMTY4NzM2Nzc2Mw.GFZdMn.6v2Bbvk0FAVkxTvSSyqxVhNOvav_tEn4CK0zU0"]
+def get_tokens() -> list[str]:
+    with open("tokens.txt", mode="r") as file:
+        _tokens: str = file.read()
 
-selfclient = Client(api_version=10)
-selfclient.login(token=tokens)
-
-
-async def main():
-
-    async for response in selfclient.kick_member(
-                                            guild_id=983442350963576863,
-                                            user_id=1043898474019692584):
-        print(response.status)
+    return _tokens.split("\n")
 
 
-if __name__ == "__main__":
-    selfclient.run_async(main())
+selfclient = Client(api_version=10, request_latency=0.0, ratelimit_additional_cooldown=0.0)
+selfclient.login(token=get_tokens())
+
+
+async def spam_message():
+    for _ in range(10):
+        async for response in selfclient.send_message(
+            channel_id=1116783500851429517,
+            message_content="@everyone\n:clown:"
+        ):
+            if response.status != 200:
+                print(await response.json())
+
+

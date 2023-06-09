@@ -5,7 +5,7 @@ from .enums import Permissions
 class PermissionBuilder:
     __slots__ = ("value",)
 
-    def __init__(self, *args: tuple[Permissions]):
+    def __init__(self, *args: Permissions):
         """
         The __init__ function is the constructor for a class. It's called when you create an instance of the class,
         and it allows you to set up all attributes and other things that your object will need.

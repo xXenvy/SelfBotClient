@@ -6,7 +6,8 @@ from .User import UserClient
 
 from typing import Union, Awaitable, Any
 from aiohttp import ClientSession, ClientResponse, client_exceptions
-from asyncio import AbstractEventLoop, get_event_loop, sleep
+from asyncio import AbstractEventLoop, sleep, get_event_loop
+from time import time
 
 
 class CustomSession(ClientSession):
@@ -26,6 +27,7 @@ class CustomSession(ClientSession):
 
         self.logger: Logger = logger
         self.logger_status = logger._status
+        self._start: time = time()
 
         self.request_latency: float = kwargs.get("latency")
         self.ratelimit_additional_cooldown: float = kwargs.get("additional_cooldown")
@@ -61,7 +63,7 @@ class CustomSession(ClientSession):
                 _json: dict = await response.json()
             except client_exceptions.ContentTypeError:
                 _json: dict = {}
-            if _json.get("message"):
+            if isinstance(_json, dict) and _json.get("message"):
                 if "You need to verify" in _json.get("message"):
                     for user in self.users:
                         if user.token == token:
@@ -127,7 +129,7 @@ class HTTPClient:
             raise UnSupportedApiVersion
 
         self.request_latency: float = request_latency
-        self.ratelimit_additional_cooldown: float = 10
+        self.ratelimit_additional_cooldown: float = ratelimit_additional_cooldown
 
         self.api_version: int = api_version
         self.endpoint: str = Discord.ENDPOINT.value.format(self.api_version)
@@ -143,7 +145,7 @@ class HTTPClient:
         self.users: list[UserClient] = []
         self.loop.run_until_complete(self.create_session())
 
-    async def create_session(self):
+    async def create_session(self) -> None:
         """
         The create_session function is used to create a new session for the bot.
         This function is called when the bot starts up, and also when it needs to reconnect.
@@ -151,7 +153,7 @@ class HTTPClient:
         and how long until more can be made.
 
         :param self: Refer to the current instance of a class
-        :return: A customsession object, which is a class that extends the discord
+        :return: None
         """
 
         self.session: CustomSession = CustomSession(self.logger,
@@ -159,17 +161,17 @@ class HTTPClient:
                                                     additional_cooldown=self.ratelimit_additional_cooldown,
                                                     users=self.users)
 
-    def _check_tokens(self):
+    def _check_tokens(self) -> None:
         """
         The _check_tokens function is used to check if the tokens provided are valid.
         If a token is invalid, it will be removed from the list of tokens and not be used in any future requests.
         The function also creates UserClient objects for each valid token.
 
         :param self: Represent the instance of the class
-        :return: The list of userclient objects
+        :return: None
         """
 
-        async def _check(_type: Union[type[list], type[str]]):
+        async def _check(_type: Union[type[list], type[str]]) -> None:
             _url: str = self.endpoint + "users/@me"
             if _type == str:
                 header: AUTH_HEADER = AUTH_HEADER(authorization=self._tokens)
@@ -211,7 +213,7 @@ class HTTPClient:
 
         self.loop.run_until_complete(_check(type(self._tokens)))
 
-    def __del__(self):
+    def __del__(self) -> None:
         """
         The __del__ function is called when the object is garbage collected.
         The __del__ function can be used to clean up resources that are not managed by Python, such as file handles or network connections.
@@ -219,10 +221,12 @@ class HTTPClient:
         you can implement __del__ for this purpose.
 
         :param self: Represent the instance of the class
-        :return: The close() method of the session object
+        :return: None
         """
-
-        self.loop.run_until_complete(self.session.close())
+        try:
+            self.loop.run_until_complete(self.session.close())
+        except AttributeError:
+            pass
 
     def run_async(self, function: Awaitable) -> None:
         """
@@ -234,7 +238,6 @@ class HTTPClient:
         :param function: Awaitable: Specify the type of the parameter function
         :return: None
         """
-
         self.loop.run_until_complete(function)
 
     async def request(self, url: str, method: METHOD, headers: dict = None, data: dict = None) -> ClientResponse:
@@ -249,7 +252,7 @@ class HTTPClient:
         :return: A clientresponse object
         """
 
-        if method not in ("POST", "GET", "DELETE", "PATCH"):
+        if method not in ("POST", "GET", "DELETE", "PATCH", "PUT"):
             raise InvalidMethodType(method)
 
         url: str = self.endpoint + url
