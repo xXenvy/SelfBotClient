@@ -5,13 +5,11 @@ from .permissionbuilder import PermissionBuilder
 from collections.abc import AsyncIterable
 
 from typing import Union
-
 from asyncio import AbstractEventLoop
-from time import sleep
 
 
 class Client(HTTPClient):
-    __version__: str = "1.0.0"
+    __version__: str = "1.0.1"
 
     def __init__(
             self,
@@ -19,8 +17,7 @@ class Client(HTTPClient):
             loop: AbstractEventLoop = None,
             logger: bool = True,
             request_latency: float = 0.1,
-            ratelimit_additional_cooldown: float = 10,
-            use_threading: bool = False
+            ratelimit_additional_cooldown: float = 10
     ):
 
         """
@@ -308,7 +305,7 @@ class Client(HTTPClient):
 
         :param self: Represent the instance of the class
         :param guild_id: int: Specify the guild that you want to kick a user from
-        :param user_id: int: Identify the user to be kicked
+        :param user_ids: list[int]: Identify the user to be kicked
         :return: A union of none or an asynciterable[clientresponse]
         """
 

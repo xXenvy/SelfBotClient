@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SelfBot &mdash; Self Bot Client 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SelfBotClient package" href="SelfBotClient.html" />
+    <link rel="prev" title="Welcome to Self Bot Client’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Self Bot Client
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SelfBot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SelfBotClient.html">SelfBotClient package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Self Bot Client</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">SelfBot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="selfbot">
+<h1>SelfBot<a class="headerlink" href="#selfbot" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SelfBotClient.html">SelfBotClient package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SelfBotClient.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SelfBotClient.html#module-SelfBotClient.client">SelfBotClient.client module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client"><code class="docutils literal notranslate"><span class="pre">Client</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.ban_member"><code class="docutils literal notranslate"><span class="pre">Client.ban_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.ban_members"><code class="docutils literal notranslate"><span class="pre">Client.ban_members()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.create_channel"><code class="docutils literal notranslate"><span class="pre">Client.create_channel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.create_role"><code class="docutils literal notranslate"><span class="pre">Client.create_role()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.delete_channel"><code class="docutils literal notranslate"><span class="pre">Client.delete_channel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.delete_channels"><code class="docutils literal notranslate"><span class="pre">Client.delete_channels()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.delete_role"><code class="docutils literal notranslate"><span class="pre">Client.delete_role()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.delete_roles"><code class="docutils literal notranslate"><span class="pre">Client.delete_roles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.edit_member"><code class="docutils literal notranslate"><span class="pre">Client.edit_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.get_bans"><code class="docutils literal notranslate"><span class="pre">Client.get_bans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.get_channels"><code class="docutils literal notranslate"><span class="pre">Client.get_channels()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.get_member"><code class="docutils literal notranslate"><span class="pre">Client.get_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.get_roles"><code class="docutils literal notranslate"><span class="pre">Client.get_roles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.kick_member"><code class="docutils literal notranslate"><span class="pre">Client.kick_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.kick_members"><code class="docutils literal notranslate"><span class="pre">Client.kick_members()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.login"><code class="docutils literal notranslate"><span class="pre">Client.login()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.send_message"><code class="docutils literal notranslate"><span class="pre">Client.send_message()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.unban_member"><code class="docutils literal notranslate"><span class="pre">Client.unban_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.client.Client.unban_members"><code class="docutils literal notranslate"><span class="pre">Client.unban_members()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SelfBotClient.html#module-SelfBotClient.enums">SelfBotClient.enums module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.ChannelType"><code class="docutils literal notranslate"><span class="pre">ChannelType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.ChannelType.CATEGORY_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.CATEGORY_CHANNEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.ChannelType.TEXT_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.TEXT_CHANNEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.ChannelType.VOICE_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.VOICE_CHANNEL</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Discord"><code class="docutils literal notranslate"><span class="pre">Discord</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Discord.ENDPOINT"><code class="docutils literal notranslate"><span class="pre">Discord.ENDPOINT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions"><code class="docutils literal notranslate"><span class="pre">Permissions</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.ADD_REACTIONS"><code class="docutils literal notranslate"><span class="pre">Permissions.ADD_REACTIONS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.ADMINISTRATOR"><code class="docutils literal notranslate"><span class="pre">Permissions.ADMINISTRATOR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.ATTACH_FILES"><code class="docutils literal notranslate"><span class="pre">Permissions.ATTACH_FILES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.BAN_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.BAN_MEMBERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.CHANGE_NICKNAME"><code class="docutils literal notranslate"><span class="pre">Permissions.CHANGE_NICKNAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.CONNECT"><code class="docutils literal notranslate"><span class="pre">Permissions.CONNECT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.CREATE_INSTANT_INVITE"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_INSTANT_INVITE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.CREATE_PRIVATE_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_PRIVATE_THREADS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.CREATE_PUBLIC_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_PUBLIC_THREADS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.DEAFEN_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.DEAFEN_MEMBERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.EMBED_LINKS"><code class="docutils literal notranslate"><span class="pre">Permissions.EMBED_LINKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.KICK_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.KICK_MEMBERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.MANAGE_CHANNELS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_CHANNELS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.MANAGE_GUILD"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_GUILD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.MANAGE_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_MESSAGES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.MANAGE_NICKNAMES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_NICKNAMES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.MANAGE_ROLES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_ROLES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.MANAGE_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_THREADS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.MANAGE_WEBHOOKS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_WEBHOOKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.MENTION_EVERYONE"><code class="docutils literal notranslate"><span class="pre">Permissions.MENTION_EVERYONE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.MODERATE_MEMBERSL"><code class="docutils literal notranslate"><span class="pre">Permissions.MODERATE_MEMBERSL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.MOVE_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.MOVE_MEMBERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.MUTE_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.MUTE_MEMBERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.PRIORITY_SPEAKER"><code class="docutils literal notranslate"><span class="pre">Permissions.PRIORITY_SPEAKER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.READ_MESSAGE_HISTORY"><code class="docutils literal notranslate"><span class="pre">Permissions.READ_MESSAGE_HISTORY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.SEND_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.SEND_MESSAGES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.SEND_TTS_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.SEND_TTS_MESSAGES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.SPEAK"><code class="docutils literal notranslate"><span class="pre">Permissions.SPEAK</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.STREAM"><code class="docutils literal notranslate"><span class="pre">Permissions.STREAM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.USE_EXTERNAL_EMOJIS"><code class="docutils literal notranslate"><span class="pre">Permissions.USE_EXTERNAL_EMOJIS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.VIEW_AUDIT_LOG"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_AUDIT_LOG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.VIEW_CHANNEL"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_CHANNEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.enums.Permissions.VIEW_GUILD_INSIGHTS"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_GUILD_INSIGHTS</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SelfBotClient.html#module-SelfBotClient.errors">SelfBotClient.errors module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.errors.InvalidMethodType"><code class="docutils literal notranslate"><span class="pre">InvalidMethodType</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.errors.SelfBotClientException"><code class="docutils literal notranslate"><span class="pre">SelfBotClientException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.errors.UnSupportedApiVersion"><code class="docutils literal notranslate"><span class="pre">UnSupportedApiVersion</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.errors.UnSupportedTokenType"><code class="docutils literal notranslate"><span class="pre">UnSupportedTokenType</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SelfBotClient.html#module-SelfBotClient.http">SelfBotClient.http module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.http.CustomSession"><code class="docutils literal notranslate"><span class="pre">CustomSession</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.http.CustomSession.get"><code class="docutils literal notranslate"><span class="pre">CustomSession.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.http.CustomSession.request"><code class="docutils literal notranslate"><span class="pre">CustomSession.request()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.http.HTTPClient"><code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.http.HTTPClient.create_session"><code class="docutils literal notranslate"><span class="pre">HTTPClient.create_session()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.http.HTTPClient.request"><code class="docutils literal notranslate"><span class="pre">HTTPClient.request()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.http.HTTPClient.run_async"><code class="docutils literal notranslate"><span class="pre">HTTPClient.run_async()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SelfBotClient.html#module-SelfBotClient.logger">SelfBotClient.logger module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.logger.Logger"><code class="docutils literal notranslate"><span class="pre">Logger</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.logger.Logger.log_format"><code class="docutils literal notranslate"><span class="pre">Logger.log_format</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.logger.Logger.log_level"><code class="docutils literal notranslate"><span class="pre">Logger.log_level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.logger.Logger.logger"><code class="docutils literal notranslate"><span class="pre">Logger.logger</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SelfBotClient.html#module-SelfBotClient.permissionbuilder">SelfBotClient.permissionbuilder module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.permissionbuilder.PermissionBuilder"><code class="docutils literal notranslate"><span class="pre">PermissionBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.permissionbuilder.PermissionBuilder.value"><code class="docutils literal notranslate"><span class="pre">PermissionBuilder.value</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SelfBotClient.html#module-SelfBotClient.typings">SelfBotClient.typings module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.typings.AUTH_HEADER"><code class="docutils literal notranslate"><span class="pre">AUTH_HEADER</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.typings.AUTH_HEADER.authorization"><code class="docutils literal notranslate"><span class="pre">AUTH_HEADER.authorization</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.typings.RGB_COLOR"><code class="docutils literal notranslate"><span class="pre">RGB_COLOR</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.typings.RGB_COLOR.B"><code class="docutils literal notranslate"><span class="pre">RGB_COLOR.B</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.typings.RGB_COLOR.G"><code class="docutils literal notranslate"><span class="pre">RGB_COLOR.G</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.typings.RGB_COLOR.R"><code class="docutils literal notranslate"><span class="pre">RGB_COLOR.R</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SelfBotClient.html#module-SelfBotClient.user">SelfBotClient.user module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient"><code class="docutils literal notranslate"><span class="pre">UserClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient.ban_member"><code class="docutils literal notranslate"><span class="pre">UserClient.ban_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient.create_channel"><code class="docutils literal notranslate"><span class="pre">UserClient.create_channel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient.create_role"><code class="docutils literal notranslate"><span class="pre">UserClient.create_role()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient.delete_channel"><code class="docutils literal notranslate"><span class="pre">UserClient.delete_channel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient.delete_role"><code class="docutils literal notranslate"><span class="pre">UserClient.delete_role()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient.edit_member"><code class="docutils literal notranslate"><span class="pre">UserClient.edit_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient.get_bans"><code class="docutils literal notranslate"><span class="pre">UserClient.get_bans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient.get_channels"><code class="docutils literal notranslate"><span class="pre">UserClient.get_channels()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient.get_member"><code class="docutils literal notranslate"><span class="pre">UserClient.get_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient.get_roles"><code class="docutils literal notranslate"><span class="pre">UserClient.get_roles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient.kick_member"><code class="docutils literal notranslate"><span class="pre">UserClient.kick_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient.send_message"><code class="docutils literal notranslate"><span class="pre">UserClient.send_message()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.user.UserClient.unban_member"><code class="docutils literal notranslate"><span class="pre">UserClient.unban_member()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SelfBotClient.html#module-SelfBotClient">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ChannelType"><code class="docutils literal notranslate"><span class="pre">ChannelType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ChannelType.CATEGORY_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.CATEGORY_CHANNEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ChannelType.TEXT_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.TEXT_CHANNEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ChannelType.VOICE_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.VOICE_CHANNEL</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client"><code class="docutils literal notranslate"><span class="pre">Client</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.ban_member"><code class="docutils literal notranslate"><span class="pre">Client.ban_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.ban_members"><code class="docutils literal notranslate"><span class="pre">Client.ban_members()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.create_channel"><code class="docutils literal notranslate"><span class="pre">Client.create_channel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.create_role"><code class="docutils literal notranslate"><span class="pre">Client.create_role()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.delete_channel"><code class="docutils literal notranslate"><span class="pre">Client.delete_channel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.delete_channels"><code class="docutils literal notranslate"><span class="pre">Client.delete_channels()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.delete_role"><code class="docutils literal notranslate"><span class="pre">Client.delete_role()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.delete_roles"><code class="docutils literal notranslate"><span class="pre">Client.delete_roles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.edit_member"><code class="docutils literal notranslate"><span class="pre">Client.edit_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.get_bans"><code class="docutils literal notranslate"><span class="pre">Client.get_bans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.get_channels"><code class="docutils literal notranslate"><span class="pre">Client.get_channels()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.get_member"><code class="docutils literal notranslate"><span class="pre">Client.get_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.get_roles"><code class="docutils literal notranslate"><span class="pre">Client.get_roles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.kick_member"><code class="docutils literal notranslate"><span class="pre">Client.kick_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.kick_members"><code class="docutils literal notranslate"><span class="pre">Client.kick_members()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.login"><code class="docutils literal notranslate"><span class="pre">Client.login()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.send_message"><code class="docutils literal notranslate"><span class="pre">Client.send_message()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.unban_member"><code class="docutils literal notranslate"><span class="pre">Client.unban_member()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Client.unban_members"><code class="docutils literal notranslate"><span class="pre">Client.unban_members()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse"><code class="docutils literal notranslate"><span class="pre">ClientResponse</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.close"><code class="docutils literal notranslate"><span class="pre">ClientResponse.close()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.closed"><code class="docutils literal notranslate"><span class="pre">ClientResponse.closed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.connection"><code class="docutils literal notranslate"><span class="pre">ClientResponse.connection</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.content"><code class="docutils literal notranslate"><span class="pre">ClientResponse.content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.content_disposition"><code class="docutils literal notranslate"><span class="pre">ClientResponse.content_disposition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.get_encoding"><code class="docutils literal notranslate"><span class="pre">ClientResponse.get_encoding()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.headers"><code class="docutils literal notranslate"><span class="pre">ClientResponse.headers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.history"><code class="docutils literal notranslate"><span class="pre">ClientResponse.history</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.host"><code class="docutils literal notranslate"><span class="pre">ClientResponse.host</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.json"><code class="docutils literal notranslate"><span class="pre">ClientResponse.json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.links"><code class="docutils literal notranslate"><span class="pre">ClientResponse.links</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.ok"><code class="docutils literal notranslate"><span class="pre">ClientResponse.ok</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.raise_for_status"><code class="docutils literal notranslate"><span class="pre">ClientResponse.raise_for_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.raw_headers"><code class="docutils literal notranslate"><span class="pre">ClientResponse.raw_headers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.read"><code class="docutils literal notranslate"><span class="pre">ClientResponse.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.real_url"><code class="docutils literal notranslate"><span class="pre">ClientResponse.real_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.reason"><code class="docutils literal notranslate"><span class="pre">ClientResponse.reason</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.release"><code class="docutils literal notranslate"><span class="pre">ClientResponse.release()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.request_info"><code class="docutils literal notranslate"><span class="pre">ClientResponse.request_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.start"><code class="docutils literal notranslate"><span class="pre">ClientResponse.start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.status"><code class="docutils literal notranslate"><span class="pre">ClientResponse.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.text"><code class="docutils literal notranslate"><span class="pre">ClientResponse.text()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.url"><code class="docutils literal notranslate"><span class="pre">ClientResponse.url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.url_obj"><code class="docutils literal notranslate"><span class="pre">ClientResponse.url_obj</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.version"><code class="docutils literal notranslate"><span class="pre">ClientResponse.version</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.ClientResponse.wait_for_close"><code class="docutils literal notranslate"><span class="pre">ClientResponse.wait_for_close()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.PermissionBuilder"><code class="docutils literal notranslate"><span class="pre">PermissionBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.PermissionBuilder.value"><code class="docutils literal notranslate"><span class="pre">PermissionBuilder.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions"><code class="docutils literal notranslate"><span class="pre">Permissions</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.ADD_REACTIONS"><code class="docutils literal notranslate"><span class="pre">Permissions.ADD_REACTIONS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.ADMINISTRATOR"><code class="docutils literal notranslate"><span class="pre">Permissions.ADMINISTRATOR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.ATTACH_FILES"><code class="docutils literal notranslate"><span class="pre">Permissions.ATTACH_FILES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.BAN_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.BAN_MEMBERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.CHANGE_NICKNAME"><code class="docutils literal notranslate"><span class="pre">Permissions.CHANGE_NICKNAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.CONNECT"><code class="docutils literal notranslate"><span class="pre">Permissions.CONNECT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.CREATE_INSTANT_INVITE"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_INSTANT_INVITE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.CREATE_PRIVATE_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_PRIVATE_THREADS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.CREATE_PUBLIC_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_PUBLIC_THREADS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.DEAFEN_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.DEAFEN_MEMBERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.EMBED_LINKS"><code class="docutils literal notranslate"><span class="pre">Permissions.EMBED_LINKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.KICK_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.KICK_MEMBERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.MANAGE_CHANNELS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_CHANNELS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.MANAGE_GUILD"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_GUILD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.MANAGE_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_MESSAGES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.MANAGE_NICKNAMES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_NICKNAMES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.MANAGE_ROLES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_ROLES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.MANAGE_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_THREADS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.MANAGE_WEBHOOKS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_WEBHOOKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.MENTION_EVERYONE"><code class="docutils literal notranslate"><span class="pre">Permissions.MENTION_EVERYONE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.MODERATE_MEMBERSL"><code class="docutils literal notranslate"><span class="pre">Permissions.MODERATE_MEMBERSL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.MOVE_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.MOVE_MEMBERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.MUTE_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.MUTE_MEMBERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.PRIORITY_SPEAKER"><code class="docutils literal notranslate"><span class="pre">Permissions.PRIORITY_SPEAKER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.READ_MESSAGE_HISTORY"><code class="docutils literal notranslate"><span class="pre">Permissions.READ_MESSAGE_HISTORY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.SEND_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.SEND_MESSAGES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.SEND_TTS_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.SEND_TTS_MESSAGES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.SPEAK"><code class="docutils literal notranslate"><span class="pre">Permissions.SPEAK</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.STREAM"><code class="docutils literal notranslate"><span class="pre">Permissions.STREAM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.USE_EXTERNAL_EMOJIS"><code class="docutils literal notranslate"><span class="pre">Permissions.USE_EXTERNAL_EMOJIS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.VIEW_AUDIT_LOG"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_AUDIT_LOG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.VIEW_CHANNEL"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_CHANNEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.Permissions.VIEW_GUILD_INSIGHTS"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_GUILD_INSIGHTS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.RGB_COLOR"><code class="docutils literal notranslate"><span class="pre">RGB_COLOR</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.RGB_COLOR.B"><code class="docutils literal notranslate"><span class="pre">RGB_COLOR.B</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.RGB_COLOR.G"><code class="docutils literal notranslate"><span class="pre">RGB_COLOR.G</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="SelfBotClient.html#SelfBotClient.RGB_COLOR.R"><code class="docutils literal notranslate"><span class="pre">RGB_COLOR.R</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.HEADERS"><code class="docutils literal notranslate"><span class="pre">HEADERS</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main.html#main.HEADERS.authorization"><code class="docutils literal notranslate"><span class="pre">HEADERS.authorization</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.PAYLOAD"><code class="docutils literal notranslate"><span class="pre">PAYLOAD</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main.html#main.PAYLOAD.content"><code class="docutils literal notranslate"><span class="pre">PAYLOAD.content</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.send_message"><code class="docutils literal notranslate"><span class="pre">send_message()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">test module</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Self Bot Client’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="SelfBotClient.html" class="btn btn-neutral float-right" title="SelfBotClient package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, xXenvy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

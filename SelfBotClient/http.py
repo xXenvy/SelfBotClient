@@ -7,7 +7,6 @@ from .user import UserClient
 from typing import Union, Awaitable, Any
 from aiohttp import ClientSession, ClientResponse, client_exceptions
 from asyncio import AbstractEventLoop, sleep, get_event_loop
-from time import time
 
 
 class CustomSession(ClientSession):
@@ -27,7 +26,6 @@ class CustomSession(ClientSession):
 
         self.logger: Logger = logger
         self.logger_status = logger._status
-        self._start: time = time()
 
         self.request_latency: float = kwargs.get("latency")
         self.ratelimit_additional_cooldown: float = kwargs.get("additional_cooldown")

@@ -2,6 +2,7 @@ from .client import Client
 from .enums import ChannelType, Permissions
 from .typings import ClientResponse, RGB_COLOR
 from .permissionbuilder import PermissionBuilder
+from .user import UserClient
 
 
 __all__: tuple[str, ...] = (
@@ -10,5 +11,6 @@ __all__: tuple[str, ...] = (
     "ClientResponse",
     "RGB_COLOR",
     "Permissions",
-    "PermissionBuilder"
+    "PermissionBuilder",
+    "UserClient"
 )

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SelfBotClient.http &mdash; Self Bot Client 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Self Bot Client
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">SelfBot</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Self Bot Client</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">SelfBotClient.http</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for SelfBotClient.http</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">.typings</span> <span class="kn">import</span> <span class="n">API_VERSION</span><span class="p">,</span> <span class="n">AUTH_HEADER</span><span class="p">,</span> <span class="n">METHOD</span>
+<span class="kn">from</span> <span class="nn">.errors</span> <span class="kn">import</span> <span class="n">UnSupportedApiVersion</span><span class="p">,</span> <span class="n">UnSupportedTokenType</span><span class="p">,</span> <span class="n">InvalidMethodType</span>
+<span class="kn">from</span> <span class="nn">.enums</span> <span class="kn">import</span> <span class="n">Discord</span>
+<span class="kn">from</span> <span class="nn">.logger</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">.user</span> <span class="kn">import</span> <span class="n">UserClient</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">aiohttp</span> <span class="kn">import</span> <span class="n">ClientSession</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">,</span> <span class="n">client_exceptions</span>
+<span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">AbstractEventLoop</span><span class="p">,</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">get_event_loop</span>
+
+
+<div class="viewcode-block" id="CustomSession"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.http.CustomSession">[docs]</a><span class="k">class</span> <span class="nc">CustomSession</span><span class="p">(</span><span class="n">ClientSession</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logger</span><span class="p">:</span> <span class="n">Logger</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The __init__ function is called when the class is instantiated.</span>
+<span class="sd">        It sets up all of the variables that are needed for other functions to work properly.</span>
+<span class="sd">        The super() function calls __init__ from the parent class, which in this case is ClientSession.</span>
+
+<span class="sd">        :param self: Represent the instance of the class</span>
+<span class="sd">        :param logger: Logger: Pass the logger object to the class</span>
+<span class="sd">        :param *args: Any: Pass any additional arguments to the superclass</span>
+<span class="sd">        :param **kwargs: Any: Pass in additional parameters that are not explicitly defined</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">:</span> <span class="n">Logger</span> <span class="o">=</span> <span class="n">logger</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger_status</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">_status</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">request_latency</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;latency&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ratelimit_additional_cooldown</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;additional_cooldown&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">UserClient</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">)</span>
+
+        <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;latency&quot;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;additional_cooldown&quot;</span><span class="p">]</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CustomSession.request"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.http.CustomSession.request">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClientResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The request function is a wrapper around the ClientSession.request function,</span>
+<span class="sd">        which handles ratelimits and other exceptions that may occur during requests.</span>
+<span class="sd">        It also adds an additional cooldown to the Retry-After header value.</span>
+
+<span class="sd">        :param self: Represent the instance of the class</span>
+<span class="sd">        :param method: str: Determine the type of request</span>
+<span class="sd">        :param url: str: Specify the url that you want to make a request to</span>
+<span class="sd">        :param **kwargs: Any: Pass in additional parameters to the request function</span>
+<span class="sd">        :return: A clientresponse object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;headers&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">headers</span><span class="p">:</span>
+            <span class="n">token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;authorization&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span> <span class="ow">and</span> <span class="n">headers</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">_json</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">client_exceptions</span><span class="o">.</span><span class="n">ContentTypeError</span><span class="p">:</span>
+                <span class="n">_json</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_json</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">_json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="s2">&quot;You need to verify&quot;</span> <span class="ow">in</span> <span class="n">_json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">token</span> <span class="o">==</span> <span class="n">token</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;It seems that your account has been blocked.</span><span class="se">\n</span><span class="s2">-&gt; Account: </span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="mi">901</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Retry-After&quot;</span><span class="p">):</span>
+
+            <span class="n">seconds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Retry-After&quot;</span><span class="p">))</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ratelimit_additional_cooldown</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_status</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ratelimit has been reached. Awaiting </span><span class="si">{</span><span class="n">seconds</span><span class="si">}</span><span class="s2"> seconds before next request.&quot;</span><span class="p">)</span>
+
+            <span class="k">await</span> <span class="n">sleep</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request_latency</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="CustomSession.get"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.http.CustomSession.get">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClientResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get function is a wrapper for the get function in the ClientSession class.</span>
+<span class="sd">        It allows us to use asyncio&#39;s await syntax, which makes it easier to write asynchronous code.</span>
+<span class="sd">        The get function takes a url and returns an object of type ClientResponse.</span>
+
+<span class="sd">        :param self: Represent the instance of the class</span>
+<span class="sd">        :param url: str: Specify the url to be requested</span>
+<span class="sd">        :param *: Unpack the tuple and the ** parameter is used to unpack the dictionary</span>
+<span class="sd">        :param allow_redirects: bool: Determine whether the client will follow redirects</span>
+<span class="sd">        :param **kwargs: Any: Pass in any additional parameters that are not specified</span>
+<span class="sd">        :return: A clientresponse object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="n">allow_redirects</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div></div>
+
+
+<div class="viewcode-block" id="HTTPClient"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.http.HTTPClient">[docs]</a><span class="k">class</span> <span class="nc">HTTPClient</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">api_version</span><span class="p">:</span> <span class="n">API_VERSION</span><span class="p">,</span>
+            <span class="n">loop</span><span class="p">:</span> <span class="n">AbstractEventLoop</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">logger</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="n">request_latency</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+            <span class="n">ratelimit_additional_cooldown</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span>
+
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The __init__ function is called when the class is instantiated.</span>
+<span class="sd">        It allows the class to initialize its attributes, and do any other necessary setup.</span>
+<span class="sd">        The __init__ function can accept arguments, which will be passed on from the object creation.</span>
+
+<span class="sd">        :param self: Represent the instance of the class</span>
+<span class="sd">        :param api_version: API_VERSION: Set the api version of discord</span>
+<span class="sd">        :param loop: AbstractEventLoop: Set the event loop that will be used by the client</span>
+<span class="sd">        :param logger: bool: Enable/disable the logger</span>
+<span class="sd">        :param request_latency: float: Control the rate of requests sent to discord</span>
+<span class="sd">        :param ratelimit_additional_cooldown: float: Add a cooldown to the ratelimit</span>
+<span class="sd">        :return: Nothing, so the return type is none</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">api_version</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">UnSupportedApiVersion</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">request_latency</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">request_latency</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ratelimit_additional_cooldown</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">ratelimit_additional_cooldown</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_version</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">api_version</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Discord</span><span class="o">.</span><span class="n">ENDPOINT</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">api_version</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">:</span> <span class="n">AbstractEventLoop</span> <span class="o">=</span> <span class="n">loop</span> <span class="k">if</span> <span class="n">loop</span> <span class="k">else</span> <span class="n">get_event_loop</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger_status</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">logger</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">:</span> <span class="n">Logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">()</span><span class="o">.</span><span class="n">logger</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger_status</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">CustomSession</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">UserClient</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">create_session</span><span class="p">())</span>
+
+<div class="viewcode-block" id="HTTPClient.create_session"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.http.HTTPClient.create_session">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_session</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The create_session function is used to create a new session for the bot.</span>
+<span class="sd">        This function is called when the bot starts up, and also when it needs to reconnect.</span>
+<span class="sd">        The session object contains all of the information about how many requests have been made,</span>
+<span class="sd">        and how long until more can be made.</span>
+
+<span class="sd">        :param self: Refer to the current instance of a class</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">:</span> <span class="n">CustomSession</span> <span class="o">=</span> <span class="n">CustomSession</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span>
+                                                    <span class="n">latency</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request_latency</span><span class="p">,</span>
+                                                    <span class="n">additional_cooldown</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ratelimit_additional_cooldown</span><span class="p">,</span>
+                                                    <span class="n">users</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_check_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The _check_tokens function is used to check if the tokens provided are valid.</span>
+<span class="sd">        If a token is invalid, it will be removed from the list of tokens and not be used in any future requests.</span>
+<span class="sd">        The function also creates UserClient objects for each valid token.</span>
+
+<span class="sd">        :param self: Represent the instance of the class</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">_check</span><span class="p">(</span><span class="n">_type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">type</span><span class="p">[</span><span class="nb">list</span><span class="p">],</span> <span class="nb">type</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">+</span> <span class="s2">&quot;users/@me&quot;</span>
+            <span class="k">if</span> <span class="n">_type</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+                <span class="n">header</span><span class="p">:</span> <span class="n">AUTH_HEADER</span> <span class="o">=</span> <span class="n">AUTH_HEADER</span><span class="p">(</span><span class="n">authorization</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="p">)</span>
+                <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger_status</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;An invalid token has been provided: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="si">}</span><span class="s2"> | The token will be automatically deleted&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;endpoint&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">UserClient</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">))</span>
+
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="p">]</span>
+
+            <span class="k">elif</span> <span class="n">_type</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="p">:</span>
+
+                    <span class="n">header</span><span class="p">:</span> <span class="n">AUTH_HEADER</span> <span class="o">=</span> <span class="n">AUTH_HEADER</span><span class="p">(</span><span class="n">authorization</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+                    <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger_status</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                                <span class="sa">f</span><span class="s2">&quot;An invalid token has been provided: </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2"> | The token will be automatically deleted&quot;</span><span class="p">)</span>
+
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">token</span>
+                        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;endpoint&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span>
+
+                        <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">UserClient</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger_status</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Checking of tokens successfully completed | Loaded (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">)</span><span class="si">}</span><span class="s2">) tokens&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">UnSupportedTokenType</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">_check</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The __del__ function is called when the object is garbage collected.</span>
+<span class="sd">        The __del__ function can be used to clean up resources that are not managed by Python, such as file handles or network connections.</span>
+<span class="sd">        If you have a class with an open file handle, and you want to make sure that the file gets closed when the object gets deleted,</span>
+<span class="sd">        you can implement __del__ for this purpose.</span>
+
+<span class="sd">        :param self: Represent the instance of the class</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">())</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+<div class="viewcode-block" id="HTTPClient.run_async"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.http.HTTPClient.run_async">[docs]</a>    <span class="k">def</span> <span class="nf">run_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="n">Awaitable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The run_async function is a helper function that allows you to run an asyncio coroutine in the background.</span>
+<span class="sd">        It takes a single argument, which must be an awaitable object (such as a coroutine). It runs the event loop until</span>
+<span class="sd">        the awaitable completes and then returns. This is useful for running tasks in parallel with other code.</span>
+
+<span class="sd">        :param self: Access the attributes and methods of a class</span>
+<span class="sd">        :param function: Awaitable: Specify the type of the parameter function</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">function</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HTTPClient.request"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.http.HTTPClient.request">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">METHOD</span><span class="p">,</span> <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClientResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The request function is used to send a request to the API.</span>
+
+<span class="sd">        :param self: Represent the instance of the class</span>
+<span class="sd">        :param url: str: Specify the url of the request</span>
+<span class="sd">        :param method: METHOD: Specify the type of request being sent</span>
+<span class="sd">        :param headers: dict: Pass in a dictionary of headers to be sent with the request</span>
+<span class="sd">        :param data: dict: Send data to the server</span>
+<span class="sd">        :return: A clientresponse object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;DELETE&quot;</span><span class="p">,</span> <span class="s2">&quot;PATCH&quot;</span><span class="p">,</span> <span class="s2">&quot;PUT&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InvalidMethodType</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+
+        <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">+</span> <span class="n">url</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger_status</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sending request: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">response</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, xXenvy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
