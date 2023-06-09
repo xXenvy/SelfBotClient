@@ -1,7 +1,7 @@
 import sys
 import argparse
 
-from .Client import Client
+from .client import Client
 
 
 def version() -> None:

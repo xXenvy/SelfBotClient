@@ -1,8 +1,8 @@
 from .typings import API_VERSION, AUTH_HEADER, METHOD
 from .errors import UnSupportedApiVersion, UnSupportedTokenType, InvalidMethodType
 from .enums import Discord
-from .Logger import Logger
-from .User import UserClient
+from .logger import Logger
+from .user import UserClient
 
 from typing import Union, Awaitable, Any
 from aiohttp import ClientSession, ClientResponse, client_exceptions

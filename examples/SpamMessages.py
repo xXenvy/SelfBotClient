@@ -1,4 +1,4 @@
-from SelfBotClient import Client, User, ClientResponse
+from SelfBotClient import Client, user, ClientResponse
 
 
 tokens = ["TOKEN_1", "TOKEN_2"]

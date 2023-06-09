@@ -3,12 +3,12 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from .HTTP import CustomSession
+    from .http import CustomSession
 
 from .typings import AUTH_HEADER, RGB_COLOR
-from .Logger import Logger
+from .logger import Logger
 from .enums import ChannelType
-from .PermissionBuilder import PermissionBuilder
+from .permissionbuilder import PermissionBuilder
 
 from asyncio import AbstractEventLoop
 from aiohttp import ClientResponse

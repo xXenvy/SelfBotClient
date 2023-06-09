@@ -1,7 +1,7 @@
-from .HTTP import HTTPClient
+from .http import HTTPClient
 from .typings import API_VERSION, ClientResponse, RGB_COLOR
 from .enums import ChannelType
-from .PermissionBuilder import PermissionBuilder
+from .permissionbuilder import PermissionBuilder
 from collections.abc import AsyncIterable
 
 from typing import Union
