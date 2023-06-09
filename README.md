@@ -12,4 +12,4 @@
 - The library itself detects whether you have reached the ratelimit of the discord and, if so, forces you to wait a certain time.
 
 ## 💫 Examples
-**See examples on github:** [https://github.com/xXenvy?tab=repositories](https://github.com/xXenvy/SelfBotClient/tree/master/examples)
+**See examples on github:** [Examples](https://github.com/xXenvy/SelfBotClient/tree/master/examples)
