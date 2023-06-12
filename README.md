@@ -3,6 +3,10 @@
 - Token Checker | `1` token / `140`ms
 - 3 requests / 1s `(in feature 10 requests / 1s using threads)`
 
+
+https://github.com/xXenvy/SelfBotClient/assets/111158232/eb5961eb-0a8d-44f1-93b0-48d7a1f6fce0
+
+
 # 🔧 Full control
 - A separate method to send your own requests
 - Ability to manage individual selfbots
