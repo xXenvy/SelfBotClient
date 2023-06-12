@@ -2,6 +2,8 @@ from .http import HTTPClient
 from .typings import API_VERSION, ClientResponse, RGB_COLOR
 from .enums import ChannelType
 from .permissionbuilder import PermissionBuilder
+from .threads import Threads
+
 from collections.abc import AsyncIterable
 
 from typing import Union
@@ -9,7 +11,7 @@ from asyncio import AbstractEventLoop
 
 
 class Client(HTTPClient):
-    __version__: str = "1.0.1"
+    __version__: str = "1.0.2"
 
     def __init__(
             self,
@@ -17,23 +19,28 @@ class Client(HTTPClient):
             loop: AbstractEventLoop = None,
             logger: bool = True,
             request_latency: float = 0.1,
-            ratelimit_additional_cooldown: float = 10
+            ratelimit_additional_cooldown: float = 10,
+            use_threading: bool = False
     ):
-
         """
         The __init__ function is called when the class is instantiated.
-        It sets up all of the attributes that we will need for our API wrapper to function properly.
-        The super() call invokes the __init__ method of our parent class, which in this case is BaseClient.
+        It sets up all of the attributes that are needed for the class to function properly.
+
 
         :param self: Represent the instance of the class
-        :param api_version: API_VERSION: Specify the version of the api you want to use
-        :param loop: AbstractEventLoop: Set the event loop for the client
-        :param logger: bool: Enable or disable logging
-        :param request_latency: float: Set the delay between requests
+        :param api_version: API_VERSION: Set the api version of the client
+        :param loop: AbstractEventLoop: Specify the event loop that the client will use
+        :param logger: bool: Enable/disable logging
+        :param request_latency: float: Set the time between requests
         :param ratelimit_additional_cooldown: float: Add a cooldown to the ratelimit
-        :return: The class itself
+        :param use_threading: bool: Determine if the client should use threading
+        :return: None
         """
+
         super().__init__(api_version, loop, logger, request_latency, ratelimit_additional_cooldown)
+
+        if use_threading:
+            self.thread: Threads = Threads(client=self)
 
     def login(self, token: Union[str, list[str]]) -> None:
         """
