@@ -1,3 +1,4 @@
+**Project only for educational purposes! 🤓**
 
 # ⚡ Fast Self Bot Client
 - Token Checker | `1` token / `140`ms
