@@ -1,0 +1,9 @@
+.. currentmodule:: SelfBotClient
+
+A :class:`Client` is used to interact with a :class:`User`
+---------------------------
+
+.. automodule:: SelfBotClient.client
+   :members:
+   :undoc-members:
+   :show-inheritance:

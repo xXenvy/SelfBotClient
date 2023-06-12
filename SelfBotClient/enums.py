@@ -1,6 +1,9 @@
 from enum import Enum
 
 
+__all__: tuple = ("ChannelType", "Permissions")
+
+
 class Discord(Enum):
     ENDPOINT: str = "https://discord.com/api/v{}/"
 

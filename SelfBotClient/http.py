@@ -9,6 +9,9 @@ from aiohttp import ClientSession, ClientResponse, client_exceptions
 from asyncio import AbstractEventLoop, sleep, get_event_loop
 
 
+__all__: tuple[str, ...] = ("HTTPClient", "ClientResponse")
+
+
 class CustomSession(ClientSession):
 
     def __init__(self, logger: Logger, *args: Any, **kwargs: Any):
@@ -204,7 +207,7 @@ class HTTPClient:
                         self.users.append(UserClient(data, self.session, self.loop))
 
             if self._logger_status:
-                self.logger.info(f"Checking of tokens successfully completed | Loaded ({len(self.users)}) tokens")
+                self.logger.info(f"Checking of tokens successfully completed | Loaded ({len(self.users)}) tokens\n")
 
         if not isinstance(self._tokens, list) and not isinstance(self._tokens, str):
             raise UnSupportedTokenType

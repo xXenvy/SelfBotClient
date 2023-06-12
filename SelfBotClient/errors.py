@@ -1,7 +1,6 @@
 __all__: tuple[str, ...] = (
     "UnSupportedApiVersion",
     "UnSupportedTokenType",
-    "SelfBotClientException",
     "InvalidMethodType"
 )
 

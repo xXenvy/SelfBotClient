@@ -1,0 +1,525 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Errors" href="Errors.html" /><link rel="prev" title="Client" href="Client.html" />
+
+    <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
+        <title>Enums - Self Bot library 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css\rtd_sphinx_search.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Self Bot library 1.0.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Self Bot library 1.0.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installing.html">Installing</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">SelfBotClient Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBotClient Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Client.html">Client</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Errors.html">Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Http.html">Http</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PermissionBuilder.html">PermissionBuilder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Typings.html">Typings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="User.html">UserClient</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="enums">
+<h1>Enums<a class="headerlink" href="#enums" title="Permalink to this heading">#</a></h1>
+<section id="module-SelfBotClient.enums">
+<span id="a-enums"></span><h2>A <code class="xref py py-class docutils literal notranslate"><span class="pre">enums</span></code><a class="headerlink" href="#module-SelfBotClient.enums" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="SelfBotClient.enums.ChannelType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.enums.</span></span><span class="sig-name descname"><span class="pre">ChannelType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/enums.html#ChannelType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.enums.ChannelType" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.ChannelType.CATEGORY_CHANNEL">
+<span class="sig-name descname"><span class="pre">CATEGORY_CHANNEL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#SelfBotClient.enums.ChannelType.CATEGORY_CHANNEL" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.ChannelType.TEXT_CHANNEL">
+<span class="sig-name descname"><span class="pre">TEXT_CHANNEL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#SelfBotClient.enums.ChannelType.TEXT_CHANNEL" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.ChannelType.VOICE_CHANNEL">
+<span class="sig-name descname"><span class="pre">VOICE_CHANNEL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#SelfBotClient.enums.ChannelType.VOICE_CHANNEL" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.enums.</span></span><span class="sig-name descname"><span class="pre">Permissions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/enums.html#Permissions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.enums.Permissions" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.ADD_REACTIONS">
+<span class="sig-name descname"><span class="pre">ADD_REACTIONS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.ADD_REACTIONS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.ADMINISTRATOR">
+<span class="sig-name descname"><span class="pre">ADMINISTRATOR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.ADMINISTRATOR" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.ATTACH_FILES">
+<span class="sig-name descname"><span class="pre">ATTACH_FILES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32768</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.ATTACH_FILES" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.BAN_MEMBERS">
+<span class="sig-name descname"><span class="pre">BAN_MEMBERS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.BAN_MEMBERS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.CHANGE_NICKNAME">
+<span class="sig-name descname"><span class="pre">CHANGE_NICKNAME</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">67108864</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.CHANGE_NICKNAME" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.CONNECT">
+<span class="sig-name descname"><span class="pre">CONNECT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1048576</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.CONNECT" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.CREATE_INSTANT_INVITE">
+<span class="sig-name descname"><span class="pre">CREATE_INSTANT_INVITE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.CREATE_INSTANT_INVITE" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.CREATE_PRIVATE_THREADS">
+<span class="sig-name descname"><span class="pre">CREATE_PRIVATE_THREADS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">68719476736</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.CREATE_PRIVATE_THREADS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.CREATE_PUBLIC_THREADS">
+<span class="sig-name descname"><span class="pre">CREATE_PUBLIC_THREADS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">34359738368</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.CREATE_PUBLIC_THREADS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.DEAFEN_MEMBERS">
+<span class="sig-name descname"><span class="pre">DEAFEN_MEMBERS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8388608</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.DEAFEN_MEMBERS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.EMBED_LINKS">
+<span class="sig-name descname"><span class="pre">EMBED_LINKS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16384</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.EMBED_LINKS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.KICK_MEMBERS">
+<span class="sig-name descname"><span class="pre">KICK_MEMBERS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.KICK_MEMBERS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_CHANNELS">
+<span class="sig-name descname"><span class="pre">MANAGE_CHANNELS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_CHANNELS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_GUILD">
+<span class="sig-name descname"><span class="pre">MANAGE_GUILD</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_GUILD" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_MESSAGES">
+<span class="sig-name descname"><span class="pre">MANAGE_MESSAGES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8192</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_MESSAGES" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_NICKNAMES">
+<span class="sig-name descname"><span class="pre">MANAGE_NICKNAMES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">134217728</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_NICKNAMES" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_ROLES">
+<span class="sig-name descname"><span class="pre">MANAGE_ROLES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">268435456</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_ROLES" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_THREADS">
+<span class="sig-name descname"><span class="pre">MANAGE_THREADS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">17179869184</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_THREADS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_WEBHOOKS">
+<span class="sig-name descname"><span class="pre">MANAGE_WEBHOOKS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">536870912</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_WEBHOOKS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MENTION_EVERYONE">
+<span class="sig-name descname"><span class="pre">MENTION_EVERYONE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">131072</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MENTION_EVERYONE" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MODERATE_MEMBERSL">
+<span class="sig-name descname"><span class="pre">MODERATE_MEMBERSL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1099511627776</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MODERATE_MEMBERSL" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MOVE_MEMBERS">
+<span class="sig-name descname"><span class="pre">MOVE_MEMBERS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16777216</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MOVE_MEMBERS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MUTE_MEMBERS">
+<span class="sig-name descname"><span class="pre">MUTE_MEMBERS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4194304</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MUTE_MEMBERS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.PRIORITY_SPEAKER">
+<span class="sig-name descname"><span class="pre">PRIORITY_SPEAKER</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">256</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.PRIORITY_SPEAKER" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.READ_MESSAGE_HISTORY">
+<span class="sig-name descname"><span class="pre">READ_MESSAGE_HISTORY</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">65536</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.READ_MESSAGE_HISTORY" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.SEND_MESSAGES">
+<span class="sig-name descname"><span class="pre">SEND_MESSAGES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2048</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.SEND_MESSAGES" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.SEND_TTS_MESSAGES">
+<span class="sig-name descname"><span class="pre">SEND_TTS_MESSAGES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.SEND_TTS_MESSAGES" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.SPEAK">
+<span class="sig-name descname"><span class="pre">SPEAK</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2097152</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.SPEAK" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.STREAM">
+<span class="sig-name descname"><span class="pre">STREAM</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">512</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.STREAM" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.USE_EXTERNAL_EMOJIS">
+<span class="sig-name descname"><span class="pre">USE_EXTERNAL_EMOJIS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">262144</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.USE_EXTERNAL_EMOJIS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.VIEW_AUDIT_LOG">
+<span class="sig-name descname"><span class="pre">VIEW_AUDIT_LOG</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">128</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.VIEW_AUDIT_LOG" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.VIEW_CHANNEL">
+<span class="sig-name descname"><span class="pre">VIEW_CHANNEL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1024</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.VIEW_CHANNEL" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.VIEW_GUILD_INSIGHTS">
+<span class="sig-name descname"><span class="pre">VIEW_GUILD_INSIGHTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">524288</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.VIEW_GUILD_INSIGHTS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="Errors.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Errors</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="Client.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Client</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, xXenvy
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Enums</a><ul>
+<li><a class="reference internal" href="#module-SelfBotClient.enums">A <code class="xref py py-class docutils literal notranslate"><span class="pre">enums</span></code></a><ul>
+<li><a class="reference internal" href="#SelfBotClient.enums.ChannelType"><code class="docutils literal notranslate"><span class="pre">ChannelType</span></code></a><ul>
+<li><a class="reference internal" href="#SelfBotClient.enums.ChannelType.CATEGORY_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.CATEGORY_CHANNEL</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.ChannelType.TEXT_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.TEXT_CHANNEL</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.ChannelType.VOICE_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.VOICE_CHANNEL</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions"><code class="docutils literal notranslate"><span class="pre">Permissions</span></code></a><ul>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.ADD_REACTIONS"><code class="docutils literal notranslate"><span class="pre">Permissions.ADD_REACTIONS</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.ADMINISTRATOR"><code class="docutils literal notranslate"><span class="pre">Permissions.ADMINISTRATOR</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.ATTACH_FILES"><code class="docutils literal notranslate"><span class="pre">Permissions.ATTACH_FILES</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.BAN_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.BAN_MEMBERS</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.CHANGE_NICKNAME"><code class="docutils literal notranslate"><span class="pre">Permissions.CHANGE_NICKNAME</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.CONNECT"><code class="docutils literal notranslate"><span class="pre">Permissions.CONNECT</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.CREATE_INSTANT_INVITE"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_INSTANT_INVITE</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.CREATE_PRIVATE_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_PRIVATE_THREADS</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.CREATE_PUBLIC_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_PUBLIC_THREADS</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.DEAFEN_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.DEAFEN_MEMBERS</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.EMBED_LINKS"><code class="docutils literal notranslate"><span class="pre">Permissions.EMBED_LINKS</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.KICK_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.KICK_MEMBERS</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_CHANNELS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_CHANNELS</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_GUILD"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_GUILD</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_MESSAGES</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_NICKNAMES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_NICKNAMES</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_ROLES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_ROLES</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_THREADS</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_WEBHOOKS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_WEBHOOKS</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MENTION_EVERYONE"><code class="docutils literal notranslate"><span class="pre">Permissions.MENTION_EVERYONE</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MODERATE_MEMBERSL"><code class="docutils literal notranslate"><span class="pre">Permissions.MODERATE_MEMBERSL</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MOVE_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.MOVE_MEMBERS</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MUTE_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.MUTE_MEMBERS</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.PRIORITY_SPEAKER"><code class="docutils literal notranslate"><span class="pre">Permissions.PRIORITY_SPEAKER</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.READ_MESSAGE_HISTORY"><code class="docutils literal notranslate"><span class="pre">Permissions.READ_MESSAGE_HISTORY</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.SEND_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.SEND_MESSAGES</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.SEND_TTS_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.SEND_TTS_MESSAGES</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.SPEAK"><code class="docutils literal notranslate"><span class="pre">Permissions.SPEAK</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.STREAM"><code class="docutils literal notranslate"><span class="pre">Permissions.STREAM</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.USE_EXTERNAL_EMOJIS"><code class="docutils literal notranslate"><span class="pre">Permissions.USE_EXTERNAL_EMOJIS</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.VIEW_AUDIT_LOG"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_AUDIT_LOG</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.VIEW_CHANNEL"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_CHANNEL</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.VIEW_GUILD_INSIGHTS"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_GUILD_INSIGHTS</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/js\rtd_search_config.js"></script>
+    <script src="../_static/js\rtd_sphinx_search.min.js"></script>
+    </body>
+</html>

@@ -7,16 +7,11 @@ Welcome to Self Bot Client's documentation!
 ===========================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
-   modules
+   installing
+   library/index.rst
+   examples/index.rst
 
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
