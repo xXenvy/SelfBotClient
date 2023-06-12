@@ -11,8 +11,8 @@ https://github.com/xXenvy/SelfBotClient/assets/111158232/ede9fb47-d489-4d9a-b58d
 - Ability to manage individual selfbots
 
 # 📌 Ratelimit handler
-
 - The library itself detects whether you have reached the ratelimit of the discord and, if so, forces you to wait a certain time.
+![Test](https://i.imgur.com/hTUFQKF.png)
 # 🛠️ Installation
 ```shell
 pip install -U selfbotclient
