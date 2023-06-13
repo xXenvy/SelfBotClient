@@ -1,4 +1,0 @@
-sphinx_search
-sphinx.ext.autodoc
-sphinx_autodoc_typehints
-sphinx.ext.extlinks
