@@ -1,5 +1,7 @@
 **Project only for educational purposes! 🤓**
 
+[![Documentation Status](https://readthedocs.org/projects/selfbotclient/badge/?version=latest)](https://selfbotclient.readthedocs.io/en/latest/?badge=latest)
+
 # ⚡ Fast Self Bot Client
 - Token Checker | `1` token / `140`ms
 - 3 requests / 1s `(without using threads)`
