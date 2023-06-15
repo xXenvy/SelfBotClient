@@ -7,7 +7,6 @@
 
 # ⚡ Fast Self Bot Client
 - Token Checker | `1` token / `140`ms
-- 3 requests / 1s `(without using threads)`
 - +10 requests / 1s `(using threads)`
 
 https://github.com/xXenvy/SelfBotClient/assets/111158232/ede9fb47-d489-4d9a-b58d-95c06dea6fe9
