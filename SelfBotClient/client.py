@@ -24,7 +24,7 @@ class Client(HTTPClient):
 
     """
 
-    __version__: str = "1.0.2"
+    __version__: str = "1.1.0"
 
     def __init__(
             self,
@@ -329,3 +329,33 @@ class Client(HTTPClient):
         for user in self.users:
             response: ClientResponse = await user.add_reaction(channel_id, message_id, emoji)
             yield response
+
+    async def get_reactions(self, channel_id: int, message_id: int, emoji: str) -> Union[None, ClientResponse]:
+        """
+        The get_reactions function returns a ClientResponse with
+        list of users that reacted with the specified emoji.
+
+        :param channel_id: Identify the channel that contains the message
+        :param message_id: Identify the message that is being reacted to
+        :param emoji: Specify the emoji to get reactions for
+        """
+
+        for user in self.users:
+            response: ClientResponse = await user.get_reactions(channel_id, message_id, emoji)
+            if response.status == 204:
+                return response
+
+    async def delete_reaction(self, channel_id: int, message_id: int, user_id: int, emoji: str) -> Union[None, ClientResponse]:
+        """
+        The delete_reaction function is used to delete a reaction from a message.
+
+        :param channel_id: int: Specify the channel where the message is located
+        :param message_id: int: Identify the message that you want to delete a reaction from
+        :param user_id: int: Specify the user whose reaction is to be deleted
+        :param emoji: str: Specify the emoji to be deleted
+        """
+
+        for user in self.users:
+            response: ClientResponse = await user.delete_reaction(channel_id, message_id, user_id, emoji)
+            if response.status == 204:
+                return response

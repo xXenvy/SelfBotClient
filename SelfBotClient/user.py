@@ -402,7 +402,7 @@ class UserClient:
 
         return response
 
-    async def add_reaction(self, channel_id: int, message_id: int, emoji: str):
+    async def add_reaction(self, channel_id: int, message_id: int, emoji: str) -> ClientResponse:
         """
         The add_reaction function adds a reaction to the message with the given ID in the channel with
         the given ID. The emoji parameter is a string that must be an emoticon. Example: \N{FIRE}
@@ -425,6 +425,58 @@ class UserClient:
         if response.status not in (204, 429) and self._logger._status:
             self._logger.error(
                 f"Request PUT channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me failed.\n -> {self} {await response.json()}")
+
+        return response
+
+    async def get_reactions(self, channel_id: int, message_id: int, emoji: str) -> ClientResponse:
+        """
+        The get_reactions function returns a ClientResponse with
+        list of users that reacted with the specified emoji.
+
+        :param channel_id: Identify the channel that contains the message
+        :param message_id: Identify the message that is being reacted to
+        :param emoji: Specify the emoji to get reactions for
+        """
+
+        emoji = quote(emoji)
+
+        _url = self._endpoint + f"channels/{channel_id}/messages/{message_id}/reactions/{emoji}"
+
+        if self._logger._status:
+            self._logger.debug(f"Sending request: GET -> {_url}")
+
+        response: ClientResponse = await self._session.request(
+            method="GET", url=_url, headers=self._auth_header)
+
+        if response.status not in (200, 429) and self._logger._status:
+            self._logger.error(
+                f"Request GET channels/{channel_id}/messages/{message_id}/reactions/{emoji}/ failed.\n -> {self} {await response.json()}")
+
+        return response
+
+    async def delete_reaction(self, channel_id: int, message_id: int, user_id: int, emoji: str) -> ClientResponse:
+        """
+        The delete_reaction function is used to delete a reaction from a message.
+
+        :param channel_id: int: Specify the channel where the message is located
+        :param message_id: int: Identify the message that you want to delete a reaction from
+        :param user_id: int: Specify the user whose reaction is to be deleted
+        :param emoji: str: Specify the emoji to be deleted
+        """
+
+        emoji = quote(emoji)
+
+        _url = self._endpoint + f"channels/{channel_id}/messages/{message_id}/reactions/{emoji}/{user_id}"
+
+        if self._logger._status:
+            self._logger.debug(f"Sending request: DELETE -> {_url}")
+
+        response: ClientResponse = await self._session.request(
+            method="DELETE", url=_url, headers=self._auth_header)
+
+        if response.status not in (204, 429) and self._logger._status:
+            self._logger.error(
+                f"Request DELETE channels/{channel_id}/messages/{message_id}/reactions/{emoji}/{user_id} failed.\n -> {self} {await response.json()}")
 
         return response
 
