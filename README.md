@@ -1,11 +1,12 @@
 **Project only for educational purposes! 🤓**
 
-[![Downloads](https://static.pepy.tech/personalized-badge/selfbotclient?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads)](https://pepy.tech/project/selfbotclient)
+![Downloads](https://pepy.tech/badge/selfbotclient)
 [![Documentation Status](https://readthedocs.org/projects/selfbotclient/badge/?version=latest)](https://selfbotclient.readthedocs.io/en/latest/?badge=latest)
+![master](https://img.shields.io/github/last-commit/badges/shields/master)
+![commits](https://badgen.net/github/commits/xXenvy/selfbotclient/master)
 
 # ⚡ Fast Self Bot Client
 - Token Checker | `1` token / `140`ms
-- 3 requests / 1s `(without using threads)`
 - +10 requests / 1s `(using threads)`
 
 https://github.com/xXenvy/SelfBotClient/assets/111158232/ede9fb47-d489-4d9a-b58d-95c06dea6fe9
