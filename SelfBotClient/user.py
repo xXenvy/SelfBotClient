@@ -17,22 +17,15 @@ from logging import getLogger
 
 
 class UserClient:
+    """
+    :class:`UserClient` Is the class responsible for the user account.
 
-    def __init__(self, data: dict, session: CustomSession, loop: AbstractEventLoop):
-        """
-        The __init__ function is called when the class is instantiated.
-        It sets up all of the variables that are needed for other functions to work properly.
+    :param data: Dict with account data - such as token, name, id.
+    :param session: Session to send requests in methods
+    """
 
-
-        :param self: Represent the instance of the class
-        :param data: dict: Store the data that is passed into the class
-        :param session: CustomSession: Pass the session to the class
-        :param loop: AbstractEventLoop: Create a new event loop
-        :return: None
-        """
-
+    def __init__(self, data: dict, session: CustomSession):
         self._session: CustomSession = session
-        self._loop: AbstractEventLoop = loop
         self._logger: Logger = getLogger("Logger")
 
         self.data: dict = data
@@ -53,10 +46,8 @@ class UserClient:
         """
         The send_message function sends a message to the specified channel.
 
-        :param self: Represent the instance of the class
-        :param channel_id: int: Specify the channel that you want to send a message to
-        :param message_content: str: Send a message to the channel
-        :return: A clientresponse object
+        :param channel_id: Specify the channel to send the message to
+        :param message_content: content of the message
         """
 
         _url = self._endpoint + f"channels/{channel_id}/messages"
@@ -79,13 +70,9 @@ class UserClient:
 
     async def delete_channel(self, channel_id: int) -> ClientResponse:
         """
-        The delete_channel function deletes a channel.
-            Parameters:
-                channel_id (int): The ID of the channel to delete.
+        The delete_channel function deletes a channel from the server.
 
-        :param self: Access the class attributes and methods
-        :param channel_id: int: Specify which channel to delete
-        :return: A clientresponse object
+        :param channel_id: Specify the channel that is to be deleted
         """
 
         _url = self._endpoint + f"channels/{channel_id}"
@@ -105,17 +92,15 @@ class UserClient:
     async def create_channel(self, guild_id: int, name: str, channel_type: ChannelType,
                              topic: str = None, user_limit: int = None, position: int = None, nsfw: bool = False) -> ClientResponse:
         """
-        The create_channel function creates a new channel in the specified guild.
+        The create_channel function creates a channel in the specified guild.
 
-        :param self: Refer to the current instance of a class
-        :param guild_id: int: Specify the server that you want to create a channel in
-        :param name: str: Set the name of the channel
-        :param channel_type: ChannelType: Specify the type of channel that is being created
-        :param topic: str: Set the topic of the channel
-        :param user_limit: int: Set the maximum number of users that can be in a voice channel
-        :param position: int: Set the position of the channel in the server
-        :param nsfw: bool: Determine if the channel is nsfw or not
-        :return: A clientresponse object
+        :param guild_id: Specify the guild id of the server you want to create a channel in
+        :param name: Specify the name of the channel
+        :param channel_type: Specify what type of channel you want to create
+        :param topic: Set the topic of the channel
+        :param user_limit: Set the maximum number of users allowed in a voice channel
+        :param position: Set the position of the channel in the list
+        :param nsfw: Determine whether the channel is nsfw or not
         """
 
         _url = self._endpoint + f"guilds/{guild_id}/channels"
@@ -143,13 +128,10 @@ class UserClient:
 
     async def get_channels(self, guild_id: int) -> ClientResponse:
         """
-        The get_channels function returns a list of channel objects for the guild.
-            Args:
-                guild_id (int): The id of the server to get channels from.
+        The get_channels function is a coroutine that takes in a guild_id and returns an ClientResponse object.
+        The function can return the data of all channels on the server
 
-        :param self: Represent the instance of the class
-        :param guild_id: int: Get the channels of a specific guild
-        :return: A clientresponse object
+        :param guild_id: Specify the guild id of the server you want to get channels from
         """
 
         _url = self._endpoint + f"guilds/{guild_id}/channels"
@@ -174,15 +156,13 @@ class UserClient:
                                 permissions: PermissionBuilder = None) -> ClientResponse:
 
         """
-        The create_role function creates a new role in the specified guild.
+        The create_role function creates a role in the specified guild.
 
-        :param self: Represent the instance of the class
-        :param guild_id: int: Specify the server you want to create a role in
-        :param name: str: Set the name of the role
-        :param color: RGB_COLOR: Set the color of the role
-        :param hoist: bool: Determine if the role should be displayed separately in the user list
-        :param permissions: PermissionBuilder: Set the permissions of the role
-        :return: A clientresponse object
+        :param guild_id: Specify the guild in which you want to create a role
+        :param name: Set the name of the role
+        :param color: Set the color of the role
+        :param hoist: Determine whether the role should be displayed separately in the user list
+        :param permissions: Set the permissions for the role
         """
 
         _url = self._endpoint + f"guilds/{guild_id}/roles"
@@ -219,13 +199,9 @@ class UserClient:
 
     async def get_roles(self, guild_id: int) -> ClientResponse:
         """
-        The get_roles function returns a list of roles for the specified guild.
-            Parameters:
-                guild_id (int): The ID of the guild to get roles from.
+        get_roles returns a list of data with all the roles on the server
 
-        :param self: Represent the instance of the class
-        :param guild_id: int: Specify which guild you want to get the roles from
-        :return: A clientresponse object
+        :param guild_id: Specify the guild id of the server you want to get roles from
         """
 
         _url = self._endpoint + f"guilds/{guild_id}/roles"
@@ -246,10 +222,8 @@ class UserClient:
         """
         The delete_role function deletes a role from the guild.
 
-        :param self: Represent the instance of the class
-        :param guild_id: int: Specify the guild id of the role you want to delete
-        :param role_id: int: Specify which role to delete
-        :return: A clientresponse object
+        :param guild_id: int: Specify the guild that you want to delete a role from
+        :param role_id: int: Specify the role_id to be deleted
         """
 
         _url = self._endpoint + f"guilds/{guild_id}/roles/{role_id}"
@@ -267,6 +241,12 @@ class UserClient:
         return response
 
     async def get_bans(self, guild_id: int) -> ClientResponse:
+        """
+        The get_bans function returns a list of banned users in the guild.
+
+        :param guild_id: Specify the guild id of the server you want to get banned users from
+
+        """
         _url = self._endpoint + f"guilds/{guild_id}/bans"
 
         if self._logger._status:
@@ -283,12 +263,10 @@ class UserClient:
 
     async def unban_member(self, guild_id: int, user_id: int) -> ClientResponse:
         """
-        The unban_member function is used to unban a member from the guild.
+        The unban_member function unban a user from the guild.
 
-        :param self: Represent the instance of the class
-        :param guild_id: int: Specify the guild that you want to unban a member from
-        :param user_id: int: Specify the user id of the member that you want to unban
-        :return: A clientresponse object
+        :param guild_id: Specify the guild that you want to unban a member from
+        :param user_id: Specify the user id of the member to unban
         """
 
         _url = self._endpoint + f"guilds/{guild_id}/bans/{user_id}"
@@ -309,10 +287,8 @@ class UserClient:
         """
         The ban_member function is used to ban a member from the guild.
 
-        :param self: Represent the instance of the class
-        :param guild_id: int: Specify the guild id of the server you want to ban a member from
-        :param user_id: int: Specify the user id of the person you want to ban
-        :return: A clientresponse object
+        :param guild_id: Specify the guild that you want to ban a user from
+        :param user_id: Specify the user that is to be banned
         """
 
         _url = self._endpoint + f"guilds/{guild_id}/bans/{user_id}"
@@ -331,12 +307,10 @@ class UserClient:
 
     async def kick_member(self, guild_id: int, user_id: int) -> ClientResponse:
         """
-        The kick_member function is used to kick a member from the guild.
+        The kick_member function kicks a member from the guild.
 
-        :param self: Represent the instance of the class
-        :param guild_id: int: The ID of the guild you want to kick a member from.
-        :param user_id: int: The ID of the user you want to kick.
-        :return: A clientresponse object
+        :param guild_id: Specify the guild that you want to kick a user from
+        :param user_id: Identify the user to be kicked
         """
 
         _url = self._endpoint + f"guilds/{guild_id}/members/{user_id}"
@@ -355,12 +329,10 @@ class UserClient:
 
     async def get_member(self, guild_id: int, user_id: int) -> ClientResponse:
         """
-        The get_member function is used to get a member of the guild.
+        The get_member function is used to get a member from the guild.
 
-        :param self: Access the class attributes and methods
-        :param guild_id: int: Specify the guild id of the server you want to get a member from
-        :param user_id: int: Get the user's id
-        :return: A clientresponse object
+        :param guild_id: Specify the guild that you want to get a member from
+        :param user_id: Specify the user id of the member you want to get
         """
 
         _url = self._endpoint + f"guilds/{guild_id}/members/{user_id}"
@@ -383,15 +355,13 @@ class UserClient:
                           remove_roles: list[int] = None) -> ClientResponse:
 
         """
-        The edit_member function allows you to edit a member of the guild.
+        The edit_member function allows you to edit a member of a guild.
 
-        :param self: Represent the instance of the class
-        :param guild_id: int: Specify the guild id of the server you want to edit
-        :param user_id: int: Specify the user to edit
-        :param nickname: str: Set the nickname of a member
-        :param add_roles: list[int]: Add roles to a user
-        :param remove_roles: list[int]: Remove roles from a user
-        :return: A clientresponse object or None
+        :param guild_id: Specify the guild that you want to edit a member in
+        :param user_id: Specify the user that you want to edit
+        :param nickname: Change the nickname of a user in a guild
+        :param add_roles: Add roles to a user
+        :param remove_roles: Remove roles from a user
         """
 
         json: dict = {}
@@ -433,6 +403,15 @@ class UserClient:
         return response
 
     async def add_reaction(self, channel_id: int, message_id: int, emoji: str):
+        """
+        The add_reaction function adds a reaction to the message with the given ID in the channel with
+        the given ID. The emoji parameter is a string that must be an emoticon. Example: \N{FIRE}
+
+        :param channel_id: Specify which channel_id the message is in
+        :param message_id: Message ID that you want to add a reaction to
+        :param emoji: A reaction to add to the message
+        """
+
         emoji = quote(emoji)
 
         _url = self._endpoint + f"channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me"

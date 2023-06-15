@@ -2,10 +2,11 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Tasks" href="tasks.html" /><link rel="prev" title="Basic Spam" href="basic_spam.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>Overview: module code - Self Bot library 1.0.2 documentation</title>
+        <title>Basic Permissions - Self Bot library 1.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
@@ -156,7 +157,7 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installing.html">Installing</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../library/index.html">SelfBotClient Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBotClient Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../library/Client.html">Client</a></li>
@@ -168,10 +169,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../library/Thread.html">Thread</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../examples/basic_spam.html">Basic Spam</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/basic_permissions.html">Basic Permissions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../examples/tasks.html">Tasks</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Code Examples</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic_spam.html">Basic Spam</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Basic Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks.html">Tasks</a></li>
 </ul>
 </li>
 </ul>
@@ -193,7 +194,8 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -207,20 +209,70 @@
           </label>
         </div>
         <article role="main">
-          <h1>All modules for which code is available</h1>
-<ul><li><a href="SelfBotClient/client.html">SelfBotClient.client</a></li>
-<li><a href="SelfBotClient/enums.html">SelfBotClient.enums</a></li>
-<li><a href="SelfBotClient/http.html">SelfBotClient.http</a></li>
-<li><a href="SelfBotClient/permissionbuilder.html">SelfBotClient.permissionbuilder</a></li>
-<li><a href="SelfBotClient/user.html">SelfBotClient.user</a></li>
-</ul>
+          <section id="basic-permissions">
+<h1>Basic Permissions<a class="headerlink" href="#basic-permissions" title="Permalink to this heading">#</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">SelfBotClient</span> <span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">Permissions</span><span class="p">,</span> <span class="n">PermissionBuilder</span><span class="p">,</span> <span class="n">RGB_COLOR</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;TOKEN_1&quot;</span><span class="p">,</span> <span class="s2">&quot;TOKEN_2&quot;</span><span class="p">]</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">api_version</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos"> 6</span><span class="n">client</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">tokens</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="k">async</span> <span class="k">def</span> <span class="nf">create_role</span><span class="p">():</span>
+<span class="linenos">10</span>  <span class="n">role_permissions</span> <span class="o">=</span> <span class="n">PermissionBuilder</span><span class="p">(</span>
+<span class="linenos">11</span>    <span class="n">Permissions</span><span class="o">.</span><span class="n">MANAGE_ROLES</span><span class="p">,</span>
+<span class="linenos">12</span>    <span class="n">Permissions</span><span class="o">.</span><span class="n">MUTE_MEMBERS</span><span class="p">,</span>
+<span class="linenos">13</span>    <span class="n">Permissions</span><span class="o">.</span><span class="n">KICK_MEMBERS</span>
+<span class="linenos">14</span>      <span class="p">)</span>  <span class="c1"># We enter after the comma which permissions we want to have.</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>  <span class="k">async</span> <span class="k">for</span> <span class="n">role_response</span> <span class="ow">in</span> <span class="n">client</span><span class="o">.</span><span class="n">create_role</span><span class="p">(</span>
+<span class="linenos">17</span>                                  <span class="n">guild_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+<span class="linenos">18</span>                                  <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example role&quot;</span><span class="p">,</span>
+<span class="linenos">19</span>                                  <span class="n">color</span><span class="o">=</span><span class="n">RGB_COLOR</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mi">66</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="mi">135</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="mi">245</span><span class="p">),</span>
+<span class="linenos">20</span>                                  <span class="n">permissions</span><span class="o">=</span><span class="n">role_permissions</span><span class="p">):</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>    <span class="n">role_data</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="k">await</span> <span class="n">role_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="linenos">23</span>    <span class="n">role_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">role_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">delete_role</span><span class="p">(</span><span class="n">guild_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">role_id</span><span class="o">=</span><span class="n">role_id</span><span class="p">)</span>  <span class="c1"># just for example</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="linenos">29</span>  <span class="k">await</span> <span class="n">create_role</span><span class="p">()</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="linenos">33</span>  <span class="n">client</span><span class="o">.</span><span class="n">run_async</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="tasks.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Tasks</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="basic_spam.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Basic Spam</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">

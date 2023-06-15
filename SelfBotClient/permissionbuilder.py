@@ -1,25 +1,22 @@
-from enum import Enum
 from .enums import Permissions
 
 
 class PermissionBuilder:
+    """
+    PermissionBuilder takes a Permissions type and then adds them all to a value.
+    Methods using PermissionBuilder acquire this value.
+
+    :param args: Accept a variable number of arguments
+    """
+
     __slots__ = ("value",)
 
-    def __init__(self, *args: Permissions):
-        """
-        The __init__ function is the constructor for a class. It's called when you create an instance of the class,
-        and it allows you to set up all attributes and other things that your object will need.
-
-
-        :param self: Refer to the instance of the class
-        :param *args: tuple[Permissions]: Accept a variable number of arguments
-        :return: Nothing
-        """
+    def __init__(self, *args: Permissions) -> None:
 
         self.value: int = 0
 
         for permission in args:
-            if isinstance(permission, Enum):
+            if isinstance(permission, Permissions):
                 self.value += permission.value
 
     def __repr__(self):

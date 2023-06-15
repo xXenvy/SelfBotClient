@@ -182,7 +182,7 @@ class HTTPClient:
                     data = await response.json()
                     data["token"] = self._tokens
                     data["endpoint"] = self.endpoint
-                    self.users.append(UserClient(data, self.session, self.loop))
+                    self.users.append(UserClient(data, self.session))
 
                     self._tokens = [self._tokens]
 
@@ -201,7 +201,7 @@ class HTTPClient:
                         data["token"] = token
                         data["endpoint"] = self.endpoint
 
-                        self.users.append(UserClient(data, self.session, self.loop))
+                        self.users.append(UserClient(data, self.session))
 
             if self._logger_status:
                 self.logger.info(f"Checking of tokens successfully completed | Loaded ({len(self.users)}) tokens\n")

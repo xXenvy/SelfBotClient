@@ -161,7 +161,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../library/index.html">SelfBotClient Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBotClient Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Client.html">Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Enums.html">Enums</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../library/Http.html">Http</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Http.html">HTTP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/PermissionBuilder.html">PermissionBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Typings.html">Typings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/User.html">UserClient</a></li>
@@ -209,11 +209,11 @@
 <span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
 
 
-<span class="n">__all__</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;ChannelType&quot;</span><span class="p">,</span> <span class="s2">&quot;Permissions&quot;</span><span class="p">)</span>
+<span class="n">__all__</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;ChannelType&quot;</span><span class="p">,</span> <span class="s2">&quot;Permissions&quot;</span><span class="p">,</span> <span class="s2">&quot;Discord&quot;</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">Discord</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">ENDPOINT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://discord.com/api/v</span><span class="si">{}</span><span class="s2">/&quot;</span>
+<div class="viewcode-block" id="Discord"><a class="viewcode-back" href="../../library/Enums.html#SelfBotClient.enums.Discord">[docs]</a><span class="k">class</span> <span class="nc">Discord</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">ENDPOINT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://discord.com/api/v</span><span class="si">{}</span><span class="s2">/&quot;</span></div>
 
 
 <div class="viewcode-block" id="ChannelType"><a class="viewcode-back" href="../../library/Enums.html#SelfBotClient.enums.ChannelType">[docs]</a><span class="k">class</span> <span class="nc">ChannelType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>

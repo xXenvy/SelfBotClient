@@ -162,8 +162,7 @@
 <li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">SelfBotClient Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBotClient Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Client.html">Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Enums.html">Enums</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Errors.html">Errors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Http.html">Http</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Http.html">HTTP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PermissionBuilder.html">PermissionBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Typings.html">Typings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="User.html">UserClient</a></li>
@@ -210,71 +209,8 @@
         <article role="main">
           <section id="threads">
 <h1>Threads<a class="headerlink" href="#threads" title="Permalink to this heading">#</a></h1>
-<section id="module-SelfBotClient.threads">
-<span id="a-threads"></span><h2>A <code class="xref py py-class docutils literal notranslate"><span class="pre">threads</span></code><a class="headerlink" href="#module-SelfBotClient.threads" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="SelfBotClient.threads.Threads">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.threads.</span></span><span class="sig-name descname"><span class="pre">Threads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/threads.html#Threads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.threads.Threads" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>client</strong> (<a class="reference internal" href="Client.html#SelfBotClient.client.Client" title="SelfBotClient.client.Client"><em>Client</em></a>) – </p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="SelfBotClient.threads.Threads.add_task">
-<span class="sig-name descname"><span class="pre">add_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/threads.html#Threads.add_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.threads.Threads.add_task" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>func</strong> (<em>Coroutine</em>) – </p></li>
-<li><p><strong>name</strong> (<em>str</em>) – </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="SelfBotClient.threads.Threads.get_task">
-<span class="sig-name descname"><span class="pre">get_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/threads.html#Threads.get_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.threads.Threads.get_task" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code>]</p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>name</strong> (<em>str</em>) – </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="SelfBotClient.threads.Threads.remove_task">
-<span class="sig-name descname"><span class="pre">remove_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/threads.html#Threads.remove_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.threads.Threads.remove_task" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>name</strong> (<em>str</em>) – </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="SelfBotClient.threads.Threads.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/threads.html#Threads.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.threads.Threads.run" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="SelfBotClient.threads.Threads.run_until_complete">
-<span class="sig-name descname"><span class="pre">run_until_complete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/threads.html#Threads.run_until_complete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.threads.Threads.run_until_complete" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<section id="a-threads">
+<h2>A <code class="xref py py-class docutils literal notranslate"><span class="pre">threads</span></code><a class="headerlink" href="#a-threads" title="Permalink to this heading">#</a></h2>
 </section>
 </section>
 
@@ -334,17 +270,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Threads</a><ul>
-<li><a class="reference internal" href="#module-SelfBotClient.threads">A <code class="xref py py-class docutils literal notranslate"><span class="pre">threads</span></code></a><ul>
-<li><a class="reference internal" href="#SelfBotClient.threads.Threads"><code class="docutils literal notranslate"><span class="pre">Threads</span></code></a><ul>
-<li><a class="reference internal" href="#SelfBotClient.threads.Threads.add_task"><code class="docutils literal notranslate"><span class="pre">Threads.add_task()</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.threads.Threads.get_task"><code class="docutils literal notranslate"><span class="pre">Threads.get_task()</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.threads.Threads.remove_task"><code class="docutils literal notranslate"><span class="pre">Threads.remove_task()</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.threads.Threads.run"><code class="docutils literal notranslate"><span class="pre">Threads.run()</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.threads.Threads.run_until_complete"><code class="docutils literal notranslate"><span class="pre">Threads.run_until_complete()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a class="reference internal" href="#a-threads">A <code class="xref py py-class docutils literal notranslate"><span class="pre">threads</span></code></a></li>
 </ul>
 </li>
 </ul>

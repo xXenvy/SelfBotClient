@@ -2,7 +2,7 @@ from .http import HTTPClient
 from .typings import API_VERSION, ClientResponse, RGB_COLOR
 from .enums import ChannelType
 from .permissionbuilder import PermissionBuilder
-from .threads import Threads
+from .thread import Thread
 
 from collections.abc import AsyncIterable
 
@@ -20,7 +20,7 @@ class Client(HTTPClient):
     :param logger: Enable/disable the logger
     :param request_latency: Control the rate of requests sent to discord
     :param ratelimit_additional_cooldown: Add a cooldown to the ratelimit
-    :param use_threading: Enable or disable the threading option (:class:`SelfBotClient.threads`), which for now is in beta.
+    :param use_threading: Enable or disable the threading option (:class:`SelfBotClient.thread`), which for now is in beta.
 
     """
 
@@ -39,7 +39,7 @@ class Client(HTTPClient):
         super().__init__(api_version, loop, logger, request_latency, ratelimit_additional_cooldown)
 
         if use_threading:
-            self.thread: Threads = Threads(client=self)
+            self.thread: Thread = Thread(client=self)
 
     def login(self, token: Union[str, list[str]]) -> None:
         """
@@ -196,10 +196,8 @@ class Client(HTTPClient):
         """
         The ban_member function is used to ban a member from the guild.
 
-        :param self: Represent the instance of the class
-        :param guild_id: int: Specify the guild that you want to ban a user from
-        :param user_id: int: Specify the user that is to be banned
-        :return: clientresponse object or None
+        :param guild_id: Specify the guild that you want to ban a user from
+        :param user_id: Specify the user that is to be banned
         """
 
         for user in self.users:

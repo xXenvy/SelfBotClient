@@ -161,12 +161,10 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../library/index.html">SelfBotClient Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBotClient Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Client.html">Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Enums.html">Enums</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../library/Errors.html">Errors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../library/Http.html">Http</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Http.html">HTTP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/PermissionBuilder.html">PermissionBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Typings.html">Typings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/User.html">UserClient</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../library/Threads.html">Threads</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -391,7 +389,7 @@
                     <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
                     <span class="n">data</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span>
                     <span class="n">data</span><span class="p">[</span><span class="s2">&quot;endpoint&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">UserClient</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">UserClient</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">))</span>
 
                     <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="p">]</span>
 
@@ -410,7 +408,7 @@
                         <span class="n">data</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">token</span>
                         <span class="n">data</span><span class="p">[</span><span class="s2">&quot;endpoint&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span>
 
-                        <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">UserClient</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">))</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">UserClient</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">))</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger_status</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Checking of tokens successfully completed | Loaded (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">)</span><span class="si">}</span><span class="s2">) tokens</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>

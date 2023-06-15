@@ -161,12 +161,11 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../library/index.html">SelfBotClient Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBotClient Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Client.html">Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Enums.html">Enums</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../library/Errors.html">Errors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../library/Http.html">Http</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Http.html">HTTP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/PermissionBuilder.html">PermissionBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Typings.html">Typings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/User.html">UserClient</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../library/Threads.html">Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Thread.html">Thread</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -211,7 +210,7 @@
 <span class="kn">from</span> <span class="nn">.typings</span> <span class="kn">import</span> <span class="n">API_VERSION</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">,</span> <span class="n">RGB_COLOR</span>
 <span class="kn">from</span> <span class="nn">.enums</span> <span class="kn">import</span> <span class="n">ChannelType</span>
 <span class="kn">from</span> <span class="nn">.permissionbuilder</span> <span class="kn">import</span> <span class="n">PermissionBuilder</span>
-<span class="kn">from</span> <span class="nn">.threads</span> <span class="kn">import</span> <span class="n">Threads</span>
+<span class="kn">from</span> <span class="nn">.thread</span> <span class="kn">import</span> <span class="n">Thread</span>
 
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">AsyncIterable</span>
 
@@ -229,7 +228,7 @@
 <span class="sd">    :param logger: Enable/disable the logger</span>
 <span class="sd">    :param request_latency: Control the rate of requests sent to discord</span>
 <span class="sd">    :param ratelimit_additional_cooldown: Add a cooldown to the ratelimit</span>
-<span class="sd">    :param use_threading: Enable or disable the threading option (:class:`SelfBotClient.threads`), which for now is in beta.</span>
+<span class="sd">    :param use_threading: Enable or disable the threading option (:class:`SelfBotClient.thread`), which for now is in beta.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -248,7 +247,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span> <span class="n">loop</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">request_latency</span><span class="p">,</span> <span class="n">ratelimit_additional_cooldown</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">use_threading</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="p">:</span> <span class="n">Threads</span> <span class="o">=</span> <span class="n">Threads</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="p">:</span> <span class="n">Thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Client.login"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.login">[docs]</a>    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -405,10 +404,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The ban_member function is used to ban a member from the guild.</span>
 
-<span class="sd">        :param self: Represent the instance of the class</span>
-<span class="sd">        :param guild_id: int: Specify the guild that you want to ban a user from</span>
-<span class="sd">        :param user_id: int: Specify the user that is to be banned</span>
-<span class="sd">        :return: clientresponse object or None</span>
+<span class="sd">        :param guild_id: Specify the guild that you want to ban a user from</span>
+<span class="sd">        :param user_id: Specify the user that is to be banned</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>

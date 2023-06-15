@@ -6,4 +6,6 @@ Code Examples
     :caption: Contents:
 
     basic_spam
+    basic_permissions
+    tasks
 

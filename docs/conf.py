@@ -8,6 +8,7 @@
 
 import os
 import sys
+from SelfBotClient import Client
 
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.append(os.path.abspath("extensions"))
@@ -15,7 +16,7 @@ sys.path.append(os.path.abspath("extensions"))
 project = 'Self Bot library'
 copyright = '2023, xXenvy'
 author = 'xXenvy'
-release = '1.0.0'
+release = Client.__version__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

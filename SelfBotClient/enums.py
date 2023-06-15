@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-__all__: tuple = ("ChannelType", "Permissions")
+__all__: tuple = ("ChannelType", "Permissions", "Discord")
 
 
 class Discord(Enum):
