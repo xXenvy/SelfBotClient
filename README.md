@@ -1,10 +1,13 @@
+**Project only for educational purposes! 🤓**
+
+[![Documentation Status](https://readthedocs.org/projects/selfbotclient/badge/?version=latest)](https://selfbotclient.readthedocs.io/en/latest/?badge=latest)
 
 # ⚡ Fast Self Bot Client
 - Token Checker | `1` token / `140`ms
-- 3 requests / 1s `(in feature 10 requests / 1s using threads)`
+- 3 requests / 1s `(without using threads)`
+- +10 requests / 1s `(using threads)`
 
-
-https://github.com/xXenvy/SelfBotClient/assets/111158232/eb5961eb-0a8d-44f1-93b0-48d7a1f6fce0
+https://github.com/xXenvy/SelfBotClient/assets/111158232/ede9fb47-d489-4d9a-b58d-95c06dea6fe9
 
 
 # 🔧 Full control
@@ -12,8 +15,8 @@ https://github.com/xXenvy/SelfBotClient/assets/111158232/eb5961eb-0a8d-44f1-93b0
 - Ability to manage individual selfbots
 
 # 📌 Ratelimit handler
-
 - The library itself detects whether you have reached the ratelimit of the discord and, if so, forces you to wait a certain time.
+![Test](https://i.imgur.com/hTUFQKF.png)
 # 🛠️ Installation
 ```shell
 pip install -U selfbotclient
