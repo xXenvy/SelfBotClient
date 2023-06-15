@@ -1,6 +1,6 @@
 **Project only for educational purposes! 🤓**
 
-[![Downloads](https://static.pepy.tech/personalized-badge/selfbotclient?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads)](https://pepy.tech/project/selfbotclient)
+[![Downloads](https://pepy.tech/badge/selfbotclient)
 [![Documentation Status](https://readthedocs.org/projects/selfbotclient/badge/?version=latest)](https://selfbotclient.readthedocs.io/en/latest/?badge=latest)
 
 # ⚡ Fast Self Bot Client
