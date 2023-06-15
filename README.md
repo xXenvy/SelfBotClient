@@ -1,6 +1,6 @@
 **Project only for educational purposes! 🤓**
 
-[![Downloads](https://pepy.tech/badge/selfbotclient)
+![Downloads](https://pepy.tech/badge/selfbotclient)
 [![Documentation Status](https://readthedocs.org/projects/selfbotclient/badge/?version=latest)](https://selfbotclient.readthedocs.io/en/latest/?badge=latest)
 
 # ⚡ Fast Self Bot Client
