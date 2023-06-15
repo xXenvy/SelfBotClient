@@ -5,6 +5,9 @@
 ![master](https://img.shields.io/github/last-commit/badges/shields/master)
 ![commits](https://badgen.net/github/commits/xXenvy/selfbotclient/master)
 
+## 🌐 Docs
+https://selfbotclient.readthedocs.io/en/latest/
+
 # ⚡ Fast Self Bot Client
 - Token Checker | `1` token / `140`ms
 - +10 requests / 1s `(using threads)`
