@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Coroutine, TYPE_CHECKING, Optional
+from typing import Coroutine, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .client import Client
@@ -20,18 +20,6 @@ class Threads:
         task: Task = self._loop.create_task(func, name=name)
         self._tasks.append(task)
 
-    def remove_task(self, name: str) -> None:
-        for task in self._tasks:
-            if task.get_name() == name:
-                self._tasks.remove(task)
-
-    def get_task(self, name: str) -> Optional[Task]:
-        for task in self._tasks:
-            if task.get_name() == name:
-                return task
-
-        return None
-
     def run_until_complete(self):
         if self._loop.is_running():
             if self._client.logger._status:
@@ -46,7 +34,6 @@ class Threads:
     def run(self):
         _thread = Thread(name=f"{self}", target=self.run_until_complete)
         _thread.start()
-
 
     def __repr__(self):
         return f"<Threads={len(self._tasks)}>"

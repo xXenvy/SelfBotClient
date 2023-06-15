@@ -166,6 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../library/PermissionBuilder.html">PermissionBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Typings.html">Typings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/User.html">UserClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Threads.html">Threads</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -310,6 +311,16 @@
 
 
 <div class="viewcode-block" id="HTTPClient"><a class="viewcode-back" href="../../library/Http.html#SelfBotClient.http.HTTPClient">[docs]</a><span class="k">class</span> <span class="nc">HTTPClient</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    HTTPClient handles all requests related to the client.</span>
+<span class="sd">    It also has methods from checking tokens or creating a new session.</span>
+
+<span class="sd">    :param api_version: version of the discord api used by the client</span>
+<span class="sd">    :param loop: Set the event loop that will be used by the client</span>
+<span class="sd">    :param logger: Enable/disable the logger</span>
+<span class="sd">    :param request_latency: Control the rate of requests sent to discord</span>
+<span class="sd">    :param ratelimit_additional_cooldown: Add a cooldown to the ratelimit</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -320,19 +331,6 @@
             <span class="n">ratelimit_additional_cooldown</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span>
 
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The __init__ function is called when the class is instantiated.</span>
-<span class="sd">        It allows the class to initialize its attributes, and do any other necessary setup.</span>
-<span class="sd">        The __init__ function can accept arguments, which will be passed on from the object creation.</span>
-
-<span class="sd">        :param self: Represent the instance of the class</span>
-<span class="sd">        :param api_version: API_VERSION: Set the api version of discord</span>
-<span class="sd">        :param loop: AbstractEventLoop: Set the event loop that will be used by the client</span>
-<span class="sd">        :param logger: bool: Enable/disable the logger</span>
-<span class="sd">        :param request_latency: float: Control the rate of requests sent to discord</span>
-<span class="sd">        :param ratelimit_additional_cooldown: float: Add a cooldown to the ratelimit</span>
-<span class="sd">        :return: Nothing, so the return type is none</span>
-<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">api_version</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">UnSupportedApiVersion</span>

@@ -161,11 +161,15 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../library/index.html">SelfBotClient Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBotClient Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Client.html">Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Enums.html">Enums</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../library/Errors.html">Errors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../library/Http.html">Http</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Http.html">HTTP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/PermissionBuilder.html">PermissionBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Typings.html">Typings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/User.html">UserClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Threads.html">Threads</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/basic_spam.html">Basic Spam</a></li>
 </ul>
 </li>
 </ul>
@@ -203,7 +207,6 @@
         <article role="main">
           <h1>Source code for SelfBotClient.typings</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
-<span class="kn">from</span> <span class="nn">aiohttp</span> <span class="kn">import</span> <span class="n">ClientResponse</span>
 
 <span class="n">METHOD</span> <span class="o">=</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;DELETE&quot;</span><span class="p">,</span> <span class="s2">&quot;PATCH&quot;</span><span class="p">,</span> <span class="s2">&quot;PUT&quot;</span><span class="p">]</span>
 <span class="n">API_VERSION</span> <span class="o">=</span> <span class="n">Literal</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>

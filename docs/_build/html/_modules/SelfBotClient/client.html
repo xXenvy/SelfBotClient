@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>SelfBotClient.client - Self Bot Client 1.0.0 documentation</title>
+        <title>SelfBotClient.client - Self Bot library 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
@@ -124,7 +124,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">Self Bot Client 1.0.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">Self Bot library 1.0.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -147,7 +147,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
   
-  <span class="sidebar-brand-text">Self Bot Client 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">Self Bot library 1.0.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -158,7 +158,21 @@
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installing.html">Installing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../SelfBotClient.html">Self Bot Client</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../library/index.html">SelfBotClient Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBotClient Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Client.html">Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Enums.html">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Errors.html">Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Http.html">Http</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/PermissionBuilder.html">PermissionBuilder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Typings.html">Typings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/User.html">UserClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Threads.html">Threads</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/basic_spam.html">Basic Spam</a></li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -205,7 +219,20 @@
 <span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">AbstractEventLoop</span>
 
 
-<div class="viewcode-block" id="Client"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client">[docs]</a><span class="k">class</span> <span class="nc">Client</span><span class="p">(</span><span class="n">HTTPClient</span><span class="p">):</span>
+<div class="viewcode-block" id="Client"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client">[docs]</a><span class="k">class</span> <span class="nc">Client</span><span class="p">(</span><span class="n">HTTPClient</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :class:`Client` supports all services of the :class:`SelfBotClient.user`.</span>
+<span class="sd">    It has methods such as :class:`Client.send_message` which it calls in all users.</span>
+
+<span class="sd">    :param api_version: version of the discord api used by the client</span>
+<span class="sd">    :param loop: Set the event loop that will be used by the client</span>
+<span class="sd">    :param logger: Enable/disable the logger</span>
+<span class="sd">    :param request_latency: Control the rate of requests sent to discord</span>
+<span class="sd">    :param ratelimit_additional_cooldown: Add a cooldown to the ratelimit</span>
+<span class="sd">    :param use_threading: Enable or disable the threading option (:class:`SelfBotClient.threads`), which for now is in beta.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">__version__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;1.0.2&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -217,33 +244,17 @@
             <span class="n">ratelimit_additional_cooldown</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
             <span class="n">use_threading</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The __init__ function is called when the class is instantiated.</span>
-<span class="sd">        It sets up all of the attributes that are needed for the class to function properly.</span>
-
-
-<span class="sd">        :param self: Represent the instance of the class</span>
-<span class="sd">        :param api_version: API_VERSION: Set the api version of the client</span>
-<span class="sd">        :param loop: AbstractEventLoop: Specify the event loop that the client will use</span>
-<span class="sd">        :param logger: bool: Enable/disable logging</span>
-<span class="sd">        :param request_latency: float: Set the time between requests</span>
-<span class="sd">        :param ratelimit_additional_cooldown: float: Add a cooldown to the ratelimit</span>
-<span class="sd">        :param use_threading: bool: Determine if the client should use threading</span>
-<span class="sd">        :return: None</span>
-<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">api_version</span><span class="p">,</span> <span class="n">loop</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">request_latency</span><span class="p">,</span> <span class="n">ratelimit_additional_cooldown</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">use_threading</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="p">:</span> <span class="n">Threads</span> <span class="o">=</span> <span class="n">Threads</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Client.login"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.login">[docs]</a>    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="Client.login"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.login">[docs]</a>    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The login function is used to check the provided tokens.</span>
 
-<span class="sd">        :param self: Represent the instance of the class</span>
-<span class="sd">        :param token: Union[str, list[str]] tokens to check</span>
-<span class="sd">        :return: None</span>
+<span class="sd">        :param token: tokens to check</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">_status</span><span class="p">:</span>
@@ -252,27 +263,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">token</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_tokens</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Client.send_message"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.send_message">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message_content</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
+<div class="viewcode-block" id="Client.send_message"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.send_message">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message_content</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The send_message function sends a message to the specified channel.</span>
 
-<span class="sd">        :param self: Refer to the current instance of a class</span>
-<span class="sd">        :param channel_id: int: Specify the channel to send the message to</span>
-<span class="sd">        :param message_content: str: Specify the message that will be sent to each user</span>
-<span class="sd">        :return: An asynciterable of clientresponse objects or None</span>
+<span class="sd">        :param channel_id: Specify the channel to send the message to</span>
+<span class="sd">        :param message_content: content of the message</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
             <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">channel_id</span><span class="p">,</span> <span class="n">message_content</span><span class="p">)</span>
             <span class="k">yield</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.delete_channel"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.delete_channel">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
+<div class="viewcode-block" id="Client.delete_channel"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.delete_channel">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The delete_channel function deletes a channel from the server.</span>
 
-<span class="sd">        :param self: Refer to the object itself</span>
-<span class="sd">        :param channel_id: int: Specify the channel that is to be deleted</span>
-<span class="sd">        :return: A clientresponse object or None</span>
+<span class="sd">        :param channel_id: Specify the channel that is to be deleted</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
@@ -280,14 +287,12 @@
             <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.delete_channels"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.delete_channels">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
+<div class="viewcode-block" id="Client.delete_channels"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.delete_channels">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The delete_channels function takes a list of channel_ids and deletes them.</span>
-<span class="sd">            It returns an AsyncIterable of ClientResponse objects, which can be used to check the status code for each request.</span>
+<span class="sd">        It returns an AsyncIterable of ClientResponse objects, which can be used to check the status code for each request.</span>
 
-<span class="sd">        :param self: Access the class variables and methods</span>
-<span class="sd">        :param channel_ids: list[int]: Specify the list of channel ids that will be deleted</span>
-<span class="sd">        :return: An asynciterable of clientresponse objects or None</span>
+<span class="sd">        :param channel_ids: Specify the list of channel ids that will be deleted</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">channel_ids</span><span class="p">):</span>
@@ -296,42 +301,37 @@
                 <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">delete_channel</span><span class="p">(</span><span class="n">channel_id</span><span class="p">)</span>
                 <span class="k">yield</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.create_channel"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.create_channel">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel_type</span><span class="p">:</span> <span class="n">ChannelType</span><span class="p">,</span>
+<div class="viewcode-block" id="Client.create_channel"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.create_channel">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel_type</span><span class="p">:</span> <span class="n">ChannelType</span><span class="p">,</span>
                              <span class="n">topic</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">user_limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">nsfw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The create_channel function creates a channel in the specified guild.</span>
 
-<span class="sd">        :param self: Refer to the object itself</span>
-<span class="sd">        :param guild_id: int: Specify the guild id of the server you want to create a channel in</span>
-<span class="sd">        :param name: str: Specify the name of the channel</span>
-<span class="sd">        :param channel_type: ChannelType: Specify what type of channel you want to create</span>
-<span class="sd">        :param topic: str: Set the topic of the channel</span>
-<span class="sd">        :param user_limit: int: Set the maximum number of users allowed in a voice channel</span>
-<span class="sd">        :param position: int: Set the position of the channel in the list</span>
-<span class="sd">        :param nsfw: bool: Determine whether the channel is nsfw or not</span>
-<span class="sd">        :return: An asynciterable of clientresponse objects or None</span>
+<span class="sd">        :param guild_id: Specify the guild id of the server you want to create a channel in</span>
+<span class="sd">        :param name: Specify the name of the channel</span>
+<span class="sd">        :param channel_type: Specify what type of channel you want to create</span>
+<span class="sd">        :param topic: Set the topic of the channel</span>
+<span class="sd">        :param user_limit: Set the maximum number of users allowed in a voice channel</span>
+<span class="sd">        :param position: Set the position of the channel in the list</span>
+<span class="sd">        :param nsfw: Determine whether the channel is nsfw or not</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
             <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">create_channel</span><span class="p">(</span><span class="n">guild_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel_type</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">user_limit</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">nsfw</span><span class="p">)</span>
             <span class="k">yield</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.get_channels"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.get_channels">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
+<div class="viewcode-block" id="Client.get_channels"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.get_channels">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The get_channels function is a coroutine that takes in a guild_id and returns an AsyncIterable of ClientResponse objects.</span>
-<span class="sd">        The function iterates through the users list, calling get_channels on each user object with the given guild_id as its argument.</span>
-<span class="sd">        It then yields each response to be used by other functions.</span>
+<span class="sd">        The function can return the data of all channels on the server</span>
 
-<span class="sd">        :param self: Refer to the current instance of a class</span>
-<span class="sd">        :param guild_id: int: Specify the guild id of the channels you want to get</span>
-<span class="sd">        :return: An asynciterable of clientresponse objects or None</span>
+<span class="sd">        :param guild_id: Specify the guild id of the server you want to get channels from</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
             <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">get_channels</span><span class="p">(</span><span class="n">guild_id</span><span class="p">)</span>
             <span class="k">yield</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.create_role"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.create_role">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="Client.create_role"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.create_role">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                 <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
                                 <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                                 <span class="n">color</span><span class="p">:</span> <span class="n">RGB_COLOR</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -340,44 +340,34 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The create_role function creates a role in the specified guild.</span>
 
-<span class="sd">        :param self: Access the attributes and methods of the class</span>
-<span class="sd">        :param guild_id: int: Specify the guild in which you want to create a role</span>
-<span class="sd">        :param name: str: Set the name of the role</span>
-<span class="sd">        :param color: RGB_COLOR: Set the color of the role</span>
-<span class="sd">        :param hoist: bool: Determine whether the role should be displayed separately in the user list</span>
-<span class="sd">        :param permissions: PermissionBuilder: Set the permissions for the role</span>
-<span class="sd">        :return: An asynciterable of clientresponse objects or None</span>
+<span class="sd">        :param guild_id: Specify the guild in which you want to create a role</span>
+<span class="sd">        :param name: Set the name of the role</span>
+<span class="sd">        :param color: Set the color of the role</span>
+<span class="sd">        :param hoist: Determine whether the role should be displayed separately in the user list</span>
+<span class="sd">        :param permissions: Set the permissions for the role</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
             <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">create_role</span><span class="p">(</span><span class="n">guild_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">hoist</span><span class="p">,</span> <span class="n">permissions</span><span class="p">)</span>
             <span class="k">yield</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.get_roles"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.get_roles">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
+<div class="viewcode-block" id="Client.get_roles"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.get_roles">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The get_roles function is a coroutine that takes in a guild_id and returns an AsyncIterable of ClientResponse objects.</span>
-<span class="sd">        The function iterates through the users attribute, which is an array of User objects, and calls the get_roles function on each user object.</span>
-<span class="sd">        The get_roles function returns a ClientResponse object for each user.</span>
+<span class="sd">        get_roles returns a list of data with all the roles on the server</span>
 
-<span class="sd">        :param self: Refer to the current instance of the class</span>
-<span class="sd">        :param guild_id: int: Specify the guild id of the server you want to get roles from</span>
-<span class="sd">        :return: An asynciterable of clientresponse objects or None</span>
+<span class="sd">        :param guild_id: Specify the guild id of the server you want to get roles from</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
             <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">get_roles</span><span class="p">(</span><span class="n">guild_id</span><span class="p">)</span>
             <span class="k">yield</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.delete_roles"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.delete_roles">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">role_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
+<div class="viewcode-block" id="Client.delete_roles"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.delete_roles">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">role_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
 
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The delete_roles function is a coroutine that takes in two arguments:</span>
-<span class="sd">            1. guild_id - the id of the server to delete roles from</span>
-<span class="sd">            2. role_ids - a list of ids for each role to be deleted</span>
+<span class="sd">        delete_roles function removes all roles with id in the list</span>
 
-<span class="sd">        :param self: Represent the instance of the class</span>
-<span class="sd">        :param guild_id: int: Specify the guild that the roles are being deleted from</span>
-<span class="sd">        :param role_ids: list[int]: Specify the roles that are to be deleted</span>
-<span class="sd">        :return: An asynciterable of clientresponse objects or None</span>
+<span class="sd">        :param guild_id: Specify the guild that the roles are being deleted from</span>
+<span class="sd">        :param role_ids: Specify the roles that are to be deleted</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">role_ids</span><span class="p">):</span>
@@ -386,14 +376,12 @@
                 <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">delete_role</span><span class="p">(</span><span class="n">guild_id</span><span class="p">,</span> <span class="n">role_id</span><span class="p">)</span>
                 <span class="k">yield</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.delete_role"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.delete_role">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">role_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
+<div class="viewcode-block" id="Client.delete_role"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.delete_role">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">role_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The delete_role function deletes a role from the guild.</span>
 
-<span class="sd">        :param self: Refer to the current object</span>
 <span class="sd">        :param guild_id: int: Specify the guild that you want to delete a role from</span>
-<span class="sd">        :param role_id: int: Specify the role to be deleted</span>
-<span class="sd">        :return: clientresponse object or None</span>
+<span class="sd">        :param role_id: int: Specify the role_id to be deleted</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
@@ -401,14 +389,11 @@
             <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">204</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.get_bans"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.get_bans">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_bans</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
+<div class="viewcode-block" id="Client.get_bans"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.get_bans">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_bans</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The get_bans function returns a list of banned users in the guild.</span>
 
-
-<span class="sd">        :param self: Represent the instance of the class</span>
-<span class="sd">        :param guild_id: int: Specify the guild id of the server you want to get banned users from</span>
-<span class="sd">        :return: A clientresponse object or None</span>
+<span class="sd">        :param guild_id: Specify the guild id of the server you want to get banned users from</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
@@ -416,7 +401,7 @@
             <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.ban_member"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.ban_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ban_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
+<div class="viewcode-block" id="Client.ban_member"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.ban_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ban_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The ban_member function is used to ban a member from the guild.</span>
 
@@ -431,7 +416,7 @@
             <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">204</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.unban_members"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.unban_members">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">unban_members</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
+<div class="viewcode-block" id="Client.unban_members"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.unban_members">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">unban_members</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The unban_members function is a coroutine that takes in a guild_id and user_ids list.</span>
 <span class="sd">        It then iterates through the users list, popping off the first user id from the</span>
@@ -439,10 +424,8 @@
 <span class="sd">        response or if there was an error, it will return None. Otherwise, it will yield back</span>
 <span class="sd">        the response.</span>
 
-<span class="sd">        :param self: Represent the instance of the class</span>
-<span class="sd">        :param guild_id: int: Specify the guild id of the server you want to unban members from</span>
-<span class="sd">        :param user_ids: list[int]: Store the list of user ids to unban</span>
-<span class="sd">        :return: A union of none or asynciterable[clientresponse]</span>
+<span class="sd">        :param guild_id: Specify the guild id of the server you want to unban members from</span>
+<span class="sd">        :param user_ids: Store the list of user ids to unban</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">user_ids</span><span class="p">):</span>
@@ -452,14 +435,12 @@
                 <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">204</span><span class="p">:</span>
                     <span class="k">yield</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.unban_member"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.unban_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">unban_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
+<div class="viewcode-block" id="Client.unban_member"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.unban_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">unban_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The unban_member function unban a user from the guild.</span>
 
-<span class="sd">        :param self: Represent the instance of the class</span>
-<span class="sd">        :param guild_id: int: Specify the guild that you want to unban a member from</span>
-<span class="sd">        :param user_id: int: Specify the user id of the member to unban</span>
-<span class="sd">        :return: A clientresponse object or None</span>
+<span class="sd">        :param guild_id: Specify the guild that you want to unban a member from</span>
+<span class="sd">        :param user_id: Specify the user id of the member to unban</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
@@ -467,7 +448,7 @@
             <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">204</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.ban_members"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.ban_members">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ban_members</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
+<div class="viewcode-block" id="Client.ban_members"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.ban_members">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ban_members</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
 
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The ban_members function is a coroutine that takes in a guild_id and user_ids list.</span>
@@ -475,10 +456,8 @@
 <span class="sd">        user_ids list and passing it to ban_member function of each client. The response</span>
 <span class="sd">        from each client is yielded back to whatever called this function.</span>
 
-<span class="sd">        :param self: Represent the instance of the class</span>
-<span class="sd">        :param guild_id: int: Specify the guild to ban the user from</span>
-<span class="sd">        :param user_ids: list[int]: Store the list of user ids that will be banned</span>
-<span class="sd">        :return: A union of none or an asynciterable[clientresponse]</span>
+<span class="sd">        :param guild_id: Specify the guild to ban the user from</span>
+<span class="sd">        :param user_ids: Store the list of user ids that will be banned</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">user_ids</span><span class="p">):</span>
@@ -487,28 +466,26 @@
                 <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">ban_member</span><span class="p">(</span><span class="n">guild_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
                 <span class="k">yield</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.kick_member"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.kick_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">kick_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
+<div class="viewcode-block" id="Client.kick_member"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.kick_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">kick_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The kick_member function kicks a member from the guild.</span>
 
-<span class="sd">        :param self: Represent the instance of the class</span>
-<span class="sd">        :param guild_id: int: Specify the guild that you want to kick a user from</span>
-<span class="sd">        :param user_id: int: Identify the user to be kicked</span>
-<span class="sd">        :return: clientresponse object or None</span>
+<span class="sd">        :param guild_id: Specify the guild that you want to kick a user from</span>
+<span class="sd">        :param user_id: Identify the user to be kicked</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
             <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">kick_member</span><span class="p">(</span><span class="n">guild_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">204</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.kick_members"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.kick_members">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">kick_members</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
+<div class="viewcode-block" id="Client.kick_members"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.kick_members">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">kick_members</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The kick_member function kicks a member from the guild.</span>
+<span class="sd">        The kick_members function is a coroutine that takes in a guild_id and user_ids list.</span>
+<span class="sd">        It then iterates through the users list, popping off the first user id from the</span>
+<span class="sd">        user_ids list and kicking them from the specified guild. It yields each response as it goes.</span>
 
-<span class="sd">        :param self: Represent the instance of the class</span>
-<span class="sd">        :param guild_id: int: Specify the guild that you want to kick a user from</span>
-<span class="sd">        :param user_ids: list[int]: Identify the user to be kicked</span>
-<span class="sd">        :return: A union of none or an asynciterable[clientresponse]</span>
+<span class="sd">        :param guild_id: int: Specify which guild the user is in</span>
+<span class="sd">        :param user_ids: list[int]: list with id of people to kick out</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">user_ids</span><span class="p">):</span>
@@ -517,17 +494,12 @@
                 <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">kick_member</span><span class="p">(</span><span class="n">guild_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
                 <span class="k">yield</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.get_member"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.get_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
+<div class="viewcode-block" id="Client.get_member"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.get_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The get_member function is used to get a member from the guild.</span>
-<span class="sd">            Parameters:</span>
-<span class="sd">                guild_id (int): The ID of the guild to get the member from.</span>
-<span class="sd">                user_id (int): The ID of the user to get as a member.</span>
 
-<span class="sd">        :param self: Access the class variables and methods</span>
-<span class="sd">        :param guild_id: int: Specify the guild that you want to get a member from</span>
-<span class="sd">        :param user_id: int: Specify the user id of the member you want to get</span>
-<span class="sd">        :return: A clientresponse object or None</span>
+<span class="sd">        :param guild_id: Specify the guild that you want to get a member from</span>
+<span class="sd">        :param user_id: Specify the user id of the member you want to get</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
@@ -535,7 +507,7 @@
             <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="Client.edit_member"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.client.Client.edit_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">edit_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<div class="viewcode-block" id="Client.edit_member"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.edit_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">edit_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
                                                                 <span class="n">nickname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                                                                 <span class="n">add_roles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                                                                 <span class="n">remove_roles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">ClientResponse</span><span class="p">]:</span>
@@ -543,19 +515,31 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The edit_member function allows you to edit a member of a guild.</span>
 
-<span class="sd">        :param self: Refer to the object itself</span>
-<span class="sd">        :param guild_id: int: Specify the guild that you want to edit a member in</span>
-<span class="sd">        :param user_id: int: Specify the user that you want to edit</span>
-<span class="sd">        :param nickname: str: Change the nickname of a user in a guild</span>
-<span class="sd">        :param add_roles: list[int]: Add roles to a user</span>
-<span class="sd">        :param remove_roles: list[int]: Remove roles from a user</span>
-<span class="sd">        :return: A clientresponse object or None</span>
+<span class="sd">        :param guild_id: Specify the guild that you want to edit a member in</span>
+<span class="sd">        :param user_id: Specify the user that you want to edit</span>
+<span class="sd">        :param nickname: Change the nickname of a user in a guild</span>
+<span class="sd">        :param add_roles: Add roles to a user</span>
+<span class="sd">        :param remove_roles: Remove roles from a user</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
             <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">edit_member</span><span class="p">(</span><span class="n">guild_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">nickname</span><span class="p">,</span> <span class="n">add_roles</span><span class="p">,</span> <span class="n">remove_roles</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">response</span> <span class="ow">and</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">response</span></div></div>
+                <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="Client.add_reaction"><a class="viewcode-back" href="../../library/Client.html#SelfBotClient.client.Client.add_reaction">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">emoji</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ClientResponse</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The add_reaction function adds a reaction to the message with the given ID in the channel with</span>
+<span class="sd">        the given ID. The emoji parameter is a string that must be an emoticon. Example: \N{FIRE}</span>
+
+<span class="sd">        :param channel_id: Specify which channel_id the message is in</span>
+<span class="sd">        :param message_id: Message ID that you want to add a reaction to</span>
+<span class="sd">        :param emoji: A reaction to add to the message</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">:</span>
+            <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">add_reaction</span><span class="p">(</span><span class="n">channel_id</span><span class="p">,</span> <span class="n">message_id</span><span class="p">,</span> <span class="n">emoji</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">response</span></div></div>
 </pre></div>
         </article>
       </div>

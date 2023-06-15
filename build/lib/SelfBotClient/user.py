@@ -10,7 +10,6 @@ from .logger import Logger
 from .enums import ChannelType
 from .permissionbuilder import PermissionBuilder
 
-from urllib.parse import quote
 from asyncio import AbstractEventLoop
 from aiohttp import ClientResponse
 from logging import getLogger
@@ -431,22 +430,4 @@ class UserClient:
                 f"Request PATCH guilds/{guild_id}/members/{user_id} failed.\n -> {self} {await response.json()}")
 
         return response
-
-    async def add_reaction(self, channel_id: int, message_id: int, emoji: str):
-        emoji = quote(emoji)
-
-        _url = self._endpoint + f"channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me"
-
-        if self._logger._status:
-            self._logger.debug(f"Sending request: PUT -> {_url}")
-
-        response: ClientResponse = await self._session.request(
-            method="PUT", url=_url, headers=self._auth_header)
-
-        if response.status not in (204, 429) and self._logger._status:
-            self._logger.error(
-                f"Request PUT channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me failed.\n -> {self} {await response.json()}")
-
-        return response
-
 

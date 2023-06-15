@@ -11,19 +11,6 @@ from asyncio import AbstractEventLoop
 
 
 class Client(HTTPClient):
-    """
-    :class:`Client` supports all services of the :class:`SelfBotClient.user`.
-    It has methods such as :class:`Client.send_message` which it calls in all users.
-
-    :param api_version: version of the discord api used by the client
-    :param loop: Set the event loop that will be used by the client
-    :param logger: Enable/disable the logger
-    :param request_latency: Control the rate of requests sent to discord
-    :param ratelimit_additional_cooldown: Add a cooldown to the ratelimit
-    :param use_threading: Enable or disable the threading option (:class:`SelfBotClient.threads`), which for now is in beta.
-
-    """
-
     __version__: str = "1.0.2"
 
     def __init__(
@@ -35,6 +22,20 @@ class Client(HTTPClient):
             ratelimit_additional_cooldown: float = 10,
             use_threading: bool = False
     ):
+        """
+        The __init__ function is called when the class is instantiated.
+        It sets up all of the attributes that are needed for the class to function properly.
+
+
+        :param self: Represent the instance of the class
+        :param api_version: API_VERSION: Set the api version of the client
+        :param loop: AbstractEventLoop: Specify the event loop that the client will use
+        :param logger: bool: Enable/disable logging
+        :param request_latency: float: Set the time between requests
+        :param ratelimit_additional_cooldown: float: Add a cooldown to the ratelimit
+        :param use_threading: bool: Determine if the client should use threading
+        :return: None
+        """
 
         super().__init__(api_version, loop, logger, request_latency, ratelimit_additional_cooldown)
 
@@ -45,7 +46,9 @@ class Client(HTTPClient):
         """
         The login function is used to check the provided tokens.
 
-        :param token: tokens to check
+        :param self: Represent the instance of the class
+        :param token: Union[str, list[str]] tokens to check
+        :return: None
         """
 
         if self.logger._status:
@@ -58,8 +61,10 @@ class Client(HTTPClient):
         """
         The send_message function sends a message to the specified channel.
 
-        :param channel_id: Specify the channel to send the message to
-        :param message_content: content of the message
+        :param self: Refer to the current instance of a class
+        :param channel_id: int: Specify the channel to send the message to
+        :param message_content: str: Specify the message that will be sent to each user
+        :return: An asynciterable of clientresponse objects or None
         """
 
         for user in self.users:
@@ -70,7 +75,9 @@ class Client(HTTPClient):
         """
         The delete_channel function deletes a channel from the server.
 
-        :param channel_id: Specify the channel that is to be deleted
+        :param self: Refer to the object itself
+        :param channel_id: int: Specify the channel that is to be deleted
+        :return: A clientresponse object or None
         """
 
         for user in self.users:
@@ -81,9 +88,11 @@ class Client(HTTPClient):
     async def delete_channels(self, channel_ids: list[int]) -> Union[None, AsyncIterable[ClientResponse]]:
         """
         The delete_channels function takes a list of channel_ids and deletes them.
-        It returns an AsyncIterable of ClientResponse objects, which can be used to check the status code for each request.
+            It returns an AsyncIterable of ClientResponse objects, which can be used to check the status code for each request.
 
-        :param channel_ids: Specify the list of channel ids that will be deleted
+        :param self: Access the class variables and methods
+        :param channel_ids: list[int]: Specify the list of channel ids that will be deleted
+        :return: An asynciterable of clientresponse objects or None
         """
 
         while len(channel_ids):
@@ -97,13 +106,15 @@ class Client(HTTPClient):
         """
         The create_channel function creates a channel in the specified guild.
 
-        :param guild_id: Specify the guild id of the server you want to create a channel in
-        :param name: Specify the name of the channel
-        :param channel_type: Specify what type of channel you want to create
-        :param topic: Set the topic of the channel
-        :param user_limit: Set the maximum number of users allowed in a voice channel
-        :param position: Set the position of the channel in the list
-        :param nsfw: Determine whether the channel is nsfw or not
+        :param self: Refer to the object itself
+        :param guild_id: int: Specify the guild id of the server you want to create a channel in
+        :param name: str: Specify the name of the channel
+        :param channel_type: ChannelType: Specify what type of channel you want to create
+        :param topic: str: Set the topic of the channel
+        :param user_limit: int: Set the maximum number of users allowed in a voice channel
+        :param position: int: Set the position of the channel in the list
+        :param nsfw: bool: Determine whether the channel is nsfw or not
+        :return: An asynciterable of clientresponse objects or None
         """
 
         for user in self.users:
@@ -113,9 +124,12 @@ class Client(HTTPClient):
     async def get_channels(self, guild_id: int) -> Union[None, AsyncIterable[ClientResponse]]:
         """
         The get_channels function is a coroutine that takes in a guild_id and returns an AsyncIterable of ClientResponse objects.
-        The function can return the data of all channels on the server
+        The function iterates through the users list, calling get_channels on each user object with the given guild_id as its argument.
+        It then yields each response to be used by other functions.
 
-        :param guild_id: Specify the guild id of the server you want to get channels from
+        :param self: Refer to the current instance of a class
+        :param guild_id: int: Specify the guild id of the channels you want to get
+        :return: An asynciterable of clientresponse objects or None
         """
 
         for user in self.users:
@@ -131,11 +145,13 @@ class Client(HTTPClient):
         """
         The create_role function creates a role in the specified guild.
 
-        :param guild_id: Specify the guild in which you want to create a role
-        :param name: Set the name of the role
-        :param color: Set the color of the role
-        :param hoist: Determine whether the role should be displayed separately in the user list
-        :param permissions: Set the permissions for the role
+        :param self: Access the attributes and methods of the class
+        :param guild_id: int: Specify the guild in which you want to create a role
+        :param name: str: Set the name of the role
+        :param color: RGB_COLOR: Set the color of the role
+        :param hoist: bool: Determine whether the role should be displayed separately in the user list
+        :param permissions: PermissionBuilder: Set the permissions for the role
+        :return: An asynciterable of clientresponse objects or None
         """
 
         for user in self.users:
@@ -144,9 +160,13 @@ class Client(HTTPClient):
 
     async def get_roles(self, guild_id: int) -> Union[None, AsyncIterable[ClientResponse]]:
         """
-        get_roles returns a list of data with all the roles on the server
+        The get_roles function is a coroutine that takes in a guild_id and returns an AsyncIterable of ClientResponse objects.
+        The function iterates through the users attribute, which is an array of User objects, and calls the get_roles function on each user object.
+        The get_roles function returns a ClientResponse object for each user.
 
-        :param guild_id: Specify the guild id of the server you want to get roles from
+        :param self: Refer to the current instance of the class
+        :param guild_id: int: Specify the guild id of the server you want to get roles from
+        :return: An asynciterable of clientresponse objects or None
         """
         for user in self.users:
             response: ClientResponse = await user.get_roles(guild_id)
@@ -155,10 +175,14 @@ class Client(HTTPClient):
     async def delete_roles(self, guild_id: int, role_ids: list[int]) -> Union[None, AsyncIterable[ClientResponse]]:
 
         """
-        delete_roles function removes all roles with id in the list
+        The delete_roles function is a coroutine that takes in two arguments:
+            1. guild_id - the id of the server to delete roles from
+            2. role_ids - a list of ids for each role to be deleted
 
-        :param guild_id: Specify the guild that the roles are being deleted from
-        :param role_ids: Specify the roles that are to be deleted
+        :param self: Represent the instance of the class
+        :param guild_id: int: Specify the guild that the roles are being deleted from
+        :param role_ids: list[int]: Specify the roles that are to be deleted
+        :return: An asynciterable of clientresponse objects or None
         """
 
         while len(role_ids):
@@ -171,8 +195,10 @@ class Client(HTTPClient):
         """
         The delete_role function deletes a role from the guild.
 
+        :param self: Refer to the current object
         :param guild_id: int: Specify the guild that you want to delete a role from
-        :param role_id: int: Specify the role_id to be deleted
+        :param role_id: int: Specify the role to be deleted
+        :return: clientresponse object or None
         """
 
         for user in self.users:
@@ -184,7 +210,10 @@ class Client(HTTPClient):
         """
         The get_bans function returns a list of banned users in the guild.
 
-        :param guild_id: Specify the guild id of the server you want to get banned users from
+
+        :param self: Represent the instance of the class
+        :param guild_id: int: Specify the guild id of the server you want to get banned users from
+        :return: A clientresponse object or None
         """
 
         for user in self.users:
@@ -215,8 +244,10 @@ class Client(HTTPClient):
         response or if there was an error, it will return None. Otherwise, it will yield back
         the response.
 
-        :param guild_id: Specify the guild id of the server you want to unban members from
-        :param user_ids: Store the list of user ids to unban
+        :param self: Represent the instance of the class
+        :param guild_id: int: Specify the guild id of the server you want to unban members from
+        :param user_ids: list[int]: Store the list of user ids to unban
+        :return: A union of none or asynciterable[clientresponse]
         """
 
         while len(user_ids):
@@ -230,8 +261,10 @@ class Client(HTTPClient):
         """
         The unban_member function unban a user from the guild.
 
-        :param guild_id: Specify the guild that you want to unban a member from
-        :param user_id: Specify the user id of the member to unban
+        :param self: Represent the instance of the class
+        :param guild_id: int: Specify the guild that you want to unban a member from
+        :param user_id: int: Specify the user id of the member to unban
+        :return: A clientresponse object or None
         """
 
         for user in self.users:
@@ -247,8 +280,10 @@ class Client(HTTPClient):
         user_ids list and passing it to ban_member function of each client. The response
         from each client is yielded back to whatever called this function.
 
-        :param guild_id: Specify the guild to ban the user from
-        :param user_ids: Store the list of user ids that will be banned
+        :param self: Represent the instance of the class
+        :param guild_id: int: Specify the guild to ban the user from
+        :param user_ids: list[int]: Store the list of user ids that will be banned
+        :return: A union of none or an asynciterable[clientresponse]
         """
 
         while len(user_ids):
@@ -261,8 +296,10 @@ class Client(HTTPClient):
         """
         The kick_member function kicks a member from the guild.
 
-        :param guild_id: Specify the guild that you want to kick a user from
-        :param user_id: Identify the user to be kicked
+        :param self: Represent the instance of the class
+        :param guild_id: int: Specify the guild that you want to kick a user from
+        :param user_id: int: Identify the user to be kicked
+        :return: clientresponse object or None
         """
         for user in self.users:
             response: ClientResponse = await user.kick_member(guild_id, user_id)
@@ -271,12 +308,12 @@ class Client(HTTPClient):
 
     async def kick_members(self, guild_id: int, user_ids: list[int]) -> Union[None, AsyncIterable[ClientResponse]]:
         """
-        The kick_members function is a coroutine that takes in a guild_id and user_ids list.
-        It then iterates through the users list, popping off the first user id from the
-        user_ids list and kicking them from the specified guild. It yields each response as it goes.
+        The kick_member function kicks a member from the guild.
 
-        :param guild_id: int: Specify which guild the user is in
-        :param user_ids: list[int]: list with id of people to kick out
+        :param self: Represent the instance of the class
+        :param guild_id: int: Specify the guild that you want to kick a user from
+        :param user_ids: list[int]: Identify the user to be kicked
+        :return: A union of none or an asynciterable[clientresponse]
         """
 
         while len(user_ids):
@@ -288,9 +325,14 @@ class Client(HTTPClient):
     async def get_member(self, guild_id: int, user_id: int) -> Union[None, ClientResponse]:
         """
         The get_member function is used to get a member from the guild.
+            Parameters:
+                guild_id (int): The ID of the guild to get the member from.
+                user_id (int): The ID of the user to get as a member.
 
-        :param guild_id: Specify the guild that you want to get a member from
-        :param user_id: Specify the user id of the member you want to get
+        :param self: Access the class variables and methods
+        :param guild_id: int: Specify the guild that you want to get a member from
+        :param user_id: int: Specify the user id of the member you want to get
+        :return: A clientresponse object or None
         """
 
         for user in self.users:
@@ -306,28 +348,16 @@ class Client(HTTPClient):
         """
         The edit_member function allows you to edit a member of a guild.
 
-        :param guild_id: Specify the guild that you want to edit a member in
-        :param user_id: Specify the user that you want to edit
-        :param nickname: Change the nickname of a user in a guild
-        :param add_roles: Add roles to a user
-        :param remove_roles: Remove roles from a user
+        :param self: Refer to the object itself
+        :param guild_id: int: Specify the guild that you want to edit a member in
+        :param user_id: int: Specify the user that you want to edit
+        :param nickname: str: Change the nickname of a user in a guild
+        :param add_roles: list[int]: Add roles to a user
+        :param remove_roles: list[int]: Remove roles from a user
+        :return: A clientresponse object or None
         """
 
         for user in self.users:
             response: ClientResponse = await user.edit_member(guild_id, user_id, nickname, add_roles, remove_roles)
             if response and response.status == 200:
                 return response
-
-    async def add_reaction(self, channel_id: int, message_id: int, emoji: str) -> Union[None, AsyncIterable[ClientResponse]]:
-        """
-        The add_reaction function adds a reaction to the message with the given ID in the channel with
-        the given ID. The emoji parameter is a string that must be an emoticon. Example: \N{FIRE}
-
-        :param channel_id: Specify which channel_id the message is in
-        :param message_id: Message ID that you want to add a reaction to
-        :param emoji: A reaction to add to the message
-        """
-
-        for user in self.users:
-            response: ClientResponse = await user.add_reaction(channel_id, message_id, emoji)
-            yield response

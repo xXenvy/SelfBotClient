@@ -1,7 +1,9 @@
+.. currentmodule:: SelfBotClient
+
 Client
 ======
 
-A :class:`Client` is used to interact with a :class:`UserClient`
+A :class:`SelfBotClient.client` is used to send methods to all :class:`SelfBotClient.user`
 ---------------------------
 
 .. automodule:: SelfBotClient.client

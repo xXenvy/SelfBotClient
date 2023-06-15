@@ -1,4 +1,6 @@
 from typing import Literal, TypedDict, TYPE_CHECKING
+from aiohttp import ClientResponse
+
 
 METHOD = Literal["GET", "POST", "DELETE", "PATCH", "PUT"]
 API_VERSION = Literal[9, 10]

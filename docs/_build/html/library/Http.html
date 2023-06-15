@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="PermissionBuilder" href="PermissionBuilder.html" /><link rel="prev" title="Errors" href="Errors.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="PermissionBuilder" href="PermissionBuilder.html" /><link rel="prev" title="Enums" href="Enums.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>Http - Self Bot library 1.0.0 documentation</title>
+        <title>HTTP - Self Bot library 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
@@ -162,11 +162,11 @@
 <li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">SelfBotClient Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBotClient Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Client.html">Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Enums.html">Enums</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Errors.html">Errors</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Http</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">HTTP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PermissionBuilder.html">PermissionBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Typings.html">Typings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="User.html">UserClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Threads.html">Threads</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -208,10 +208,10 @@
         </div>
         <article role="main">
           <section id="http">
-<h1>Http<a class="headerlink" href="#http" title="Permalink to this heading">#</a></h1>
-<section id="module-SelfBotClient.http">
-<span id="a-http"></span><h2>A <code class="xref py py-class docutils literal notranslate"><span class="pre">http</span></code><a class="headerlink" href="#module-SelfBotClient.http" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
+<h1>HTTP<a class="headerlink" href="#http" title="Permalink to this heading">#</a></h1>
+<section id="a-selfbotclient-http-it-mainly-handles-requests-to-discord-or-detect-ratelimit-it-also-has-its-own-session">
+<h2>A <a class="reference internal" href="#module-SelfBotClient.http" title="SelfBotClient.http"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.http</span></code></a> It mainly handles requests to discord or detect ratelimit. It also has its own session.<a class="headerlink" href="#a-selfbotclient-http-it-mainly-handles-requests-to-discord-or-detect-ratelimit-it-also-has-its-own-session" title="Permalink to this heading">#</a></h2>
+<span class="target" id="module-SelfBotClient.http"></span><dl class="py class">
 <dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.http.</span></span><span class="sig-name descname"><span class="pre">ClientResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">writer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">continue100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traces</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aiohttp/client_reqrep.html#ClientResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.ClientResponse" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">HeadersMixin</span></code></p>
@@ -435,14 +435,16 @@ status is under 400.</p>
 <dt class="sig sig-object py" id="SelfBotClient.http.HTTPClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.http.</span></span><span class="sig-name descname"><span class="pre">HTTPClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_latency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratelimit_additional_cooldown</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/http.html#HTTPClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.HTTPClient" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>HTTPClient handles all requests related to the client.
+It also has methods from checking tokens or creating a new session.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>api_version</strong> (<em>Literal</em><em>[</em><em>9</em><em>, </em><em>10</em><em>]</em>) – </p></li>
-<li><p><strong>loop</strong> (<em>AbstractEventLoop</em>) – </p></li>
-<li><p><strong>logger</strong> (<em>bool</em>) – </p></li>
-<li><p><strong>request_latency</strong> (<em>float</em>) – </p></li>
-<li><p><strong>ratelimit_additional_cooldown</strong> (<em>float</em>) – </p></li>
+<li><p><strong>api_version</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">9</span></code>, <code class="docutils literal notranslate"><span class="pre">10</span></code>]) – version of the discord api used by the client</p></li>
+<li><p><strong>loop</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEventLoop</span></code>) – Set the event loop that will be used by the client</p></li>
+<li><p><strong>logger</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Enable/disable the logger</p></li>
+<li><p><strong>request_latency</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Control the rate of requests sent to discord</p></li>
+<li><p><strong>ratelimit_additional_cooldown</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Add a cooldown to the ratelimit</p></li>
 </ul>
 </dd>
 </dl>
@@ -530,14 +532,14 @@ the awaitable completes and then returns. This is useful for running tasks in pa
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="Errors.html">
+          <a class="prev-page" href="Enums.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Errors</div>
+                <div class="title">Enums</div>
                 
               </div>
             </a>
@@ -571,8 +573,8 @@ the awaitable completes and then returns. This is useful for running tasks in pa
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Http</a><ul>
-<li><a class="reference internal" href="#module-SelfBotClient.http">A <code class="xref py py-class docutils literal notranslate"><span class="pre">http</span></code></a><ul>
+<li><a class="reference internal" href="#">HTTP</a><ul>
+<li><a class="reference internal" href="#a-selfbotclient-http-it-mainly-handles-requests-to-discord-or-detect-ratelimit-it-also-has-its-own-session">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.http</span></code> It mainly handles requests to discord or detect ratelimit. It also has its own session.</a><ul>
 <li><a class="reference internal" href="#SelfBotClient.http.ClientResponse"><code class="docutils literal notranslate"><span class="pre">ClientResponse</span></code></a><ul>
 <li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.close"><code class="docutils literal notranslate"><span class="pre">ClientResponse.close()</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.closed"><code class="docutils literal notranslate"><span class="pre">ClientResponse.closed</span></code></a></li>

@@ -7,7 +7,6 @@ SelfBotClient Reference
 
     Client
     Enums
-    Errors
     Http
     PermissionBuilder
     Typings

@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Errors" href="Errors.html" /><link rel="prev" title="Client" href="Client.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Http" href="Http.html" /><link rel="prev" title="Client" href="Client.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
         <title>Enums - Self Bot library 1.0.0 documentation</title>
@@ -162,11 +162,15 @@
 <li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">SelfBotClient Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBotClient Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Client.html">Client</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Enums</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Errors.html">Errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Http.html">Http</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PermissionBuilder.html">PermissionBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Typings.html">Typings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="User.html">UserClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Threads.html">Threads</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/basic_spam.html">Basic Spam</a></li>
 </ul>
 </li>
 </ul>
@@ -205,9 +209,9 @@
         <article role="main">
           <section id="enums">
 <h1>Enums<a class="headerlink" href="#enums" title="Permalink to this heading">#</a></h1>
-<section id="module-SelfBotClient.enums">
-<span id="a-enums"></span><h2>A <code class="xref py py-class docutils literal notranslate"><span class="pre">enums</span></code><a class="headerlink" href="#module-SelfBotClient.enums" title="Permalink to this heading">#</a></h2>
-<dl class="py class">
+<section id="a-selfbotclient-enums-contains-channel-types-or-all-permissions">
+<h2>A <a class="reference internal" href="#module-SelfBotClient.enums" title="SelfBotClient.enums"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.enums</span></code></a> contains channel types or all permissions.<a class="headerlink" href="#a-selfbotclient-enums-contains-channel-types-or-all-permissions" title="Permalink to this heading">#</a></h2>
+<span class="target" id="module-SelfBotClient.enums"></span><dl class="py class">
 <dt class="sig sig-object py" id="SelfBotClient.enums.ChannelType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.enums.</span></span><span class="sig-name descname"><span class="pre">ChannelType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/enums.html#ChannelType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.enums.ChannelType" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
@@ -407,12 +411,12 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="Errors.html">
+          <a class="next-page" href="Http.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Errors</div>
+                <div class="title">Http</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -458,7 +462,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Enums</a><ul>
-<li><a class="reference internal" href="#module-SelfBotClient.enums">A <code class="xref py py-class docutils literal notranslate"><span class="pre">enums</span></code></a><ul>
+<li><a class="reference internal" href="#a-selfbotclient-enums-contains-channel-types-or-all-permissions">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.enums</span></code> contains channel types or all permissions.</a><ul>
 <li><a class="reference internal" href="#SelfBotClient.enums.ChannelType"><code class="docutils literal notranslate"><span class="pre">ChannelType</span></code></a><ul>
 <li><a class="reference internal" href="#SelfBotClient.enums.ChannelType.CATEGORY_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.CATEGORY_CHANNEL</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.enums.ChannelType.TEXT_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.TEXT_CHANNEL</span></code></a></li>
