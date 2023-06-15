@@ -1,5 +1,3 @@
-.. currentmodule:: SelfBotClient
-
 Client
 ======
 
