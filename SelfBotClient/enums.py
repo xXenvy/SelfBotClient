@@ -4,18 +4,18 @@ from enum import Enum
 __all__: tuple = ("ChannelType", "Permissions", "Discord")
 
 
-class Discord(str, Enum):
+class Discord(Enum):
     ENDPOINT = "https://discord.com/api/v{}/"
 
 
-class ChannelType(int, Enum):
+class ChannelType(Enum):
 
     TEXT_CHANNEL = 0
     VOICE_CHANNEL = 2
     CATEGORY_CHANNEL = 4
 
 
-class Permissions(int, Enum):
+class Permissions(Enum):
     CREATE_INSTANT_INVITE = 1 << 0
     KICK_MEMBERS = 1 << 1
     BAN_MEMBERS = 1 << 2

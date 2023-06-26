@@ -31,7 +31,7 @@ class UserClient:
         self.data: dict = data
         self._endpoint: str = self.data["endpoint"]
         self.token: str = self.data["token"]
-        self.name: str = self.data["name"]
+        self.name: str = self.data["username"]
         self.discriminator: str = f"#{self.data['discriminator']}"
         self.id: int = self.data["id"]
 
