@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>SelfBotClient.user - Self Bot library 1.1.0 documentation</title>
+        <title>SelfBotClient.user - Self Bot library 1.1.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
@@ -124,7 +124,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">Self Bot library 1.1.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">Self Bot library 1.1.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -147,7 +147,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
   
-  <span class="sidebar-brand-text">Self Bot library 1.1.0 documentation</span>
+  <span class="sidebar-brand-text">Self Bot library 1.1.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -165,7 +165,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../library/PermissionBuilder.html">PermissionBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Typings.html">Typings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/User.html">UserClient</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../library/Thread.html">Thread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Tasks.html">Tasks</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -210,7 +210,7 @@
           <h1>Source code for SelfBotClient.user</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">.http</span> <span class="kn">import</span> <span class="n">CustomSession</span>
@@ -236,14 +236,14 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">CustomSession</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">:</span> <span class="n">CustomSession</span> <span class="o">=</span> <span class="n">session</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="p">:</span> <span class="n">Logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;Logger&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="p">:</span> <span class="n">Logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;Logger&quot;</span><span class="p">)</span>  <span class="c1"># pyright: ignore</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">data</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;endpoint&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">discriminator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;#</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;discriminator&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;endpoint&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discriminator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;#</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;discriminator&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_auth_header</span><span class="p">:</span> <span class="n">AUTH_HEADER</span> <span class="o">=</span> <span class="n">AUTH_HEADER</span><span class="p">(</span>
             <span class="n">authorization</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span>
@@ -300,7 +300,8 @@
         <span class="k">return</span> <span class="n">response</span></div>
 
 <div class="viewcode-block" id="UserClient.create_channel"><a class="viewcode-back" href="../../library/User.html#SelfBotClient.user.UserClient.create_channel">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel_type</span><span class="p">:</span> <span class="n">ChannelType</span><span class="p">,</span>
-                             <span class="n">topic</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">user_limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">nsfw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClientResponse</span><span class="p">:</span>
+                             <span class="n">topic</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">user_limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                             <span class="n">position</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">nsfw</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClientResponse</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The create_channel function creates a channel in the specified guild.</span>
 
@@ -361,9 +362,9 @@
 <div class="viewcode-block" id="UserClient.create_role"><a class="viewcode-back" href="../../library/User.html#SelfBotClient.user.UserClient.create_role">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                 <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
                                 <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                                <span class="n">color</span><span class="p">:</span> <span class="n">RGB_COLOR</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                                <span class="n">hoist</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                                <span class="n">permissions</span><span class="p">:</span> <span class="n">PermissionBuilder</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClientResponse</span><span class="p">:</span>
+                                <span class="n">color</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RGB_COLOR</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                <span class="n">hoist</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                                <span class="n">permissions</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">PermissionBuilder</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClientResponse</span><span class="p">:</span>
 
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The create_role function creates a role in the specified guild.</span>
@@ -382,20 +383,20 @@
 
         <span class="k">if</span> <span class="n">color</span><span class="p">:</span>
             <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
-            <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">g</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+            <span class="n">_color</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">g</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>  <span class="c1"># pyright: ignore</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">color</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">_color</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># pyright: ignore</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">permissions</span><span class="p">:</span>
-            <span class="n">permissions</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">_permissions</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">permissions</span> <span class="o">=</span> <span class="n">permissions</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">_permissions</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">permissions</span><span class="o">.</span><span class="n">value</span>  <span class="c1"># pyright: ignore</span>
 
         <span class="n">json</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
             <span class="s2">&quot;hoist&quot;</span><span class="p">:</span> <span class="n">hoist</span><span class="p">,</span>
-            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span>
-            <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="n">permissions</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">_color</span><span class="p">,</span>
+            <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="n">_permissions</span>
         <span class="p">}</span>
 
         <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
@@ -432,8 +433,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The delete_role function deletes a role from the guild.</span>
 
-<span class="sd">        :param guild_id: int: Specify the guild that you want to delete a role from</span>
-<span class="sd">        :param role_id: int: Specify the role_id to be deleted</span>
+<span class="sd">        :param guild_id: Specify the guild that you want to delete a role from</span>
+<span class="sd">        :param role_id: Specify the role_id to be deleted</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;guilds/</span><span class="si">{</span><span class="n">guild_id</span><span class="si">}</span><span class="s2">/roles/</span><span class="si">{</span><span class="n">role_id</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -560,9 +561,9 @@
         <span class="k">return</span> <span class="n">response</span></div>
 
 <div class="viewcode-block" id="UserClient.edit_member"><a class="viewcode-back" href="../../library/User.html#SelfBotClient.user.UserClient.edit_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">edit_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-                          <span class="n">nickname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                          <span class="n">add_roles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                          <span class="n">remove_roles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClientResponse</span><span class="p">:</span>
+                          <span class="n">nickname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                          <span class="n">add_roles</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                          <span class="n">remove_roles</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClientResponse</span><span class="p">:</span>
 
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The edit_member function allows you to edit a member of a guild.</span>
@@ -580,17 +581,18 @@
             <span class="n">user_response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_member</span><span class="p">(</span><span class="n">guild_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
             <span class="n">user_data</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="k">await</span> <span class="n">user_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
-            <span class="n">roles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;roles&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">roles</span><span class="p">:</span>
-                <span class="n">roles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">roles</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">user_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;roles&quot;</span><span class="p">)</span>
+
+            <span class="n">roles_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">roles</span> <span class="k">else</span> <span class="n">roles</span>
 
             <span class="k">if</span> <span class="n">add_roles</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">_role</span> <span class="ow">in</span> <span class="n">add_roles</span><span class="p">:</span>
-                    <span class="n">roles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">_role</span><span class="p">))</span>
+                    <span class="n">roles_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">_role</span><span class="p">))</span>
+
             <span class="k">if</span> <span class="n">remove_roles</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">_role</span> <span class="ow">in</span> <span class="n">remove_roles</span><span class="p">:</span>
                     <span class="k">try</span><span class="p">:</span>
-                        <span class="n">roles</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">_role</span><span class="p">))</span>
+                        <span class="n">roles_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">_role</span><span class="p">))</span>
                     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
                         <span class="k">pass</span>
             <span class="n">json</span><span class="p">[</span><span class="s2">&quot;roles&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">roles</span>
@@ -668,10 +670,10 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The delete_reaction function is used to delete a reaction from a message.</span>
 
-<span class="sd">        :param channel_id: int: Specify the channel where the message is located</span>
-<span class="sd">        :param message_id: int: Identify the message that you want to delete a reaction from</span>
-<span class="sd">        :param user_id: int: Specify the user whose reaction is to be deleted</span>
-<span class="sd">        :param emoji: str: Specify the emoji to be deleted</span>
+<span class="sd">        :param channel_id: Specify the channel where the message is located</span>
+<span class="sd">        :param message_id: Identify the message that you want to delete a reaction from</span>
+<span class="sd">        :param user_id: Specify the user whose reaction is to be deleted</span>
+<span class="sd">        :param emoji: Specify the emoji to be deleted</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">emoji</span> <span class="o">=</span> <span class="n">quote</span><span class="p">(</span><span class="n">emoji</span><span class="p">)</span>

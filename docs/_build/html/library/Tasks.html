@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Code Examples" href="../examples/index.html" /><link rel="prev" title="UserClient" href="User.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>Tasks - Self Bot library 1.1.0 documentation</title>
+        <title>Tasks - Self Bot library 1.1.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
@@ -125,7 +125,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Self Bot library 1.1.0 documentation</div></a>
+      <a href="../index.html"><div class="brand">Self Bot library 1.1.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -148,7 +148,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">Self Bot library 1.1.0 documentation</span>
+  <span class="sidebar-brand-text">Self Bot library 1.1.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -212,9 +212,91 @@
           <section id="tasks">
 <h1>Tasks<a class="headerlink" href="#tasks" title="Permalink to this heading">#</a></h1>
 <section id="a-selfbotclient-tasks-function-allows-you-to-run-multiple-tasks-simultaneously">
-<h2>A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.tasks</span></code> function allows you to run multiple tasks simultaneously<a class="headerlink" href="#a-selfbotclient-tasks-function-allows-you-to-run-multiple-tasks-simultaneously" title="Permalink to this heading">#</a></h2>
+<h2>A <a class="reference internal" href="#module-SelfBotClient.tasks" title="SelfBotClient.tasks"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.tasks</span></code></a> function allows you to run multiple tasks simultaneously<a class="headerlink" href="#a-selfbotclient-tasks-function-allows-you-to-run-multiple-tasks-simultaneously" title="Permalink to this heading">#</a></h2>
 <p>(resulting in faster ratelimit), to take advantage of this you need to change the argument <strong>use_threading=True</strong>
 in the <a class="reference internal" href="Client.html#SelfBotClient.client.Client" title="SelfBotClient.client.Client"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.client.Client</span></code></a> params</p>
+<span class="target" id="module-SelfBotClient.tasks"></span><dl class="py class">
+<dt class="sig sig-object py" id="SelfBotClient.tasks.Tasks">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.tasks.</span></span><span class="sig-name descname"><span class="pre">Tasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/tasks.html#Tasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.tasks.Tasks" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><a class="reference internal" href="#SelfBotClient.tasks.Tasks" title="SelfBotClient.tasks.Tasks"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tasks</span></code></a> Allows you to run several methods simultaneously with tasks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>client</strong> (<a class="reference internal" href="Client.html#SelfBotClient.client.Client" title="SelfBotClient.client.Client"><code class="xref py py-class docutils literal notranslate"><span class="pre">Client</span></code></a>) – Client object to obtain main program loop</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.tasks.Tasks.add_task">
+<span class="sig-name descname"><span class="pre">add_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/tasks.html#Tasks.add_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.tasks.Tasks.add_task" title="Permalink to this definition">#</a></dt>
+<dd><p>The add_task function adds a task to the list of tasks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Coroutine</span></code>) – Asynchronous function to execute</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Give the task a unique name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.tasks.Tasks.get_task">
+<span class="sig-name descname"><span class="pre">get_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/tasks.html#Tasks.get_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.tasks.Tasks.get_task" title="Permalink to this definition">#</a></dt>
+<dd><p>The get_task function returns a task object from the list of tasks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Specify the name of the task to be returned</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.tasks.Tasks.remove_task">
+<span class="sig-name descname"><span class="pre">remove_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/tasks.html#Tasks.remove_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.tasks.Tasks.remove_task" title="Permalink to this definition">#</a></dt>
+<dd><p>The remove_task function removes a task from the list of tasks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Specify the name of the task to be removed</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.tasks.Tasks.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/tasks.html#Tasks.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.tasks.Tasks.run" title="Permalink to this definition">#</a></dt>
+<dd><p>The run function is a wrapper for the run_until_complete function.
+It starts a new thread and runs the run_until_complete function in that thread
+without waiting for all tasks to be completed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.tasks.Tasks.run_until_complete">
+<span class="sig-name descname"><span class="pre">run_until_complete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/tasks.html#Tasks.run_until_complete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.tasks.Tasks.run_until_complete" title="Permalink to this definition">#</a></dt>
+<dd><p>The run_until_complete function is used to run a task until it’s complete.
+This function will also wait for the main loop to finish before executing any of its tasks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -274,7 +356,17 @@ in the <a class="reference internal" href="Client.html#SelfBotClient.client.Clie
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Tasks</a><ul>
-<li><a class="reference internal" href="#a-selfbotclient-tasks-function-allows-you-to-run-multiple-tasks-simultaneously">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.tasks</span></code> function allows you to run multiple tasks simultaneously</a></li>
+<li><a class="reference internal" href="#a-selfbotclient-tasks-function-allows-you-to-run-multiple-tasks-simultaneously">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.tasks</span></code> function allows you to run multiple tasks simultaneously</a><ul>
+<li><a class="reference internal" href="#SelfBotClient.tasks.Tasks"><code class="docutils literal notranslate"><span class="pre">Tasks</span></code></a><ul>
+<li><a class="reference internal" href="#SelfBotClient.tasks.Tasks.add_task"><code class="docutils literal notranslate"><span class="pre">Tasks.add_task()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.tasks.Tasks.get_task"><code class="docutils literal notranslate"><span class="pre">Tasks.get_task()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.tasks.Tasks.remove_task"><code class="docutils literal notranslate"><span class="pre">Tasks.remove_task()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.tasks.Tasks.run"><code class="docutils literal notranslate"><span class="pre">Tasks.run()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.tasks.Tasks.run_until_complete"><code class="docutils literal notranslate"><span class="pre">Tasks.run_until_complete()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

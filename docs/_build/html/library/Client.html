@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Enums" href="Enums.html" /><link rel="prev" title="SelfBotClient Reference" href="index.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>Client - Self Bot library 1.1.0 documentation</title>
+        <title>Client - Self Bot library 1.1.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
@@ -125,7 +125,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Self Bot library 1.1.0 documentation</div></a>
+      <a href="../index.html"><div class="brand">Self Bot library 1.1.2 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -148,7 +148,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">Self Bot library 1.1.0 documentation</span>
+  <span class="sidebar-brand-text">Self Bot library 1.1.2 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -166,7 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="PermissionBuilder.html">PermissionBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Typings.html">Typings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="User.html">UserClient</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Thread.html">Thread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tasks.html">Tasks</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -223,11 +223,12 @@ It has methods such as <a class="reference internal" href="#SelfBotClient.client
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>api_version</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">9</span></code>, <code class="docutils literal notranslate"><span class="pre">10</span></code>]) – version of the discord api used by the client</p></li>
-<li><p><strong>loop</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEventLoop</span></code>) – Set the event loop that will be used by the client</p></li>
+<li><p><strong>loop</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEventLoop</span></code>]) – Set the event loop that will be used by the client</p></li>
 <li><p><strong>logger</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Enable/disable the logger</p></li>
 <li><p><strong>request_latency</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Control the rate of requests sent to discord</p></li>
 <li><p><strong>ratelimit_additional_cooldown</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Add a cooldown to the ratelimit</p></li>
-<li><p><strong>use_threading</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Enable or disable the threading option (<a class="reference internal" href="Thread.html#module-SelfBotClient.thread" title="SelfBotClient.thread"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.thread</span></code></a>), which for now is in beta.</p></li>
+<li><p><strong>use_tasks</strong> – Enable or disable the tasks option (<a class="reference internal" href="Tasks.html#module-SelfBotClient.tasks" title="SelfBotClient.tasks"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.tasks</span></code></a>), which for now is in beta.</p></li>
+<li><p><strong>use_threading</strong> (<em>bool</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -297,10 +298,10 @@ from each client is yielded back to whatever called this function.</p>
 <li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the guild id of the server you want to create a channel in</p></li>
 <li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Specify the name of the channel</p></li>
 <li><p><strong>channel_type</strong> (<a class="reference internal" href="Enums.html#SelfBotClient.enums.ChannelType" title="SelfBotClient.enums.ChannelType"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChannelType</span></code></a>) – Specify what type of channel you want to create</p></li>
-<li><p><strong>topic</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Set the topic of the channel</p></li>
-<li><p><strong>user_limit</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Set the maximum number of users allowed in a voice channel</p></li>
-<li><p><strong>position</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Set the position of the channel in the list</p></li>
-<li><p><strong>nsfw</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Determine whether the channel is nsfw or not</p></li>
+<li><p><strong>topic</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Set the topic of the channel</p></li>
+<li><p><strong>user_limit</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Set the maximum number of users allowed in a voice channel</p></li>
+<li><p><strong>position</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Set the position of the channel in the list</p></li>
+<li><p><strong>nsfw</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]) – Determine whether the channel is nsfw or not</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -318,9 +319,9 @@ from each client is yielded back to whatever called this function.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the guild in which you want to create a role</p></li>
 <li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Set the name of the role</p></li>
-<li><p><strong>color</strong> (<a class="reference internal" href="Typings.html#SelfBotClient.typings.RGB_COLOR" title="SelfBotClient.typings.RGB_COLOR"><code class="xref py py-class docutils literal notranslate"><span class="pre">RGB_COLOR</span></code></a>) – Set the color of the role</p></li>
-<li><p><strong>hoist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Determine whether the role should be displayed separately in the user list</p></li>
-<li><p><strong>permissions</strong> (<a class="reference internal" href="PermissionBuilder.html#SelfBotClient.permissionbuilder.PermissionBuilder" title="SelfBotClient.permissionbuilder.PermissionBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">PermissionBuilder</span></code></a>) – Set the permissions for the role</p></li>
+<li><p><strong>color</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="Typings.html#SelfBotClient.typings.RGB_COLOR" title="SelfBotClient.typings.RGB_COLOR"><code class="xref py py-class docutils literal notranslate"><span class="pre">RGB_COLOR</span></code></a>]) – Set the color of the role</p></li>
+<li><p><strong>hoist</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]) – Determine whether the role should be displayed separately in the user list</p></li>
+<li><p><strong>permissions</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="PermissionBuilder.html#SelfBotClient.permissionbuilder.PermissionBuilder" title="SelfBotClient.permissionbuilder.PermissionBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">PermissionBuilder</span></code></a>]) – Set the permissions for the role</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -365,10 +366,10 @@ It returns an AsyncIterable of ClientResponse objects, which can be used to chec
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>channel_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the channel where the message is located</p></li>
-<li><p><strong>message_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Identify the message that you want to delete a reaction from</p></li>
-<li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the user whose reaction is to be deleted</p></li>
-<li><p><strong>emoji</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – str: Specify the emoji to be deleted</p></li>
+<li><p><strong>channel_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the channel where the message is located</p></li>
+<li><p><strong>message_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Identify the message that you want to delete a reaction from</p></li>
+<li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the user whose reaction is to be deleted</p></li>
+<li><p><strong>emoji</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Specify the emoji to be deleted</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -420,9 +421,9 @@ It returns an AsyncIterable of ClientResponse objects, which can be used to chec
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the guild that you want to edit a member in</p></li>
 <li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the user that you want to edit</p></li>
-<li><p><strong>nickname</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Change the nickname of a user in a guild</p></li>
-<li><p><strong>add_roles</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Add roles to a user</p></li>
-<li><p><strong>remove_roles</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Remove roles from a user</p></li>
+<li><p><strong>nickname</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Change the nickname of a user in a guild</p></li>
+<li><p><strong>add_roles</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]) – Add roles to a user</p></li>
+<li><p><strong>remove_roles</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]) – Remove roles from a user</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -536,8 +537,8 @@ user_ids list and kicking them from the specified guild. It yields each response
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify which guild the user is in</p></li>
-<li><p><strong>user_ids</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – list[int]: list with id of people to kick out</p></li>
+<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify which guild the user is in</p></li>
+<li><p><strong>user_ids</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – list with id of people to kick out</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -548,11 +549,11 @@ user_ids list and kicking them from the specified guild. It yields each response
 
 <dl class="py method">
 <dt class="sig sig-object py" id="SelfBotClient.client.Client.login">
-<span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/client.html#Client.login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.client.Client.login" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tokens</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/client.html#Client.login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.client.Client.login" title="Permalink to this definition">#</a></dt>
 <dd><p>The login function is used to check the provided tokens.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>token</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]) – tokens to check</p>
+<dd class="field-odd"><p><strong>tokens</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]) – tokens to check</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
