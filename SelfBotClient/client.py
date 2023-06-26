@@ -2,11 +2,11 @@ from .http import HTTPClient
 from .typings import API_VERSION, ClientResponse, RGB_COLOR
 from .enums import ChannelType
 from .permissionbuilder import PermissionBuilder
-from .thread import Thread
+from .tasks import Tasks
 
 from collections.abc import AsyncIterable
 
-from typing import Union
+from typing import Union, Optional
 from asyncio import AbstractEventLoop
 
 
@@ -20,41 +20,40 @@ class Client(HTTPClient):
     :param logger: Enable/disable the logger
     :param request_latency: Control the rate of requests sent to discord
     :param ratelimit_additional_cooldown: Add a cooldown to the ratelimit
-    :param use_threading: Enable or disable the threading option (:class:`SelfBotClient.thread`), which for now is in beta.
+    :param use_tasks: Enable or disable the tasks option (:class:`SelfBotClient.tasks`), which for now is in beta.
 
     """
 
-    __version__: str = "1.1.0"
+    __version__: str = "1.1.1"
 
     def __init__(
             self,
             api_version: API_VERSION,
-            loop: AbstractEventLoop = None,
+            loop: Union[AbstractEventLoop, None] = None,
             logger: bool = True,
             request_latency: float = 0.1,
             ratelimit_additional_cooldown: float = 10,
             use_threading: bool = False
-    ):
+    ):  # type: ignore
 
         super().__init__(api_version, loop, logger, request_latency, ratelimit_additional_cooldown)
 
         if use_threading:
-            self.thread: Thread = Thread(client=self)
+            self.tasks: Tasks = Tasks(client=self)
 
-    def login(self, token: Union[str, list[str]]) -> None:
+    def login(self, tokens: Union[str, list[str]]) -> None:
         """
         The login function is used to check the provided tokens.
 
-        :param token: tokens to check
+        :param tokens: tokens to check
         """
 
-        if self.logger._status:
+        if self.logger._status:  # pyright: ignore
             self.logger.info("Checking the provided tokens")
 
-        self._tokens: Union[str, list[str]] = token
-        self._check_tokens()
+        self._check_tokens(tokens)
 
-    async def send_message(self, channel_id: int, message_content: str) -> Union[None, AsyncIterable[ClientResponse]]:
+    async def send_message(self, channel_id: int, message_content: str) -> Optional[AsyncIterable[ClientResponse]]:
         """
         The send_message function sends a message to the specified channel.
 
@@ -78,7 +77,7 @@ class Client(HTTPClient):
             if response.status == 200:
                 return response
 
-    async def delete_channels(self, channel_ids: list[int]) -> Union[None, AsyncIterable[ClientResponse]]:
+    async def delete_channels(self, channel_ids: list[int]) -> Optional[AsyncIterable[ClientResponse]]:
         """
         The delete_channels function takes a list of channel_ids and deletes them.
         It returns an AsyncIterable of ClientResponse objects, which can be used to check the status code for each request.
@@ -93,7 +92,8 @@ class Client(HTTPClient):
                 yield response
 
     async def create_channel(self, guild_id: int, name: str, channel_type: ChannelType,
-                             topic: str = None, user_limit: int = None, position: int = None, nsfw: bool = False) -> Union[None, AsyncIterable[ClientResponse]]:
+                             topic: Optional[str] = None, user_limit: Optional[int] = None,
+                             position: Optional[int] = None, nsfw: Optional[bool] = False) -> Optional[AsyncIterable[ClientResponse]]:
         """
         The create_channel function creates a channel in the specified guild.
 
@@ -110,7 +110,7 @@ class Client(HTTPClient):
             response: ClientResponse = await user.create_channel(guild_id, name, channel_type, topic, user_limit, position, nsfw)
             yield response
 
-    async def get_channels(self, guild_id: int) -> Union[None, AsyncIterable[ClientResponse]]:
+    async def get_channels(self, guild_id: int) -> Optional[AsyncIterable[ClientResponse]]:
         """
         The get_channels function is a coroutine that takes in a guild_id and returns an AsyncIterable of ClientResponse objects.
         The function can return the data of all channels on the server
@@ -125,9 +125,9 @@ class Client(HTTPClient):
     async def create_role(self,
                                 guild_id: int,
                                 name: str,
-                                color: RGB_COLOR = None,
-                                hoist: bool = False,
-                                permissions: PermissionBuilder = None) -> Union[None, AsyncIterable[ClientResponse]]:
+                                color: Optional[RGB_COLOR] = None,
+                                hoist: Optional[bool] = False,
+                                permissions: Optional[PermissionBuilder] = None) -> Optional[AsyncIterable[ClientResponse]]:
         """
         The create_role function creates a role in the specified guild.
 
@@ -273,8 +273,8 @@ class Client(HTTPClient):
         It then iterates through the users list, popping off the first user id from the
         user_ids list and kicking them from the specified guild. It yields each response as it goes.
 
-        :param guild_id: int: Specify which guild the user is in
-        :param user_ids: list[int]: list with id of people to kick out
+        :param guild_id: Specify which guild the user is in
+        :param user_ids: list with id of people to kick out
         """
 
         while len(user_ids):
@@ -297,9 +297,9 @@ class Client(HTTPClient):
                 return response
 
     async def edit_member(self, guild_id: int, user_id: int,
-                                                                nickname: str = None,
-                                                                add_roles: list[int] = None,
-                                                                remove_roles: list[int] = None) -> Union[None, ClientResponse]:
+                                                                nickname: Optional[str] = None,
+                                                                add_roles: Optional[list[int]] = None,
+                                                                remove_roles: Optional[list[int]] = None) -> Union[None, ClientResponse]:
 
         """
         The edit_member function allows you to edit a member of a guild.
@@ -349,10 +349,10 @@ class Client(HTTPClient):
         """
         The delete_reaction function is used to delete a reaction from a message.
 
-        :param channel_id: int: Specify the channel where the message is located
-        :param message_id: int: Identify the message that you want to delete a reaction from
-        :param user_id: int: Specify the user whose reaction is to be deleted
-        :param emoji: str: Specify the emoji to be deleted
+        :param channel_id: Specify the channel where the message is located
+        :param message_id: Identify the message that you want to delete a reaction from
+        :param user_id: Specify the user whose reaction is to be deleted
+        :param emoji: Specify the emoji to be deleted
         """
 
         for user in self.users:

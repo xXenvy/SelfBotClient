@@ -6,7 +6,7 @@ class PermissionBuilder:
     PermissionBuilder takes a Permissions type and then adds them all to a value.
     Methods using PermissionBuilder acquire this value.
 
-    :param args: Accept a variable number of arguments
+    :param args: PermissionType values
     """
 
     __slots__ = ("value",)

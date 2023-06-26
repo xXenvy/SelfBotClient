@@ -4,48 +4,48 @@ from enum import Enum
 __all__: tuple = ("ChannelType", "Permissions", "Discord")
 
 
-class Discord(Enum):
-    ENDPOINT: str = "https://discord.com/api/v{}/"
+class Discord(Enum, str):
+    ENDPOINT = "https://discord.com/api/v{}/"
 
 
-class ChannelType(Enum):
+class ChannelType(Enum, int):
 
-    TEXT_CHANNEL: int = 0
-    VOICE_CHANNEL: int = 2
-    CATEGORY_CHANNEL: int = 4
+    TEXT_CHANNEL = 0
+    VOICE_CHANNEL = 2
+    CATEGORY_CHANNEL = 4
 
 
-class Permissions(Enum):
-    CREATE_INSTANT_INVITE: int = 1 << 0
-    KICK_MEMBERS: int = 1 << 1
-    BAN_MEMBERS: int = 1 << 2
-    ADMINISTRATOR: int = 1 << 3
-    MANAGE_CHANNELS: int = 1 << 4
-    MANAGE_GUILD: int = 1 << 5
-    ADD_REACTIONS: int = 1 << 6
-    VIEW_AUDIT_LOG: int = 1 << 7
-    PRIORITY_SPEAKER: int = 1 << 8
-    STREAM: int = 1 << 9
-    VIEW_CHANNEL: int = 1 << 10
-    SEND_MESSAGES: int = 1 << 11
-    SEND_TTS_MESSAGES: int = 1 << 12
-    MANAGE_MESSAGES: int = 1 << 13
-    EMBED_LINKS: int = 1 << 14
-    ATTACH_FILES: int = 1 << 15
-    READ_MESSAGE_HISTORY: int = 1 << 16
-    MENTION_EVERYONE: int = 1 << 17
-    USE_EXTERNAL_EMOJIS: int = 1 << 18
-    VIEW_GUILD_INSIGHTS: int = 1 << 19
-    CONNECT: int = 1 << 20
-    SPEAK: int = 1 << 21
-    MUTE_MEMBERS: int = 1 << 22
-    DEAFEN_MEMBERS: int = 1 << 23
-    MOVE_MEMBERS: int = 1 << 24
-    CHANGE_NICKNAME: int = 1 << 26
-    MANAGE_NICKNAMES: int = 1 << 27
-    MANAGE_ROLES: int = 1 << 28
-    MANAGE_WEBHOOKS: int = 1 << 29
-    MANAGE_THREADS: int = 1 << 34
-    CREATE_PUBLIC_THREADS: int = 1 << 35
-    CREATE_PRIVATE_THREADS: int = 1 << 36
-    MODERATE_MEMBERSL: int = 1 << 40
+class Permissions(Enum, int):
+    CREATE_INSTANT_INVITE = 1 << 0
+    KICK_MEMBERS = 1 << 1
+    BAN_MEMBERS = 1 << 2
+    ADMINISTRATOR = 1 << 3
+    MANAGE_CHANNELS = 1 << 4
+    MANAGE_GUILD = 1 << 5
+    ADD_REACTIONS = 1 << 6
+    VIEW_AUDIT_LOG = 1 << 7
+    PRIORITY_SPEAKER = 1 << 8
+    STREAM = 1 << 9
+    VIEW_CHANNEL = 1 << 10
+    SEND_MESSAGES = 1 << 11
+    SEND_TTS_MESSAGES = 1 << 12
+    MANAGE_MESSAGES = 1 << 13
+    EMBED_LINKS = 1 << 14
+    ATTACH_FILES = 1 << 15
+    READ_MESSAGE_HISTORY = 1 << 16
+    MENTION_EVERYONE = 1 << 17
+    USE_EXTERNAL_EMOJIS = 1 << 18
+    VIEW_GUILD_INSIGHTS = 1 << 19
+    CONNECT = 1 << 20
+    SPEAK = 1 << 21
+    MUTE_MEMBERS = 1 << 22
+    DEAFEN_MEMBERS = 1 << 23
+    MOVE_MEMBERS = 1 << 24
+    CHANGE_NICKNAME = 1 << 26
+    MANAGE_NICKNAMES = 1 << 27
+    MANAGE_ROLES = 1 << 28
+    MANAGE_WEBHOOKS = 1 << 29
+    MANAGE_THREADS = 1 << 34
+    CREATE_PUBLIC_THREADS = 1 << 35
+    CREATE_PRIVATE_THREADS = 1 << 36
+    MODERATE_MEMBERS = 1 << 40

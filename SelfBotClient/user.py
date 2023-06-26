@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union, Optional
 
 if TYPE_CHECKING:
     from .http import CustomSession
@@ -26,14 +26,14 @@ class UserClient:
 
     def __init__(self, data: dict, session: CustomSession):
         self._session: CustomSession = session
-        self._logger: Logger = getLogger("Logger")
+        self._logger: Logger = getLogger("Logger")  # pyright: ignore
 
         self.data: dict = data
-        self._endpoint: str = self.data.get("endpoint")
-        self.token: str = self.data.get("token")
-        self.name: str = self.data.get("username")
-        self.discriminator: str = f"#{self.data.get('discriminator')}"
-        self.id: int = self.data.get("id")
+        self._endpoint: str = self.data["endpoint"]
+        self.token: str = self.data["token"]
+        self.name: str = self.data["name"]
+        self.discriminator: str = f"#{self.data['discriminator']}"
+        self.id: int = self.data["id"]
 
         self._auth_header: AUTH_HEADER = AUTH_HEADER(
             authorization=self.token
@@ -90,7 +90,8 @@ class UserClient:
         return response
 
     async def create_channel(self, guild_id: int, name: str, channel_type: ChannelType,
-                             topic: str = None, user_limit: int = None, position: int = None, nsfw: bool = False) -> ClientResponse:
+                             topic: Optional[str] = None, user_limit: Optional[int] = None,
+                             position: Optional[int] = None, nsfw: Optional[bool] = False) -> ClientResponse:
         """
         The create_channel function creates a channel in the specified guild.
 
@@ -151,9 +152,9 @@ class UserClient:
     async def create_role(self,
                                 guild_id: int,
                                 name: str,
-                                color: RGB_COLOR = None,
-                                hoist: bool = False,
-                                permissions: PermissionBuilder = None) -> ClientResponse:
+                                color: Optional[RGB_COLOR] = None,
+                                hoist: Optional[bool] = False,
+                                permissions: Union[PermissionBuilder, int, None] = None) -> ClientResponse:
 
         """
         The create_role function creates a role in the specified guild.
@@ -172,20 +173,20 @@ class UserClient:
 
         if color:
             r, g, b = color.values()
-            color = (r << 16) + (g << 8) + b
+            _color = (r << 16) + (g << 8) + b  # pyright: ignore
         else:
-            color = 0
+            _color: int = 0  # pyright: ignore
 
         if not permissions:
-            permissions = 0
+            _permissions: int = 0
         else:
-            permissions = permissions.value
+            _permissions: int = permissions.value  # pyright: ignore
 
         json: dict = {
             "name": name,
             "hoist": hoist,
-            "color": color,
-            "permissions": permissions
+            "color": _color,
+            "permissions": _permissions
         }
 
         response: ClientResponse = await self._session.request(
@@ -222,8 +223,8 @@ class UserClient:
         """
         The delete_role function deletes a role from the guild.
 
-        :param guild_id: int: Specify the guild that you want to delete a role from
-        :param role_id: int: Specify the role_id to be deleted
+        :param guild_id: Specify the guild that you want to delete a role from
+        :param role_id: Specify the role_id to be deleted
         """
 
         _url = self._endpoint + f"guilds/{guild_id}/roles/{role_id}"
@@ -350,9 +351,9 @@ class UserClient:
         return response
 
     async def edit_member(self, guild_id: int, user_id: int,
-                          nickname: str = None,
-                          add_roles: list[int] = None,
-                          remove_roles: list[int] = None) -> ClientResponse:
+                          nickname: Optional[str] = None,
+                          add_roles: Optional[list[int]] = None,
+                          remove_roles: Optional[list[int]] = None) -> ClientResponse:
 
         """
         The edit_member function allows you to edit a member of a guild.
@@ -370,17 +371,18 @@ class UserClient:
             user_response: ClientResponse = await self.get_member(guild_id, user_id)
             user_data: dict = await user_response.json()
 
-            roles: list[str] = user_data.get("roles")
-            if not roles:
-                roles: list[str] = []
+            roles: Union[None, list[str]] = user_data.get("roles")
+
+            roles_list: list[str] = [] if not roles else roles
 
             if add_roles:
                 for _role in add_roles:
-                    roles.append(str(_role))
+                    roles_list.append(str(_role))
+
             if remove_roles:
                 for _role in remove_roles:
                     try:
-                        roles.remove(str(_role))
+                        roles_list.remove(str(_role))
                     except ValueError:
                         pass
             json["roles"] = roles
@@ -458,10 +460,10 @@ class UserClient:
         """
         The delete_reaction function is used to delete a reaction from a message.
 
-        :param channel_id: int: Specify the channel where the message is located
-        :param message_id: int: Identify the message that you want to delete a reaction from
-        :param user_id: int: Specify the user whose reaction is to be deleted
-        :param emoji: str: Specify the emoji to be deleted
+        :param channel_id: Specify the channel where the message is located
+        :param message_id: Identify the message that you want to delete a reaction from
+        :param user_id: Specify the user whose reaction is to be deleted
+        :param emoji: Specify the emoji to be deleted
         """
 
         emoji = quote(emoji)

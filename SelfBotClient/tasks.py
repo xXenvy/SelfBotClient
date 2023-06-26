@@ -9,9 +9,9 @@ import threading
 from time import sleep
 
 
-class Thread:
+class Tasks:
     """
-    :class:`Thread` Allows you to run several methods simultaneously with tasks.
+    :class:`Tasks` Allows you to run several methods simultaneously with tasks.
 
     :param client: Client object to obtain main program loop
     """

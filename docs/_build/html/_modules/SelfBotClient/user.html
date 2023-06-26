@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>SelfBotClient.user - Self Bot library 1.0.0 documentation</title>
+        <title>SelfBotClient.user - Self Bot library 1.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
@@ -124,7 +124,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">Self Bot library 1.0.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">Self Bot library 1.1.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -147,7 +147,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
   
-  <span class="sidebar-brand-text">Self Bot library 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">Self Bot library 1.1.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -165,11 +165,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../../library/PermissionBuilder.html">PermissionBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/Typings.html">Typings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../library/User.html">UserClient</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../library/Threads.html">Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Thread.html">Thread</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/basic_spam.html">Basic Spam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/basic_permissions.html">Basic Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tasks.html">Tasks</a></li>
 </ul>
 </li>
 </ul>
@@ -610,7 +612,7 @@
 
         <span class="k">return</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="UserClient.add_reaction"><a class="viewcode-back" href="../../library/User.html#SelfBotClient.user.UserClient.add_reaction">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">emoji</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="UserClient.add_reaction"><a class="viewcode-back" href="../../library/User.html#SelfBotClient.user.UserClient.add_reaction">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">emoji</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClientResponse</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The add_reaction function adds a reaction to the message with the given ID in the channel with</span>
 <span class="sd">        the given ID. The emoji parameter is a string that must be an emoticon. Example: \N{FIRE}</span>
@@ -633,6 +635,58 @@
         <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">204</span><span class="p">,</span> <span class="mi">429</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">_status</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;Request PUT channels/</span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">/messages/</span><span class="si">{</span><span class="n">message_id</span><span class="si">}</span><span class="s2">/reactions/</span><span class="si">{</span><span class="n">emoji</span><span class="si">}</span><span class="s2">/@me failed.</span><span class="se">\n</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="UserClient.get_reactions"><a class="viewcode-back" href="../../library/User.html#SelfBotClient.user.UserClient.get_reactions">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_reactions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">emoji</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClientResponse</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get_reactions function returns a ClientResponse with</span>
+<span class="sd">        list of users that reacted with the specified emoji.</span>
+
+<span class="sd">        :param channel_id: Identify the channel that contains the message</span>
+<span class="sd">        :param message_id: Identify the message that is being reacted to</span>
+<span class="sd">        :param emoji: Specify the emoji to get reactions for</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">emoji</span> <span class="o">=</span> <span class="n">quote</span><span class="p">(</span><span class="n">emoji</span><span class="p">)</span>
+
+        <span class="n">_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;channels/</span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">/messages/</span><span class="si">{</span><span class="n">message_id</span><span class="si">}</span><span class="s2">/reactions/</span><span class="si">{</span><span class="n">emoji</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">_status</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sending request: GET -&gt; </span><span class="si">{</span><span class="n">_url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+            <span class="n">method</span><span class="o">=</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_auth_header</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">429</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">_status</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Request GET channels/</span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">/messages/</span><span class="si">{</span><span class="n">message_id</span><span class="si">}</span><span class="s2">/reactions/</span><span class="si">{</span><span class="n">emoji</span><span class="si">}</span><span class="s2">/ failed.</span><span class="se">\n</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="UserClient.delete_reaction"><a class="viewcode-back" href="../../library/User.html#SelfBotClient.user.UserClient.delete_reaction">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">emoji</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClientResponse</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The delete_reaction function is used to delete a reaction from a message.</span>
+
+<span class="sd">        :param channel_id: int: Specify the channel where the message is located</span>
+<span class="sd">        :param message_id: int: Identify the message that you want to delete a reaction from</span>
+<span class="sd">        :param user_id: int: Specify the user whose reaction is to be deleted</span>
+<span class="sd">        :param emoji: str: Specify the emoji to be deleted</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">emoji</span> <span class="o">=</span> <span class="n">quote</span><span class="p">(</span><span class="n">emoji</span><span class="p">)</span>
+
+        <span class="n">_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;channels/</span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">/messages/</span><span class="si">{</span><span class="n">message_id</span><span class="si">}</span><span class="s2">/reactions/</span><span class="si">{</span><span class="n">emoji</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">_status</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sending request: DELETE -&gt; </span><span class="si">{</span><span class="n">_url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="p">:</span> <span class="n">ClientResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+            <span class="n">method</span><span class="o">=</span><span class="s2">&quot;DELETE&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_auth_header</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">204</span><span class="p">,</span> <span class="mi">429</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">_status</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Request DELETE channels/</span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">/messages/</span><span class="si">{</span><span class="n">message_id</span><span class="si">}</span><span class="s2">/reactions/</span><span class="si">{</span><span class="n">emoji</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2"> failed.</span><span class="se">\n</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">response</span></div></div>
 

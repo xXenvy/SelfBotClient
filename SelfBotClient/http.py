@@ -4,10 +4,9 @@ from .enums import Discord
 from .logger import Logger
 from .user import UserClient
 
-from typing import Union, Awaitable, Any
+from typing import Union, Awaitable, Any, Optional
 from aiohttp import ClientSession, ClientResponse, client_exceptions
 from asyncio import AbstractEventLoop, sleep, get_event_loop
-
 
 __all__: tuple[str, ...] = ("HTTPClient", "ClientResponse")
 
@@ -16,23 +15,20 @@ class CustomSession(ClientSession):
 
     def __init__(self, logger: Logger, *args: Any, **kwargs: Any):
         """
-        The __init__ function is called when the class is instantiated.
-        It sets up all of the variables that are needed for other functions to work properly.
+        The __init__ function sets up all of the variables that are needed for other functions to work properly.
         The super() function calls __init__ from the parent class, which in this case is ClientSession.
 
-        :param self: Represent the instance of the class
-        :param logger: Logger: Pass the logger object to the class
-        :param *args: Any: Pass any additional arguments to the superclass
-        :param **kwargs: Any: Pass in additional parameters that are not explicitly defined
-        :return: None
+        :param logger: Pass the logger object to the class
+        :param *args: Pass any additional arguments to the superclass
+        :param **kwargs: Pass in additional parameters that are not explicitly defined
         """
 
         self.logger: Logger = logger
         self.logger_status = logger._status
 
-        self.request_latency: float = kwargs.get("latency")
-        self.ratelimit_additional_cooldown: float = kwargs.get("additional_cooldown")
-        self.users: list[UserClient] = kwargs.get("users")
+        self.request_latency: float = kwargs["latency"]
+        self.ratelimit_additional_cooldown: float = kwargs["additional_cooldown"]
+        self.users: Optional[list[UserClient]] = kwargs.get("users")
 
         del kwargs["latency"]
         del kwargs["users"]
@@ -46,34 +42,36 @@ class CustomSession(ClientSession):
         which handles ratelimits and other exceptions that may occur during requests.
         It also adds an additional cooldown to the Retry-After header value.
 
-        :param self: Represent the instance of the class
-        :param method: str: Determine the type of request
-        :param url: str: Specify the url that you want to make a request to
-        :param **kwargs: Any: Pass in additional parameters to the request function
-        :return: A clientresponse object
+        :param method: Determine the type of request
+        :param url: Specify the url that you want to make a request to
+        :param **kwargs: Pass in additional parameters to the request function
         """
 
         response = await super().request(method=method, url=url, **kwargs)
+        headers: Optional[dict] = kwargs.get("headers")
 
-        headers: dict = kwargs.get("headers")
+        token: Optional[str] = None  # pyright: ignore
         if headers:
-            token: str = headers.get("authorization")
+            token: Optional[str] = headers.get("authorization")
 
-        if response and headers:
+        if response and token:
             try:
                 _json: dict = await response.json()
             except client_exceptions.ContentTypeError:
                 _json: dict = {}
-            if isinstance(_json, dict) and _json.get("message"):
-                if "You need to verify" in _json.get("message"):
-                    for user in self.users:
-                        if user.token == token:
-                            self.logger.error(f"It seems that your account has been blocked.\n-> Account: {user}")
-                    response.status = 901
+
+            message: Optional[str] = _json.get("message")
+            if isinstance(_json, dict) and message:
+                if "You need to verify" in message:
+                    if self.users:
+                        for user in self.users:
+                            if user.token == token:
+                                self.logger.error(f"It seems that your account has been blocked.\n-> Account: {user}")
+                        response.status = 901
 
         if response.headers.get("Retry-After"):
 
-            seconds = int(response.headers.get("Retry-After")) + self.ratelimit_additional_cooldown
+            seconds = int(response.headers.get("Retry-After")) + self.ratelimit_additional_cooldown  # pyright: ignore
             if self.logger_status:
                 self.logger.warning(f"Ratelimit has been reached. Awaiting {seconds} seconds before next request.")
 
@@ -81,23 +79,6 @@ class CustomSession(ClientSession):
         else:
             await sleep(self.request_latency)
 
-        return response
-
-    async def get(self, url: str, *, allow_redirects: bool = True, **kwargs: Any) -> ClientResponse:
-        """
-        The get function is a wrapper for the get function in the ClientSession class.
-        It allows us to use asyncio's await syntax, which makes it easier to write asynchronous code.
-        The get function takes a url and returns an object of type ClientResponse.
-
-        :param self: Represent the instance of the class
-        :param url: str: Specify the url to be requested
-        :param *: Unpack the tuple and the ** parameter is used to unpack the dictionary
-        :param allow_redirects: bool: Determine whether the client will follow redirects
-        :param **kwargs: Any: Pass in any additional parameters that are not specified
-        :return: A clientresponse object
-        """
-
-        response = await super().get(url=url, allow_redirects=allow_redirects, **kwargs)
         return response
 
 
@@ -116,10 +97,10 @@ class HTTPClient:
     def __init__(
             self,
             api_version: API_VERSION,
-            loop: AbstractEventLoop = None,
-            logger: bool = True,
-            request_latency: float = 0.1,
-            ratelimit_additional_cooldown: float = 10
+            loop: Union[AbstractEventLoop, None],
+            logger: bool,
+            request_latency: float,
+            ratelimit_additional_cooldown: float
 
     ):
 
@@ -131,27 +112,26 @@ class HTTPClient:
 
         self.api_version: int = api_version
         self.endpoint: str = Discord.ENDPOINT.value.format(self.api_version)
-        self.loop: AbstractEventLoop = loop if loop else get_event_loop()
+
+        if not loop:
+            self.loop: AbstractEventLoop = get_event_loop()
+        else:
+            self.loop: AbstractEventLoop = loop
 
         self._tokens: Union[str, list, None] = None
         self._logger_status: bool = logger
 
-        self.logger: Logger = Logger().logger
+        self.logger: Logger.logger = Logger().logger  # pyright: ignore
         self.logger._status = self._logger_status
-        self.session: Union[CustomSession, None] = None
+        self.session: Union[CustomSession, None] = None  # pyright: ignore
 
         self.users: list[UserClient] = []
         self.loop.run_until_complete(self.create_session())
 
     async def create_session(self) -> None:
         """
-        The create_session function is used to create a new session for the bot.
-        This function is called when the bot starts up, and also when it needs to reconnect.
-        The session object contains all of the information about how many requests have been made,
-        and how long until more can be made.
-
-        :param self: Refer to the current instance of a class
-        :return: None
+        The create_session function is used to create a new session for the Client.
+        The session object contains all of the information that we need in order to connect with Discord's API.
         """
 
         self.session: CustomSession = CustomSession(self.logger,
@@ -159,68 +139,43 @@ class HTTPClient:
                                                     additional_cooldown=self.ratelimit_additional_cooldown,
                                                     users=self.users)
 
-    def _check_tokens(self) -> None:
+    def _check_tokens(self, tokens: Union[list[str], str]) -> None:  # pyright: ignore
         """
         The _check_tokens function is used to check if the tokens provided are valid.
-        If a token is invalid, it will be removed from the list of tokens and not be used in any future requests.
-        The function also creates UserClient objects for each valid token.
+        If they are, then it will add them to the users list. If not, then it will delete them from the list.
 
-        :param self: Represent the instance of the class
-        :return: None
+        :param tokens: Tokens to check
         """
 
-        async def _check(_type: Union[type[list], type[str]]) -> None:
+        async def _check() -> None:
             _url: str = self.endpoint + "users/@me"
-            if _type == str:
-                header: AUTH_HEADER = AUTH_HEADER(authorization=self._tokens)
+            for token in tokens:
+                header: AUTH_HEADER = AUTH_HEADER(authorization=token)
                 response: ClientResponse = await self.session.get(_url, headers=header)
                 if response.status != 200:
                     if self._logger_status:
                         self.logger.warning(
-                            f"An invalid token has been provided: {self._tokens} | The token will be automatically deleted")
+                            f"An invalid token has been provided: {token} | The token will be automatically deleted")
+
                 else:
-                    data = await response.json()
-                    data["token"] = self._tokens
+                    data: dict = await response.json()
+                    data["token"] = token
                     data["endpoint"] = self.endpoint
+
                     self.users.append(UserClient(data, self.session))
-
-                    self._tokens = [self._tokens]
-
-            elif _type == list:
-                for token in self._tokens:
-
-                    header: AUTH_HEADER = AUTH_HEADER(authorization=token)
-                    response: ClientResponse = await self.session.get(_url, headers=header)
-                    if response.status != 200:
-                        if self._logger_status:
-                            self.logger.warning(
-                                f"An invalid token has been provided: {token} | The token will be automatically deleted")
-
-                    else:
-                        data = await response.json()
-                        data["token"] = token
-                        data["endpoint"] = self.endpoint
-
-                        self.users.append(UserClient(data, self.session))
 
             if self._logger_status:
                 self.logger.info(f"Checking of tokens successfully completed | Loaded ({len(self.users)}) tokens\n")
 
-        if not isinstance(self._tokens, list) and not isinstance(self._tokens, str):
+        if not isinstance(tokens, list) and not isinstance(tokens, str):
             raise UnSupportedTokenType
 
-        self.loop.run_until_complete(_check(type(self._tokens)))
+        if isinstance(tokens, str):
+            tokens: list[str] = [tokens]  # pyright: ignore
+
+        self.loop.run_until_complete(_check())
 
     def __del__(self) -> None:
-        """
-        The __del__ function is called when the object is garbage collected.
-        The __del__ function can be used to clean up resources that are not managed by Python, such as file handles or network connections.
-        If you have a class with an open file handle, and you want to make sure that the file gets closed when the object gets deleted,
-        you can implement __del__ for this purpose.
-
-        :param self: Represent the instance of the class
-        :return: None
-        """
         try:
             self.loop.run_until_complete(self.session.close())
         except AttributeError:
@@ -230,33 +185,31 @@ class HTTPClient:
         """
         The run_async function is a helper function that allows you to run an asyncio coroutine in the background.
         It takes a single argument, which must be an awaitable object (such as a coroutine). It runs the event loop until
-        the awaitable completes and then returns. This is useful for running tasks in parallel with other code.
+        the awaitable completes. This is useful for running tasks in parallel with other code.
 
-        :param self: Access the attributes and methods of a class
-        :param function: Awaitable: Specify the type of the parameter function
-        :return: None
+        :param function: Specify the coroutine
         """
+
         self.loop.run_until_complete(function)
 
-    async def request(self, url: str, method: METHOD, headers: dict = None, data: dict = None) -> ClientResponse:
+    async def request(self, url: str, method: METHOD, headers: Optional[dict] = None,
+                      data: Optional[dict] = None) -> ClientResponse:
         """
         The request function is used to send a request to the API.
 
-        :param self: Represent the instance of the class
-        :param url: str: Specify the url of the request
-        :param method: METHOD: Specify the type of request being sent
-        :param headers: dict: Pass in a dictionary of headers to be sent with the request
-        :param data: dict: Send data to the server
-        :return: A clientresponse object
+        :param url: Specify the url of the request
+        :param method: Specify the type of request being sent
+        :param headers: Pass in a dictionary of headers to be sent with the request
+        :param data: Send data to the api
         """
 
         if method not in ("POST", "GET", "DELETE", "PATCH", "PUT"):
             raise InvalidMethodType(method)
 
-        url: str = self.endpoint + url
+        _url: str = self.endpoint + url
 
         if self._logger_status:
-            self.logger.debug(f"Sending request: {method} -> {url}")
+            self.logger.debug(f"Sending request: {method} -> {_url}")
 
         response: ClientResponse = await self.session.request(method=method, url=url, headers=headers, json=data)
         response.raise_for_status()

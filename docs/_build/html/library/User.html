@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Thread" href="Thread.html" /><link rel="prev" title="Typings" href="Typings.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>UserClient - Self Bot library 1.0.2 documentation</title>
+        <title>UserClient - Self Bot library 1.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
@@ -125,7 +125,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Self Bot library 1.0.2 documentation</div></a>
+      <a href="../index.html"><div class="brand">Self Bot library 1.1.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -148,7 +148,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">Self Bot library 1.0.2 documentation</span>
+  <span class="sidebar-brand-text">Self Bot library 1.1.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -215,17 +215,36 @@
 <h2>A <a class="reference internal" href="#module-SelfBotClient.user" title="SelfBotClient.user"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.user</span></code></a> is the main class of each user. Here you will find methods, which are executed only for one user.<a class="headerlink" href="#a-selfbotclient-user-is-the-main-class-of-each-user-here-you-will-find-methods-which-are-executed-only-for-one-user" title="Permalink to this heading">#</a></h2>
 <span class="target" id="module-SelfBotClient.user"></span><dl class="py class">
 <dt class="sig sig-object py" id="SelfBotClient.user.UserClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.user.</span></span><span class="sig-name descname"><span class="pre">UserClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.user.</span></span><span class="sig-name descname"><span class="pre">UserClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><a class="reference internal" href="#SelfBotClient.user.UserClient" title="SelfBotClient.user.UserClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserClient</span></code></a> Is the class responsible for the user account.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>dict</em>) – </p></li>
-<li><p><strong>session</strong> (<a class="reference internal" href="Http.html#SelfBotClient.http.CustomSession" title="SelfBotClient.http.CustomSession"><em>CustomSession</em></a>) – </p></li>
-<li><p><strong>loop</strong> (<em>AbstractEventLoop</em>) – </p></li>
+<li><p><strong>data</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – Dict with account data - such as token, name, id.</p></li>
+<li><p><strong>session</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CustomSession</span></code>) – Session to send requests in methods</p></li>
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.user.UserClient.add_reaction">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">add_reaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emoji</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.add_reaction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.add_reaction" title="Permalink to this definition">#</a></dt>
+<dd><p>The add_reaction function adds a reaction to the message with the given ID in the channel with
+the given ID. The emoji parameter is a string that must be an emoticon. Example: 🔥</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>channel_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify which channel_id the message is in</p></li>
+<li><p><strong>message_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Message ID that you want to add a reaction to</p></li>
+<li><p><strong>emoji</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – A reaction to add to the message</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="SelfBotClient.user.UserClient.ban_member">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">ban_member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.ban_member"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.ban_member" title="Permalink to this definition">#</a></dt>
@@ -233,16 +252,12 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Represent the instance of the class</p></li>
-<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the guild id of the server you want to ban a member from</p></li>
-<li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the user id of the person you want to ban</p></li>
+<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the guild that you want to ban a user from</p></li>
+<li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the user that is to be banned</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object</p>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -250,25 +265,21 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="SelfBotClient.user.UserClient.create_channel">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">create_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsfw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.create_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.create_channel" title="Permalink to this definition">#</a></dt>
-<dd><p>The create_channel function creates a new channel in the specified guild.</p>
+<dd><p>The create_channel function creates a channel in the specified guild.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Refer to the current instance of a class</p></li>
-<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the server that you want to create a channel in</p></li>
-<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – str: Set the name of the channel</p></li>
-<li><p><strong>channel_type</strong> (<a class="reference internal" href="Enums.html#SelfBotClient.enums.ChannelType" title="SelfBotClient.enums.ChannelType"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChannelType</span></code></a>) – ChannelType: Specify the type of channel that is being created</p></li>
-<li><p><strong>topic</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – str: Set the topic of the channel</p></li>
-<li><p><strong>user_limit</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Set the maximum number of users that can be in a voice channel</p></li>
-<li><p><strong>position</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Set the position of the channel in the server</p></li>
-<li><p><strong>nsfw</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – bool: Determine if the channel is nsfw or not</p></li>
+<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the guild id of the server you want to create a channel in</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Specify the name of the channel</p></li>
+<li><p><strong>channel_type</strong> (<a class="reference internal" href="Enums.html#SelfBotClient.enums.ChannelType" title="SelfBotClient.enums.ChannelType"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChannelType</span></code></a>) – Specify what type of channel you want to create</p></li>
+<li><p><strong>topic</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Set the topic of the channel</p></li>
+<li><p><strong>user_limit</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Set the maximum number of users allowed in a voice channel</p></li>
+<li><p><strong>position</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Set the position of the channel in the list</p></li>
+<li><p><strong>nsfw</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Determine whether the channel is nsfw or not</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object</p>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -276,23 +287,19 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="SelfBotClient.user.UserClient.create_role">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">create_role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hoist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">permissions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.create_role"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.create_role" title="Permalink to this definition">#</a></dt>
-<dd><p>The create_role function creates a new role in the specified guild.</p>
+<dd><p>The create_role function creates a role in the specified guild.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Represent the instance of the class</p></li>
-<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the server you want to create a role in</p></li>
-<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – str: Set the name of the role</p></li>
-<li><p><strong>color</strong> (<a class="reference internal" href="Typings.html#SelfBotClient.typings.RGB_COLOR" title="SelfBotClient.typings.RGB_COLOR"><code class="xref py py-class docutils literal notranslate"><span class="pre">RGB_COLOR</span></code></a>) – RGB_COLOR: Set the color of the role</p></li>
-<li><p><strong>hoist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – bool: Determine if the role should be displayed separately in the user list</p></li>
-<li><p><strong>permissions</strong> (<a class="reference internal" href="PermissionBuilder.html#SelfBotClient.permissionbuilder.PermissionBuilder" title="SelfBotClient.permissionbuilder.PermissionBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">PermissionBuilder</span></code></a>) – PermissionBuilder: Set the permissions of the role</p></li>
+<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the guild in which you want to create a role</p></li>
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Set the name of the role</p></li>
+<li><p><strong>color</strong> (<a class="reference internal" href="Typings.html#SelfBotClient.typings.RGB_COLOR" title="SelfBotClient.typings.RGB_COLOR"><code class="xref py py-class docutils literal notranslate"><span class="pre">RGB_COLOR</span></code></a>) – Set the color of the role</p></li>
+<li><p><strong>hoist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Determine whether the role should be displayed separately in the user list</p></li>
+<li><p><strong>permissions</strong> (<a class="reference internal" href="PermissionBuilder.html#SelfBotClient.permissionbuilder.PermissionBuilder" title="SelfBotClient.permissionbuilder.PermissionBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">PermissionBuilder</span></code></a>) – Set the permissions for the role</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object</p>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -300,25 +307,32 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="SelfBotClient.user.UserClient.delete_channel">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">delete_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.delete_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.delete_channel" title="Permalink to this definition">#</a></dt>
-<dd><dl class="simple">
-<dt>The delete_channel function deletes a channel.</dt><dd><dl class="simple">
-<dt>Parameters:</dt><dd><p>channel_id (int): The ID of the channel to delete.</p>
+<dd><p>The delete_channel function deletes a channel from the server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>channel_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the channel that is to be deleted</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
-</dd>
-</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.user.UserClient.delete_reaction">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">delete_reaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emoji</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.delete_reaction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.delete_reaction" title="Permalink to this definition">#</a></dt>
+<dd><p>The delete_reaction function is used to delete a reaction from a message.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Access the class attributes and methods</p></li>
-<li><p><strong>channel_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify which channel to delete</p></li>
+<li><p><strong>channel_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the channel where the message is located</p></li>
+<li><p><strong>message_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Identify the message that you want to delete a reaction from</p></li>
+<li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the user whose reaction is to be deleted</p></li>
+<li><p><strong>emoji</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – str: Specify the emoji to be deleted</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object</p>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -330,16 +344,12 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Represent the instance of the class</p></li>
-<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the guild id of the role you want to delete</p></li>
-<li><p><strong>role_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify which role to delete</p></li>
+<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the guild that you want to delete a role from</p></li>
+<li><p><strong>role_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the role_id to be deleted</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object</p>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -347,23 +357,19 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="SelfBotClient.user.UserClient.edit_member">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">edit_member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nickname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_roles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_roles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.edit_member"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.edit_member" title="Permalink to this definition">#</a></dt>
-<dd><p>The edit_member function allows you to edit a member of the guild.</p>
+<dd><p>The edit_member function allows you to edit a member of a guild.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Represent the instance of the class</p></li>
-<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the guild id of the server you want to edit</p></li>
-<li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the user to edit</p></li>
-<li><p><strong>nickname</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – str: Set the nickname of a member</p></li>
-<li><p><strong>add_roles</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – list[int]: Add roles to a user</p></li>
-<li><p><strong>remove_roles</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – list[int]: Remove roles from a user</p></li>
+<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the guild that you want to edit a member in</p></li>
+<li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the user that you want to edit</p></li>
+<li><p><strong>nickname</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Change the nickname of a user in a guild</p></li>
+<li><p><strong>add_roles</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Add roles to a user</p></li>
+<li><p><strong>remove_roles</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Remove roles from a user</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object or None</p>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -371,12 +377,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="SelfBotClient.user.UserClient.get_bans">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">get_bans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.get_bans"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.get_bans" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
+<dd><p>The get_bans function returns a list of banned users in the guild.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the guild id of the server you want to get banned users from</p>
 </dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>guild_id</strong> (<em>int</em>) – </p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -384,25 +391,14 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="SelfBotClient.user.UserClient.get_channels">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">get_channels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.get_channels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.get_channels" title="Permalink to this definition">#</a></dt>
-<dd><dl class="simple">
-<dt>The get_channels function returns a list of channel objects for the guild.</dt><dd><dl class="simple">
-<dt>Args:</dt><dd><p>guild_id (int): The id of the server to get channels from.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<dd><p>The get_channels function is a coroutine that takes in a guild_id and returns an ClientResponse object.
+The function can return the data of all channels on the server</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Represent the instance of the class</p></li>
-<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Get the channels of a specific guild</p></li>
-</ul>
+<dd class="field-odd"><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the guild id of the server you want to get channels from</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object</p>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -410,20 +406,35 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="SelfBotClient.user.UserClient.get_member">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">get_member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.get_member"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.get_member" title="Permalink to this definition">#</a></dt>
-<dd><p>The get_member function is used to get a member of the guild.</p>
+<dd><p>The get_member function is used to get a member from the guild.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Access the class attributes and methods</p></li>
-<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the guild id of the server you want to get a member from</p></li>
-<li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Get the user’s id</p></li>
+<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the guild that you want to get a member from</p></li>
+<li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the user id of the member you want to get</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object</p>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.user.UserClient.get_reactions">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">get_reactions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emoji</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.get_reactions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.get_reactions" title="Permalink to this definition">#</a></dt>
+<dd><p>The get_reactions function returns a ClientResponse with
+list of users that reacted with the specified emoji.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>channel_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Identify the channel that contains the message</p></li>
+<li><p><strong>message_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Identify the message that is being reacted to</p></li>
+<li><p><strong>emoji</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Specify the emoji to get reactions for</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -431,25 +442,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="SelfBotClient.user.UserClient.get_roles">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">get_roles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.get_roles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.get_roles" title="Permalink to this definition">#</a></dt>
-<dd><dl class="simple">
-<dt>The get_roles function returns a list of roles for the specified guild.</dt><dd><dl class="simple">
-<dt>Parameters:</dt><dd><p>guild_id (int): The ID of the guild to get roles from.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<dd><p>get_roles returns a list of data with all the roles on the server</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Represent the instance of the class</p></li>
-<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify which guild you want to get the roles from</p></li>
-</ul>
+<dd class="field-odd"><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the guild id of the server you want to get roles from</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object</p>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -457,20 +456,16 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="SelfBotClient.user.UserClient.kick_member">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">kick_member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.kick_member"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.kick_member" title="Permalink to this definition">#</a></dt>
-<dd><p>The kick_member function is used to kick a member from the guild.</p>
+<dd><p>The kick_member function kicks a member from the guild.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Represent the instance of the class</p></li>
-<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: The ID of the guild you want to kick a member from.</p></li>
-<li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: The ID of the user you want to kick.</p></li>
+<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the guild that you want to kick a user from</p></li>
+<li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Identify the user to be kicked</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object</p>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -482,16 +477,12 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Represent the instance of the class</p></li>
-<li><p><strong>channel_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the channel that you want to send a message to</p></li>
-<li><p><strong>message_content</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – str: Send a message to the channel</p></li>
+<li><p><strong>channel_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the channel to send the message to</p></li>
+<li><p><strong>message_content</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – content of the message</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object</p>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -499,20 +490,16 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="SelfBotClient.user.UserClient.unban_member">
 <em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">unban_member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/user.html#UserClient.unban_member"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.user.UserClient.unban_member" title="Permalink to this definition">#</a></dt>
-<dd><p>The unban_member function is used to unban a member from the guild.</p>
+<dd><p>The unban_member function unban a user from the guild.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Represent the instance of the class</p></li>
-<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the guild that you want to unban a member from</p></li>
-<li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – int: Specify the user id of the member that you want to unban</p></li>
+<li><p><strong>guild_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the guild that you want to unban a member from</p></li>
+<li><p><strong>user_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Specify the user id of the member to unban</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object</p>
+<dd class="field-even"><p><a class="reference internal" href="Http.html#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -580,15 +567,18 @@
 <li><a class="reference internal" href="#">UserClient</a><ul>
 <li><a class="reference internal" href="#a-selfbotclient-user-is-the-main-class-of-each-user-here-you-will-find-methods-which-are-executed-only-for-one-user">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.user</span></code> is the main class of each user. Here you will find methods, which are executed only for one user.</a><ul>
 <li><a class="reference internal" href="#SelfBotClient.user.UserClient"><code class="docutils literal notranslate"><span class="pre">UserClient</span></code></a><ul>
+<li><a class="reference internal" href="#SelfBotClient.user.UserClient.add_reaction"><code class="docutils literal notranslate"><span class="pre">UserClient.add_reaction()</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.user.UserClient.ban_member"><code class="docutils literal notranslate"><span class="pre">UserClient.ban_member()</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.user.UserClient.create_channel"><code class="docutils literal notranslate"><span class="pre">UserClient.create_channel()</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.user.UserClient.create_role"><code class="docutils literal notranslate"><span class="pre">UserClient.create_role()</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.user.UserClient.delete_channel"><code class="docutils literal notranslate"><span class="pre">UserClient.delete_channel()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.user.UserClient.delete_reaction"><code class="docutils literal notranslate"><span class="pre">UserClient.delete_reaction()</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.user.UserClient.delete_role"><code class="docutils literal notranslate"><span class="pre">UserClient.delete_role()</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.user.UserClient.edit_member"><code class="docutils literal notranslate"><span class="pre">UserClient.edit_member()</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.user.UserClient.get_bans"><code class="docutils literal notranslate"><span class="pre">UserClient.get_bans()</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.user.UserClient.get_channels"><code class="docutils literal notranslate"><span class="pre">UserClient.get_channels()</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.user.UserClient.get_member"><code class="docutils literal notranslate"><span class="pre">UserClient.get_member()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.user.UserClient.get_reactions"><code class="docutils literal notranslate"><span class="pre">UserClient.get_reactions()</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.user.UserClient.get_roles"><code class="docutils literal notranslate"><span class="pre">UserClient.get_roles()</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.user.UserClient.kick_member"><code class="docutils literal notranslate"><span class="pre">UserClient.kick_member()</span></code></a></li>
 <li><a class="reference internal" href="#SelfBotClient.user.UserClient.send_message"><code class="docutils literal notranslate"><span class="pre">UserClient.send_message()</span></code></a></li>

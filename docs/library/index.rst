@@ -11,5 +11,4 @@ SelfBotClient Reference
     PermissionBuilder
     Typings
     User
-    Thread
-
+    Tasks

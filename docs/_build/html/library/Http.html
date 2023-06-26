@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="PermissionBuilder" href="PermissionBuilder.html" /><link rel="prev" title="Enums" href="Enums.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>HTTP - Self Bot library 1.0.2 documentation</title>
+        <title>HTTP - Self Bot library 1.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
@@ -125,7 +125,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Self Bot library 1.0.2 documentation</div></a>
+      <a href="../index.html"><div class="brand">Self Bot library 1.1.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -148,7 +148,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">Self Bot library 1.0.2 documentation</span>
+  <span class="sidebar-brand-text">Self Bot library 1.1.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -214,65 +214,219 @@
 <section id="a-selfbotclient-http-it-mainly-handles-requests-to-discord-or-detect-ratelimit">
 <h2>A <a class="reference internal" href="#module-SelfBotClient.http" title="SelfBotClient.http"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.http</span></code></a> It mainly handles requests to discord or detect ratelimit.<a class="headerlink" href="#a-selfbotclient-http-it-mainly-handles-requests-to-discord-or-detect-ratelimit" title="Permalink to this heading">#</a></h2>
 <span class="target" id="module-SelfBotClient.http"></span><dl class="py class">
-<dt class="sig sig-object py" id="SelfBotClient.http.CustomSession">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.http.</span></span><span class="sig-name descname"><span class="pre">CustomSession</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/http.html#CustomSession"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.CustomSession" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ClientSession</span></code></p>
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.http.</span></span><span class="sig-name descname"><span class="pre">ClientResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">writer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">continue100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traces</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aiohttp/client_reqrep.html#ClientResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.ClientResponse" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">HeadersMixin</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>logger</strong> (<em>Logger</em>) – </p></li>
-<li><p><strong>args</strong> (<em>Any</em>) – </p></li>
-<li><p><strong>kwargs</strong> (<em>Any</em>) – </p></li>
+<li><p><strong>method</strong> (<em>str</em>) – </p></li>
+<li><p><strong>url</strong> (<em>URL</em>) – </p></li>
+<li><p><strong>writer</strong> (<em>asyncio.Task</em><em>[</em><em>None</em><em>]</em>) – </p></li>
+<li><p><strong>continue100</strong> (<em>asyncio.Future</em><em>[</em><em>bool</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>timer</strong> (<em>BaseTimerContext</em>) – </p></li>
+<li><p><strong>request_info</strong> (<em>RequestInfo</em>) – </p></li>
+<li><p><strong>traces</strong> (<em>List</em><em>[</em><em>Trace</em><em>]</em>) – </p></li>
+<li><p><strong>loop</strong> (<em>AbstractEventLoop</em>) – </p></li>
+<li><p><strong>session</strong> (<em>ClientSession</em>) – </p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="SelfBotClient.http.CustomSession.get">
-<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_redirects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/http.html#CustomSession.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.CustomSession.get" title="Permalink to this definition">#</a></dt>
-<dd><p>The get function is a wrapper for the get function in the ClientSession class.
-It allows us to use asyncio’s await syntax, which makes it easier to write asynchronous code.
-The get function takes a url and returns an object of type ClientResponse.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Represent the instance of the class</p></li>
-<li><p><strong>url</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – str: Specify the url to be requested</p></li>
-<li><p><strong>*</strong> – Unpack the tuple and the ** parameter is used to unpack the dictionary</p></li>
-<li><p><strong>allow_redirects</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – bool: Determine whether the client will follow redirects</p></li>
-<li><p><strong>**kwargs</strong> – <p>Any: Pass in any additional parameters that are not specified</p>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object</p>
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aiohttp/client_reqrep.html#ClientResponse.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.ClientResponse.close" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.closed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">closed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#SelfBotClient.http.ClientResponse.closed" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.connection">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">connection</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Connection</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#SelfBotClient.http.ClientResponse.connection" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.content">
+<span class="sig-name descname"><span class="pre">content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamReader</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#SelfBotClient.http.ClientResponse.content" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.content_disposition">
+<span class="sig-name descname"><span class="pre">content_disposition</span></span><a class="headerlink" href="#SelfBotClient.http.ClientResponse.content_disposition" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
-<dt class="sig sig-object py" id="SelfBotClient.http.CustomSession.request">
-<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/http.html#CustomSession.request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.CustomSession.request" title="Permalink to this definition">#</a></dt>
-<dd><p>The request function is a wrapper around the ClientSession.request function,
-which handles ratelimits and other exceptions that may occur during requests.
-It also adds an additional cooldown to the Retry-After header value.</p>
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.get_encoding">
+<span class="sig-name descname"><span class="pre">get_encoding</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aiohttp/client_reqrep.html#ClientResponse.get_encoding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.ClientResponse.get_encoding" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.headers">
+<span class="sig-name descname"><span class="pre">headers</span></span><a class="headerlink" href="#SelfBotClient.http.ClientResponse.headers" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.history">
+<span class="sig-name descname"><span class="pre">history</span></span><a class="headerlink" href="#SelfBotClient.http.ClientResponse.history" title="Permalink to this definition">#</a></dt>
+<dd><p>A sequence of of responses, if redirects occurred.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.host">
+<span class="sig-name descname"><span class="pre">host</span></span><a class="headerlink" href="#SelfBotClient.http.ClientResponse.host" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.json">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loads=&lt;function</span> <span class="pre">loads&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_type='application/json'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aiohttp/client_reqrep.html#ClientResponse.json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.ClientResponse.json" title="Permalink to this definition">#</a></dt>
+<dd><p>Read and decodes JSON response.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> – Represent the instance of the class</p></li>
-<li><p><strong>method</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – str: Determine the type of request</p></li>
-<li><p><strong>url</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – str: Specify the url that you want to make a request to</p></li>
-<li><p><strong>**kwargs</strong> – <p>Any: Pass in additional parameters to the request function</p>
-</p></li>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>encoding</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>loads</strong> (<em>Callable</em><em>[</em><em>[</em><em>str</em><em>]</em><em>, </em><em>Any</em><em>]</em>) – </p></li>
+<li><p><strong>content_type</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.links">
+<span class="sig-name descname"><span class="pre">links</span></span><a class="headerlink" href="#SelfBotClient.http.ClientResponse.links" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.ok">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ok</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#SelfBotClient.http.ClientResponse.ok" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">status</span></code> is less than <code class="docutils literal notranslate"><span class="pre">400</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+<p>This is <strong>not</strong> a check for <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code> but a check that the response
+status is under 400.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.raise_for_status">
+<span class="sig-name descname"><span class="pre">raise_for_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aiohttp/client_reqrep.html#ClientResponse.raise_for_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.ClientResponse.raise_for_status" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A clientresponse object</p>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.raw_headers">
+<span class="sig-name descname"><span class="pre">raw_headers</span></span><a class="headerlink" href="#SelfBotClient.http.ClientResponse.raw_headers" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.read">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aiohttp/client_reqrep.html#ClientResponse.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.ClientResponse.read" title="Permalink to this definition">#</a></dt>
+<dd><p>Read response payload.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.real_url">
+<span class="sig-name descname"><span class="pre">real_url</span></span><a class="headerlink" href="#SelfBotClient.http.ClientResponse.real_url" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.reason">
+<span class="sig-name descname"><span class="pre">reason</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#SelfBotClient.http.ClientResponse.reason" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.release">
+<span class="sig-name descname"><span class="pre">release</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aiohttp/client_reqrep.html#ClientResponse.release"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.ClientResponse.release" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.request_info">
+<span class="sig-name descname"><span class="pre">request_info</span></span><a class="headerlink" href="#SelfBotClient.http.ClientResponse.request_info" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.start">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aiohttp/client_reqrep.html#ClientResponse.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.ClientResponse.start" title="Permalink to this definition">#</a></dt>
+<dd><p>Start response processing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>connection</strong> (<em>Connection</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.status">
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#SelfBotClient.http.ClientResponse.status" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.text">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aiohttp/client_reqrep.html#ClientResponse.text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.ClientResponse.text" title="Permalink to this definition">#</a></dt>
+<dd><p>Read response payload and decode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>encoding</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>errors</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.url">
+<span class="sig-name descname"><span class="pre">url</span></span><a class="headerlink" href="#SelfBotClient.http.ClientResponse.url" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.url_obj">
+<span class="sig-name descname"><span class="pre">url_obj</span></span><a class="headerlink" href="#SelfBotClient.http.ClientResponse.url_obj" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.version">
+<span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#SelfBotClient.http.ClientResponse.version" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SelfBotClient.http.ClientResponse.wait_for_close">
+<em class="property"><span class="pre">await</span> </em><span class="sig-name descname"><span class="pre">wait_for_close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aiohttp/client_reqrep.html#ClientResponse.wait_for_close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.ClientResponse.wait_for_close" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -283,14 +437,16 @@ It also adds an additional cooldown to the Retry-After header value.</p>
 <dt class="sig sig-object py" id="SelfBotClient.http.HTTPClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.http.</span></span><span class="sig-name descname"><span class="pre">HTTPClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_latency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratelimit_additional_cooldown</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/http.html#HTTPClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.http.HTTPClient" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>HTTPClient handles all requests related to the client.
+It also has methods from checking tokens or creating a new session.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>api_version</strong> (<em>Literal</em><em>[</em><em>9</em><em>, </em><em>10</em><em>]</em>) – </p></li>
-<li><p><strong>loop</strong> (<em>AbstractEventLoop</em>) – </p></li>
-<li><p><strong>logger</strong> (<em>bool</em>) – </p></li>
-<li><p><strong>request_latency</strong> (<em>float</em>) – </p></li>
-<li><p><strong>ratelimit_additional_cooldown</strong> (<em>float</em>) – </p></li>
+<li><p><strong>api_version</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">9</span></code>, <code class="docutils literal notranslate"><span class="pre">10</span></code>]) – version of the discord api used by the client</p></li>
+<li><p><strong>loop</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEventLoop</span></code>) – Set the event loop that will be used by the client</p></li>
+<li><p><strong>logger</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Enable/disable the logger</p></li>
+<li><p><strong>request_latency</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Control the rate of requests sent to discord</p></li>
+<li><p><strong>ratelimit_additional_cooldown</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Add a cooldown to the ratelimit</p></li>
 </ul>
 </dd>
 </dl>
@@ -329,7 +485,7 @@ and how long until more can be made.</p>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></p>
+<dd class="field-even"><p><a class="reference internal" href="#SelfBotClient.http.ClientResponse" title="aiohttp.client_reqrep.ClientResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientResponse</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A clientresponse object</p>
@@ -421,9 +577,33 @@ the awaitable completes and then returns. This is useful for running tasks in pa
             <ul>
 <li><a class="reference internal" href="#">HTTP</a><ul>
 <li><a class="reference internal" href="#a-selfbotclient-http-it-mainly-handles-requests-to-discord-or-detect-ratelimit">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.http</span></code> It mainly handles requests to discord or detect ratelimit.</a><ul>
-<li><a class="reference internal" href="#SelfBotClient.http.CustomSession"><code class="docutils literal notranslate"><span class="pre">CustomSession</span></code></a><ul>
-<li><a class="reference internal" href="#SelfBotClient.http.CustomSession.get"><code class="docutils literal notranslate"><span class="pre">CustomSession.get()</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.http.CustomSession.request"><code class="docutils literal notranslate"><span class="pre">CustomSession.request()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse"><code class="docutils literal notranslate"><span class="pre">ClientResponse</span></code></a><ul>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.close"><code class="docutils literal notranslate"><span class="pre">ClientResponse.close()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.closed"><code class="docutils literal notranslate"><span class="pre">ClientResponse.closed</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.connection"><code class="docutils literal notranslate"><span class="pre">ClientResponse.connection</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.content"><code class="docutils literal notranslate"><span class="pre">ClientResponse.content</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.content_disposition"><code class="docutils literal notranslate"><span class="pre">ClientResponse.content_disposition</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.get_encoding"><code class="docutils literal notranslate"><span class="pre">ClientResponse.get_encoding()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.headers"><code class="docutils literal notranslate"><span class="pre">ClientResponse.headers</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.history"><code class="docutils literal notranslate"><span class="pre">ClientResponse.history</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.host"><code class="docutils literal notranslate"><span class="pre">ClientResponse.host</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.json"><code class="docutils literal notranslate"><span class="pre">ClientResponse.json()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.links"><code class="docutils literal notranslate"><span class="pre">ClientResponse.links</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.ok"><code class="docutils literal notranslate"><span class="pre">ClientResponse.ok</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.raise_for_status"><code class="docutils literal notranslate"><span class="pre">ClientResponse.raise_for_status()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.raw_headers"><code class="docutils literal notranslate"><span class="pre">ClientResponse.raw_headers</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.read"><code class="docutils literal notranslate"><span class="pre">ClientResponse.read()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.real_url"><code class="docutils literal notranslate"><span class="pre">ClientResponse.real_url</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.reason"><code class="docutils literal notranslate"><span class="pre">ClientResponse.reason</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.release"><code class="docutils literal notranslate"><span class="pre">ClientResponse.release()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.request_info"><code class="docutils literal notranslate"><span class="pre">ClientResponse.request_info</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.start"><code class="docutils literal notranslate"><span class="pre">ClientResponse.start()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.status"><code class="docutils literal notranslate"><span class="pre">ClientResponse.status</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.text"><code class="docutils literal notranslate"><span class="pre">ClientResponse.text()</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.url"><code class="docutils literal notranslate"><span class="pre">ClientResponse.url</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.url_obj"><code class="docutils literal notranslate"><span class="pre">ClientResponse.url_obj</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.version"><code class="docutils literal notranslate"><span class="pre">ClientResponse.version</span></code></a></li>
+<li><a class="reference internal" href="#SelfBotClient.http.ClientResponse.wait_for_close"><code class="docutils literal notranslate"><span class="pre">ClientResponse.wait_for_close()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#SelfBotClient.http.HTTPClient"><code class="docutils literal notranslate"><span class="pre">HTTPClient</span></code></a><ul>
