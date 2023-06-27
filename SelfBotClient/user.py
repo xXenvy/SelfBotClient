@@ -30,6 +30,8 @@ class UserClient:
 
         self.data: dict = data
         self._endpoint: str = self.data["endpoint"]
+        self._endpoint_gateway: str = self.data["endpoint_gateway"]
+
         self.token: str = self.data["token"]
         self.name: str = self.data["username"]
         self.discriminator: str = f"#{self.data['discriminator']}"

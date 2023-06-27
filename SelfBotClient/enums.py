@@ -6,6 +6,7 @@ __all__: tuple = ("ChannelType", "Permissions", "Discord")
 
 class Discord(Enum):
     ENDPOINT = "https://discord.com/api/v{}/"
+    ENDPONT_GATEWAY = "wss://gateway.discord.gg/?v={}&encoding=json"
 
 
 class ChannelType(Enum):

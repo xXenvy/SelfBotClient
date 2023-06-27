@@ -1,12 +1,19 @@
+from __future__ import annotations
+
 from .typings import API_VERSION, AUTH_HEADER, METHOD
 from .errors import UnSupportedApiVersion, UnSupportedTokenType, InvalidMethodType
 from .enums import Discord
 from .logger import Logger
 from .user import UserClient
+from .gateway.gateway import UserGateway, Gateway
 
-from typing import Union, Awaitable, Any, Optional
+from typing import Union, Awaitable, Any, Optional, TYPE_CHECKING
 from aiohttp import ClientSession, ClientResponse, client_exceptions
 from asyncio import AbstractEventLoop, sleep, get_event_loop
+from threading import Thread
+
+if TYPE_CHECKING:
+    from .client import Client
 
 __all__: tuple[str, ...] = ("HTTPClient", "ClientResponse")
 
@@ -100,7 +107,8 @@ class HTTPClient:
             loop: Union[AbstractEventLoop, None],
             logger: bool,
             request_latency: float,
-            ratelimit_additional_cooldown: float
+            ratelimit_additional_cooldown: float,
+            client: Client
 
     ):
 
@@ -112,11 +120,9 @@ class HTTPClient:
 
         self.api_version: int = api_version
         self.endpoint: str = Discord.ENDPOINT.value.format(self.api_version)
+        self.endpoint_gateway: str = Discord.ENDPONT_GATEWAY.value.format(self.api_version)
 
-        if not loop:
-            self.loop: AbstractEventLoop = get_event_loop()
-        else:
-            self.loop: AbstractEventLoop = loop
+        self.loop: AbstractEventLoop = loop if loop else get_event_loop()
 
         self._tokens: Union[str, list, None] = None
         self._logger_status: bool = logger
@@ -127,6 +133,8 @@ class HTTPClient:
 
         self.users: list[UserClient] = []
         self.loop.run_until_complete(self.create_session())
+
+        self.gateway: Gateway = Gateway(client=client, gateway_url=self.endpoint_gateway)
 
     async def create_session(self) -> None:
         """
@@ -161,6 +169,7 @@ class HTTPClient:
                     data: dict = await response.json()
                     data["token"] = token
                     data["endpoint"] = self.endpoint
+                    data["endpoint_gateway"] = self.endpoint_gateway
 
                     self.users.append(UserClient(data, self.session))
 

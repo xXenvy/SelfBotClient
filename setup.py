@@ -22,7 +22,7 @@ setup(
     long_description_content_type="text/markdown",
     long_description=long_description,
     packages=find_packages(),
-    install_requires=['colorlog', 'aiohttp'],
+    install_requires=['colorlog', 'aiohttp', "websockets"],
     keywords=['python', 'requests', 'discord selfbot', 'selfbot', 'discord.py', 'aiohttp'],
     classifiers=[
         "Development Status :: 1 - Planning",

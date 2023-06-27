@@ -1,4 +1,4 @@
-from typing import Literal, TypedDict, TYPE_CHECKING
+from typing import Literal, TypedDict, TYPE_CHECKING, NamedTuple
 from aiohttp import ClientResponse
 
 METHOD = Literal["GET", "POST", "DELETE", "PATCH", "PUT"]

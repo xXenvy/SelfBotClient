@@ -3,11 +3,14 @@ from .typings import API_VERSION, ClientResponse, RGB_COLOR
 from .enums import ChannelType
 from .permissionbuilder import PermissionBuilder
 from .tasks import Tasks
+from .user import UserClient
 
 from collections.abc import AsyncIterable
 
 from typing import Union, Optional
 from asyncio import AbstractEventLoop
+from threading import Thread
+from time import sleep
 
 
 class Client(HTTPClient):
@@ -36,7 +39,7 @@ class Client(HTTPClient):
             use_threading: bool = False
     ):  # type: ignore
 
-        super().__init__(api_version, loop, logger, request_latency, ratelimit_additional_cooldown)
+        super().__init__(api_version, loop, logger, request_latency, ratelimit_additional_cooldown, self)
 
         if use_threading:
             self.tasks: Tasks = Tasks(client=self)
@@ -359,3 +362,15 @@ class Client(HTTPClient):
             response: ClientResponse = await user.delete_reaction(channel_id, message_id, user_id, emoji)
             if response.status == 204:
                 return response
+
+    async def on_ready(self, user: UserClient) -> None:
+        ...
+
+    async def on_message_create(self, user: UserClient, message_data: dict) -> None:
+        ...
+
+    async def on_message_delete(self, user: UserClient, message_data: dict) -> None:
+        ...
+
+    async def on_message_edit(self, user: UserClient, message_data: dict) -> None:
+        ...
