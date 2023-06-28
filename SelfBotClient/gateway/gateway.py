@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Optional, Callable, Coroutine
-from websockets import connect, WebSocketClientProtocol  # pyright: ignore
+from websockets import connect, WebSocketClientProtocol, ConnectionClosed, exceptions  # pyright: ignore
 
 if TYPE_CHECKING:
     from ..client import Client
@@ -10,8 +10,10 @@ if TYPE_CHECKING:
 from .response import GatewayResponse, dumps
 from .errors import MissingEventName, InvalidEventName, FunctionIsNotCoroutine
 from .event import EventHandler
+from .enums import Events
 
-from asyncio import AbstractEventLoop, sleep, Queue, create_task, gather, Task, iscoroutinefunction
+from threading import Thread
+from asyncio import AbstractEventLoop, sleep, Queue, create_task, gather, Task, iscoroutinefunction, run_coroutine_threadsafe
 from time import time
 
 
@@ -37,13 +39,10 @@ class Gateway:
 
         }
 
-        self.support_events = [
-            "on_ready",
-            "on_message_edit", "on_message_create", "on_message_delete"
-        ]
+        self.supportted_events: list[str] = [event.value for event in Events]
 
     def run(self):
-        users_gateways = UserGateway(self.client, self.gateway_url, self)
+        users_gateways = UsersGateways(self.client, self.gateway_url, self)
         users_gateways.start()
 
     @parametrized
@@ -54,7 +53,7 @@ class Gateway:
             if not name:
                 raise MissingEventName(function)
 
-            if name in self.support_events:
+            if name in self.supportted_events:
                 if iscoroutinefunction(function):
                     self.events[name] = function
 
@@ -64,7 +63,7 @@ class Gateway:
                 raise InvalidEventName(name)
 
 
-class UserGateway:
+class UsersGateways:
 
     def __init__(self, client: Client, gateway_url: str, gateway: Gateway):
         self.client: Client = client
@@ -74,14 +73,10 @@ class UserGateway:
     def start(self):
         tasks: list[Task] = []
         for user in self.client.users:
-            connection = GatewayConnection(client=self.client, user=user, gateway=self.gateway)
-            task: Task = self.client.loop.create_task(connection.run(self.gateway_url))
-            tasks.append(task)
+            connection = GatewayConnection(client=self.client, user=user,
+                                           gateway=self.gateway)
 
-        async def run():
-            await gather(*tasks, return_exceptions=True)
-
-        self.client.loop.run_until_complete(run())
+            self.client.loop.run_until_complete(connection.run(self.gateway_url))
 
 
 class GatewayConnection:
@@ -98,7 +93,18 @@ class GatewayConnection:
         self.websocket: WebSocketClientProtocol = None
 
     async def run(self, gateway_url: str):
-        await self._run_connection(gateway_url)
+        try:
+            async with connect(gateway_url, extra_headers=self.get_headers) as websocket:
+                self.websocket: WebSocketClientProtocol = websocket
+
+                tasks: list[Task] = [
+                    create_task(self._receive_response()),
+                    create_task(self._send_request()),
+                    create_task(self._ping_loop())]
+
+                await gather(*tasks, return_exceptions=True)
+        except ConnectionClosed:
+            exit("Connection closed.")
 
     @property
     def get_headers(self) -> dict:
@@ -112,18 +118,6 @@ class GatewayConnection:
         }
         return headers
 
-    async def _run_connection(self, gateway_url: str):
-        async with connect(gateway_url, extra_headers=self.get_headers) as websocket:
-            self.websocket: WebSocketClientProtocol = websocket
-
-            tasks: list[Task] = [
-                create_task(self._receive_response()),
-                create_task(self._send_request()),
-                create_task(self._ping_loop())]
-
-            for task in tasks:
-                await task
-
     async def login(self):
         request = {
             "op": 2,
@@ -131,12 +125,13 @@ class GatewayConnection:
                 "token": self.user.token,
                 "capabilities": 4093,
                 "properties": {
-                    "os": "android",
-                    "browser": f"Discord Android",
-                    "device": f"Discord Android"
+                    "os": "linux",
+                    "browser": f"Chrome",
+                    "device": f"Discord Windows"
                 },
                 "compress": False
-            }
+            },
+            "intents": 98047
         }
         await self._send(request)
 
@@ -156,14 +151,12 @@ class GatewayConnection:
             if gateway_response.op == 10:
                 latency: int = gateway_response.data["heartbeat_interval"] / 1000
                 self._pulse: int = latency
-
                 await self.login()
 
     async def _send_request(self):
         while True:
             request: Optional[dict] = await self._queue.get()
             _request: str = dumps(request)
-
             await self.websocket.send(_request)
 
             await sleep(0.5)

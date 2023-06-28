@@ -5,7 +5,7 @@ from .errors import UnSupportedApiVersion, UnSupportedTokenType, InvalidMethodTy
 from .enums import Discord
 from .logger import Logger
 from .user import UserClient
-from .gateway.gateway import UserGateway, Gateway
+from .gateway.gateway import UsersGateways, Gateway
 
 from typing import Union, Awaitable, Any, Optional, TYPE_CHECKING
 from aiohttp import ClientSession, ClientResponse, client_exceptions
