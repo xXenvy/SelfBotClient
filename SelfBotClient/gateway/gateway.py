@@ -12,8 +12,7 @@ from .errors import MissingEventName, InvalidEventName, FunctionIsNotCoroutine
 from .event import EventHandler
 from .enums import Events
 
-from threading import Thread
-from asyncio import AbstractEventLoop, sleep, Queue, create_task, gather, Task, iscoroutinefunction, run_coroutine_threadsafe
+from asyncio import AbstractEventLoop, sleep, Queue, create_task, gather, Task, iscoroutinefunction
 from time import time
 
 
@@ -76,7 +75,13 @@ class UsersGateways:
             connection = GatewayConnection(client=self.client, user=user,
                                            gateway=self.gateway)
 
-            self.client.loop.run_until_complete(connection.run(self.gateway_url))
+            task: Task = self.client.loop.create_task(connection.run(self.gateway_url))
+            tasks.append(task)
+
+        async def run():
+            await gather(*tasks)
+
+        self.client.loop.run_until_complete(run())
 
 
 class GatewayConnection:
