@@ -1,3 +1,3 @@
-from .SlashCommands import Application
+from .SlashCommands import Application, SlashCommand
 
-__all__ = ("Application",)
+__all__ = ("Application", "SlashCommand")
