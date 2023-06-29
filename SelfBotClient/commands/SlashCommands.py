@@ -49,6 +49,7 @@ class Application:
             await sleep(1)
             if self._commands:
                 data = self._commands
+                self._commands = None
                 break
 
         if not data:

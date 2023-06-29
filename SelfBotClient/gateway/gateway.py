@@ -178,7 +178,7 @@ class GatewayConnection:
         async for response in self.websocket:
             gateway_response: GatewayResponse = GatewayResponse(response, self.user)
             if gateway_response.event:
-                if gateway_response.event_name == "GUILD_APPLICATION_COMMANDS_UPDATE":
+                if gateway_response.event_name == "GUILD_APPLICATION_COMMANDS_UPDATE" and self.func:
                     await self.func(gateway_response.data)
                     self.func: Optional[Callable] = None
 
