@@ -1,12 +1,38 @@
 from enum import Enum
 
 
-__all__: tuple = ("ChannelType", "Permissions", "Discord")
+__all__: tuple[str, ...] = ("ChannelType", "Permissions", "Discord",
+                  "PresenceStatus", "PresencePlatform", "ActivityType")
 
 
 class Discord(Enum):
     ENDPOINT = "https://discord.com/api/v{}/"
     ENDPONT_GATEWAY = "wss://gateway.discord.gg/?v={}&encoding=json"
+
+
+class Components(Enum):
+    BUTTON = 2
+    DROPDOWN = 6
+
+
+class PresenceStatus(Enum):
+    ONLINE = "online"
+    DND = "dnd"
+    IDLE = "idle"
+    OFFLINE = "offline"
+
+
+class PresencePlatform(Enum):
+    DESKTOP = "Windows"
+    MOBILE = "Android"
+
+
+class ActivityType(Enum):
+    Game = 0
+    Streaming = 1
+    Listening = 2
+    Watching = 3
+    Competing = 5
 
 
 class ChannelType(Enum):
