@@ -451,7 +451,7 @@ class Client(HTTPClient):
             response: ClientResponse = await user.get_guild_invites(guild_id)
             yield response
 
-    async def send_dm_message(self, user_id: int, message_content: str) -> Union[None, AsyncIterable[ClientResponse]]:
+    async def send_dm_message(self, user_id: int, message_content: str) -> Union[None, AsyncIterable[Union[ClientResponse, None]]]:
         """
         The send_dm_message function sends a direct message to the user with the given user_id.
 
@@ -460,7 +460,7 @@ class Client(HTTPClient):
         """
 
         for user in self.users:
-            response: ClientResponse = await user.send_dm_message(user_id, message_content)
+            response: Optional[ClientResponse] = await user.send_dm_message(user_id, message_content)
             yield response
 
     async def on_ready(self, user: UserClient) -> None:

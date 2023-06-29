@@ -23,7 +23,7 @@ class ActivityBuilder:
             raise InvalidStatusType(ActivityType, type(activity_type))
 
         if isinstance(user_status, PresenceStatus):
-            self.user_status: int = user_status.value
+            self.user_status: str = user_status.value
         else:
             raise InvalidStatusType(PresenceStatus, type(user_status))
 

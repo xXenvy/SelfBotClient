@@ -77,8 +77,9 @@ class UserClient:
         if not mention_author:
             _message_response: ClientResponse = await self.get_message(channel_id, message_id)
             if _message_response.status == 200:
-                _message_data: list[dict] = await _message_response.json()
-                _message_author_id: int = _message_data[0].get("author")["id"]
+                _message_data: list[dict] = await _message_response.json()  # pyright: ignore
+                _message_data: dict = _message_data[0]
+                _message_author_id: int = _message_data["author"]["id"]
 
                 payload["allowed_mentions"] = {
                     "users": [f"{_message_author_id}"]
@@ -711,7 +712,7 @@ class UserClient:
             return response
 
         dm_data: dict = await response.json()
-        dm_channel_id: int = dm_data.get("id")
+        dm_channel_id: int = dm_data["id"]
 
         response: ClientResponse = await self.send_message(
             channel_id=dm_channel_id,

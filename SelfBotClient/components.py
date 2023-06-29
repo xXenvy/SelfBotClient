@@ -26,8 +26,8 @@ class Button:
     def __init__(self, data: dict):
         self._data: dict = data
 
-        self.label: str = self._data.get("label")
-        self.custom_id: str = self._data.get("custom_id")
+        self.label: Optional[str] = self._data.get("label")
+        self.custom_id: Optional[str] = self._data.get("custom_id")
 
     async def click(self, client: Client, user: UserClient, application_id: int, channel_id: int,
                     message_id: int, guild_id: int, message_flags: int) -> Optional[ClientResponse]:
@@ -47,11 +47,13 @@ class Button:
             "session_id": session_id
         }
 
+        headers: dict = AUTH_HEADER(authorization=user.token)  # pyright: ignore
+
         response: ClientResponse = await client.request(
             url="interactions",
             method="POST",
             data=payload,
-            headers=AUTH_HEADER(authorization=user.token)
+            headers=headers
         )
         return response
 
