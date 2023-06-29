@@ -2,6 +2,7 @@ from .http import HTTPClient
 from .typings import API_VERSION, ClientResponse, RGB_COLOR
 from .enums import ChannelType
 from .permissionbuilder import PermissionBuilder
+from .presence import ActivityBuilder
 from .tasks import Tasks
 from .user import UserClient
 
@@ -9,8 +10,6 @@ from collections.abc import AsyncIterable
 
 from typing import Union, Optional
 from asyncio import AbstractEventLoop
-from threading import Thread
-from time import sleep
 
 
 class Client(HTTPClient):
@@ -36,12 +35,13 @@ class Client(HTTPClient):
             logger: bool = True,
             request_latency: float = 0.1,
             ratelimit_additional_cooldown: float = 10,
-            use_threading: bool = False
+            use_tasks: bool = False,
+            activity: Optional[ActivityBuilder] = None
     ):  # type: ignore
 
-        super().__init__(api_version, loop, logger, request_latency, ratelimit_additional_cooldown, self)
+        super().__init__(api_version, loop, logger, request_latency, ratelimit_additional_cooldown, self, activity)
 
-        if use_threading:
+        if use_tasks:
             self.tasks: Tasks = Tasks(client=self)
 
     def login(self, tokens: Union[str, list[str]]) -> None:
@@ -67,6 +67,72 @@ class Client(HTTPClient):
         for user in self.users:
             response: ClientResponse = await user.send_message(channel_id, message_content)
             yield response
+
+    async def reply_message(self, channel_id: int, message_id: int,
+                            message_content: str, mention_author: bool = True) -> Union[None, AsyncIterable[ClientResponse]]:
+
+        """
+        The reply_message function is used to reply to a message in a channel.
+
+        :param channel_id: Specify the channel to send the message in
+        :param message_id: Reply to a specific message
+        :param message_content: Message content
+        :param mention_author: Determine whether or not the author of the message should be mentioned in
+        """
+
+        for user in self.users:
+            response: ClientResponse = await user.reply_message(channel_id, message_id, message_content, mention_author)
+            yield response
+
+    async def edit_message(self, channel_id: int, message_id: int, message_content: str) -> Optional[ClientResponse]:
+        """
+        The edit_message function allows you to edit a message.
+
+        :param channel_id: Specify the channel id of the message you want to edit
+        :param message_id: id the message to edit
+        :param message_content: Edit the message content
+        """
+
+        for user in self.users:
+            response: ClientResponse = await user.edit_message(channel_id, message_id, message_content)
+            if response.status == 200:
+                return response
+
+    async def get_message(self, channel_id: int, message_id: int) -> Optional[AsyncIterable[ClientResponse]]:
+        """
+        The get_message function is used to get a message from a channel.
+
+        :param channel_id: Specify the channel id of the message you want to get
+        :param message_id: Get the message around that id
+        """
+        for user in self.users:
+            response: ClientResponse = await user.get_message(channel_id, message_id)
+            yield response
+
+    async def get_messages(self, channel_id: int, limit: int = 100) -> Optional[ClientResponse]:
+        """
+        The get_messages function is used to retrieve a list of message objects from the channel.
+
+        :param channel_id: Specify which channel to get the messages from
+        :param limit: Limit the number of messages returned
+        """
+
+        for user in self.users:
+            response: ClientResponse = await user.get_messages(channel_id, limit)
+            if response.status == 200:
+                return response
+
+    async def delete_message(self, channel_id: int, message_id: int) -> Optional[ClientResponse]:
+        """
+        The delete_message function deletes a message from the specified channel.
+
+        :param channel_id: Specify the channel id of the message to be deleted
+        :param message_id: Identify the message that is to be deleted
+        """
+        for user in self.users:
+            response: ClientResponse = await user.delete_message(channel_id, message_id)
+            if response.status == 200:
+                return response
 
     async def delete_channel(self, channel_id: int) -> Union[None, ClientResponse]:
         """
@@ -124,6 +190,18 @@ class Client(HTTPClient):
         for user in self.users:
             response: ClientResponse = await user.get_channels(guild_id)
             yield response
+
+    async def get_channel(self, channel_id: int) -> Optional[ClientResponse]:
+        """
+        The get_channel function is used to get a channel object from the guild.
+
+        :param channel_id: Specify the channel id of the channel you want to get
+        """
+
+        for user in self.users:
+            response: ClientResponse = await user.get_channel(channel_id)
+            if response.status == 200:
+                return response
 
     async def create_role(self,
                                 guild_id: int,
@@ -183,15 +261,15 @@ class Client(HTTPClient):
             if response.status == 204:
                 return response
 
-    async def get_bans(self, guild_id: int) -> Union[None, ClientResponse]:
+    async def get_guild_bans(self, guild_id: int) -> Union[None, ClientResponse]:
         """
-        The get_bans function returns a list of banned users in the guild.
+        The get_guild_bans function returns a list of banned users in the guild.
 
         :param guild_id: Specify the guild id of the server you want to get banned users from
         """
 
         for user in self.users:
-            response: ClientResponse = await user.get_bans(guild_id)
+            response: ClientResponse = await user.get_guild_bans(guild_id)
             if response.status == 200:
                 return response
 
@@ -362,6 +440,28 @@ class Client(HTTPClient):
             response: ClientResponse = await user.delete_reaction(channel_id, message_id, user_id, emoji)
             if response.status == 204:
                 return response
+
+    async def get_guild_invites(self, guild_id: int) -> Union[None, AsyncIterable[ClientResponse]]:
+        """
+        The get_guild_invites function returns a list of invite objects. Requires the 'MANAGE_GUILD' permission.
+
+        :param guild_id: Get the invites for a specific guild
+        """
+        for user in self.users:
+            response: ClientResponse = await user.get_guild_invites(guild_id)
+            yield response
+
+    async def send_dm_message(self, user_id: int, message_content: str) -> Union[None, AsyncIterable[ClientResponse]]:
+        """
+        The send_dm_message function sends a direct message to the user with the given user_id.
+
+        :param user_id: Specify the user id of the person you want to send a message to
+        :param message_content: Specify the message content
+        """
+
+        for user in self.users:
+            response: ClientResponse = await user.send_dm_message(user_id, message_content)
+            yield response
 
     async def on_ready(self, user: UserClient) -> None:
         ...

@@ -3,19 +3,19 @@ from __future__ import annotations
 from .typings import API_VERSION, AUTH_HEADER, METHOD
 from .errors import UnSupportedApiVersion, UnSupportedTokenType, InvalidMethodType
 from .enums import Discord
+from .presence import ActivityBuilder
 from .logger import Logger
 from .user import UserClient
-from .gateway.gateway import UsersGateways, Gateway
+from .gateway.gateway import Gateway
 
 from typing import Union, Awaitable, Any, Optional, TYPE_CHECKING
 from aiohttp import ClientSession, ClientResponse, client_exceptions
 from asyncio import AbstractEventLoop, sleep, get_event_loop
-from threading import Thread
 
 if TYPE_CHECKING:
     from .client import Client
 
-__all__: tuple[str, ...] = ("HTTPClient", "ClientResponse")
+__all__: tuple[str, ...] = ("HTTPClient", "ClientResponse", "CustomSession")
 
 
 class CustomSession(ClientSession):
@@ -67,9 +67,9 @@ class CustomSession(ClientSession):
             except client_exceptions.ContentTypeError:
                 _json: dict = {}
 
-            message: Optional[str] = _json.get("message")
-            if isinstance(_json, dict) and message:
-                if "You need to verify" in message:
+            if isinstance(_json, dict):
+                message: Optional[str] = _json.get("message")
+                if message and "You need to verify" in message:
                     if self.users:
                         for user in self.users:
                             if user.token == token:
@@ -108,8 +108,8 @@ class HTTPClient:
             logger: bool,
             request_latency: float,
             ratelimit_additional_cooldown: float,
-            client: Client
-
+            client: Client,
+            activity: Optional[ActivityBuilder]
     ):
 
         if api_version not in (9, 10):
@@ -134,7 +134,7 @@ class HTTPClient:
         self.users: list[UserClient] = []
         self.loop.run_until_complete(self.create_session())
 
-        self.gateway: Gateway = Gateway(client=client, gateway_url=self.endpoint_gateway)
+        self.gateway: Gateway = Gateway(client=client, gateway_url=self.endpoint_gateway, activity=activity)
 
     async def create_session(self) -> None:
         """
@@ -220,7 +220,7 @@ class HTTPClient:
         if self._logger_status:
             self.logger.debug(f"Sending request: {method} -> {_url}")
 
-        response: ClientResponse = await self.session.request(method=method, url=url, headers=headers, json=data)
+        response: ClientResponse = await self.session.request(method=method, url=_url, headers=headers, json=data)
         response.raise_for_status()
 
         return response

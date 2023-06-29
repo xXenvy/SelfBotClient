@@ -3,15 +3,16 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Union, Optional
 
 if TYPE_CHECKING:
+    from .gateway.gateway import GatewayConnection
     from .http import CustomSession
 
-from .typings import AUTH_HEADER, RGB_COLOR
+from .typings import AUTH_HEADER, RGB_COLOR, MESSAGE_REFERENCE
 from .logger import Logger
 from .enums import ChannelType
 from .permissionbuilder import PermissionBuilder
+from .errors import MessagesLimitException
 
 from urllib.parse import quote
-from asyncio import AbstractEventLoop
 from aiohttp import ClientResponse
 from logging import getLogger
 
@@ -25,6 +26,8 @@ class UserClient:
     """
 
     def __init__(self, data: dict, session: CustomSession):
+
+        self.gateway_connection: Optional[GatewayConnection] = None
         self._session: CustomSession = session
         self._logger: Logger = getLogger("Logger")  # pyright: ignore
 
@@ -44,7 +47,59 @@ class UserClient:
     def __repr__(self):
         return f"<UserClient(name={self.name}, discriminator={self.discriminator}, id={self.id})>"
 
+    async def reply_message(self, channel_id: int, message_id: int,
+                                message_content: str, mention_author: bool = True) -> ClientResponse:
+
+        """
+        The reply_message function is used to reply to a message in a channel.
+
+        :param channel_id: Specify the channel to send the message in
+        :param message_id: message id of the message that you want to reply to
+        :param message_content: A message content
+        :param mention_author: Determine whether or not to mention the author of the message
+        """
+
+        _url = self._endpoint + f"channels/{channel_id}/messages"
+
+        if self._logger._status:
+            self._logger.debug(f"Sending request: POST -> {_url}")
+
+        message_reference = MESSAGE_REFERENCE(
+            message_id=message_id,
+            channel_id=channel_id
+        )
+
+        payload: dict = {
+            "content": message_content,
+            "message_reference": message_reference
+        }
+
+        if not mention_author:
+            _message_response: ClientResponse = await self.get_message(channel_id, message_id)
+            if _message_response.status == 200:
+                _message_data: list[dict] = await _message_response.json()
+                _message_author_id: int = _message_data[0].get("author")["id"]
+
+                payload["allowed_mentions"] = {
+                    "users": [f"{_message_author_id}"]
+                }
+
+            else:
+                payload["allowed_mentions"] = {
+                    "parse": ["users"]
+                }
+
+        response: ClientResponse = await self._session.request(
+            method="POST", url=_url, headers=self._auth_header, json=payload)
+
+        if response.status not in (200, 429) and self._logger._status:
+            self._logger.warning(
+                f"Request POST channels/{channel_id}/messages failed.\n -> {self} {await response.json()}")
+
+        return response
+
     async def send_message(self, channel_id: int, message_content: str) -> ClientResponse:
+
         """
         The send_message function sends a message to the specified channel.
 
@@ -67,6 +122,109 @@ class UserClient:
         if response.status not in (200, 429) and self._logger._status:
             self._logger.warning(
                 f"Request POST channels/{channel_id}/messages failed.\n -> {self} {await response.json()}")
+
+        return response
+
+    async def edit_message(self, channel_id: int, message_id: int, message_content: str) -> ClientResponse:
+        """
+        The edit_message function allows you to edit a message.
+
+        :param channel_id: Specify the channel id of the message you want to edit
+        :param message_id: id the message to edit
+        :param message_content: Edit the message content
+        """
+
+        _url = self._endpoint + f"/channels/{channel_id}/messages/{message_id}"
+
+        if self._logger._status:
+            self._logger.debug(f"Sending request: PATCH -> {_url}")
+
+        payload: dict = {
+            "content": message_content
+        }
+
+        response: ClientResponse = await self._session.request(
+            method="PATCH", url=_url, headers=self._auth_header, json=payload)
+
+        if response.status not in (200, 429) and self._logger._status:
+            self._logger.error(
+                f"Request PATCH /channels/{channel_id}/messages/{message_id} failed.\n -> {self} {await response.json()}")
+
+        return response
+
+    async def get_message(self, channel_id: int, message_id: int) -> ClientResponse:
+        """
+        The get_message function is used to get a message from a channel.
+
+        :param channel_id: Specify the channel id of the message you want to get
+        :param message_id: Get the message around that id
+        """
+
+        # Since the normal get_message endpoint returns the message
+        # "Only bots can use this endpoint" we get the message in a different way
+
+        _url = self._endpoint + f"channels/{channel_id}/messages?limit=1&around={message_id}"
+
+        if self._logger._status:
+            self._logger.debug(f"Sending request: GET -> {_url}")
+
+        response: ClientResponse = await self._session.request(
+            method="GET", url=_url, headers=self._auth_header)
+
+        if response.status not in (200, 429) and self._logger._status:
+            self._logger.error(
+                f"Request GET channels/{channel_id}/messages?limit=1&around={message_id} failed.\n -> {self} {await response.json()}")
+
+        return response
+
+    async def get_messages(self, channel_id: int, limit: int = 100) -> ClientResponse:
+        """
+        The get_messages function is used to retrieve a list of message objects from the channel.
+
+        :param channel_id: Specify which channel to get the messages from
+        :param limit: Limit the number of messages returned
+        """
+        if limit > 100:
+            raise MessagesLimitException(
+                "Unfortunately, but discord only allows a maximum of 100 recent messages to be returned. "
+                f"You specified limit={limit}")
+
+        if limit < 2:
+            raise MessagesLimitException("Message limit must be greater than 1")
+
+        _url = self._endpoint + f"channels/{channel_id}/messages?limit={limit}"
+
+        if self._logger._status:
+            self._logger.debug(f"Sending request: GET -> {_url}")
+
+        response: ClientResponse = await self._session.request(
+            method="GET", url=_url, headers=self._auth_header)
+
+        if response.status not in (200, 429) and self._logger._status:
+            self._logger.error(
+                f"Request GET channels/{channel_id}/messages failed.\n -> {self} {response.status}")
+
+        return response
+
+    async def delete_message(self, channel_id: int, message_id: int) -> ClientResponse:
+        """
+        The delete_message function deletes a message from the specified channel.
+
+        :param channel_id: Specify the channel id of the message to be deleted
+        :param message_id: Identify the message that is to be deleted
+        """
+
+        _url = self._endpoint + f"channels/{channel_id}/messages/{message_id}"
+
+        if self._logger._status:
+            self._logger.debug(f"Sending request: DELETE -> {_url}")
+
+        response: ClientResponse = await self._session.request(
+            method="DELETE", url=_url, headers=self._auth_header)
+
+        if response.status not in (204, 429) and self._logger._status:
+            self._logger.error(
+                f"Request DELETE channels/{channel_id}/messages/{message_id} failed.\n -> {self} {await response.json()}")
 
         return response
 
@@ -148,6 +306,27 @@ class UserClient:
         if response.status not in (200, 429) and self._logger._status:
             self._logger.error(
                 f"Request GET guilds/{guild_id}/channels failed.\n -> {self} {await response.json()}.")
+
+        return response
+
+    async def get_channel(self, channel_id: int) -> ClientResponse:
+        """
+        The get_channel function returns a channel data for the given channel ID.
+
+        :param channel_id: Specify the channel id of the channel you want to get
+        """
+
+        _url = self._endpoint + f"/channels/{channel_id}"
+
+        if self._logger._status:
+            self._logger.debug(f"Sending request: GET -> {_url}")
+
+        response: ClientResponse = await self._session.request(
+            method="GET", url=_url, headers=self._auth_header)
+
+        if response.status not in (200, 429) and self._logger._status:
+            self._logger.error(
+                f"Request GET /channels/{channel_id} failed.\n -> {self} {await response.json()}.")
 
         return response
 
@@ -243,9 +422,9 @@ class UserClient:
 
         return response
 
-    async def get_bans(self, guild_id: int) -> ClientResponse:
+    async def get_guild_bans(self, guild_id: int) -> ClientResponse:
         """
-        The get_bans function returns a list of banned users in the guild.
+        The get_guild_bans function returns a list of banned users in the guild.
 
         :param guild_id: Specify the guild id of the server you want to get banned users from
 
@@ -484,4 +663,59 @@ class UserClient:
 
         return response
 
+    async def get_guild_invites(self, guild_id: int) -> ClientResponse:
+        """
+        The get_guild_invites function returns a list of invite objects. Requires the 'MANAGE_GUILD' permission.
 
+        :param guild_id: Get the invites for a specific guild
+        """
+
+        _url = self._endpoint + f"/guilds/{guild_id}/invites"
+
+        if self._logger._status:
+            self._logger.debug(f"Sending request: GET -> {_url}")
+
+        response: ClientResponse = await self._session.request(
+            method="GET", url=_url, headers=self._auth_header)
+
+        if response.status not in (204, 429) and self._logger._status:
+            self._logger.error(
+                f"Request GET /guilds/{guild_id}/invites failed.\n -> {self} {await response.json()}")
+        return response
+
+    async def send_dm_message(self, user_id: int, message_content: str) -> Optional[ClientResponse]:
+        """
+        The send_dm_message function sends a direct message to the user with the given user_id.
+
+        :param user_id: Specify the user id of the recipient
+        :param message_content: Specify message content
+        """
+
+        _url = self._endpoint + f"/users/@me/channels"
+
+        if self._logger._status:
+            self._logger.debug(f"Sending request: POST -> {_url}")
+
+        payload: dict = {
+            "recipient_id": user_id
+        }
+
+        response: ClientResponse = await self._session.request(
+            method="POST", url=_url, headers=self._auth_header, json=payload)
+
+        if response.status not in (200, 429) and self._logger._status:
+            self._logger.error(
+                f"Request POST /users/@me/channels failed.\n -> {self} {await response.json()}")
+
+        if not response:
+            return response
+
+        dm_data: dict = await response.json()
+        dm_channel_id: int = dm_data.get("id")
+
+        response: ClientResponse = await self.send_message(
+            channel_id=dm_channel_id,
+            message_content=message_content
+        )
+
+        return response

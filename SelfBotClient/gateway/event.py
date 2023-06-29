@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Optional, Any, Callable, TYPE_CHECKING
+from typing import List, Optional, Callable, TYPE_CHECKING
 from .response import GatewayResponse
 from .errors import FunctionIsNotCoroutine
 from .enums import Events

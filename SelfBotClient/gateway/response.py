@@ -32,15 +32,6 @@ class GatewayResponse:
     def format_data(self, data: str) -> dict:
         return loads(data)
 
-    @staticmethod
-    def reformat_event_name(event_name: Optional[str]):
-        if not event_name:
-            return
-
-        events_names: dict[str, str] = {
-            "MESSAGE_CREATE": "on_message_create"
-        }
-
     def __repr__(self):
         return f"<GatewayResponse(user={self.user},event_type={self.event_name}, " \
                f"op={self.op}, " f"sequence={self.sequence}, data={self.data})>"

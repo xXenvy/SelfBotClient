@@ -1,7 +1,8 @@
 from .client import Client
-from .enums import ChannelType, Permissions
+from .enums import ChannelType, Permissions, ActivityType, PresenceStatus, PresencePlatform
 from .typings import ClientResponse, RGB_COLOR
 from .permissionbuilder import PermissionBuilder
+from .presence import ActivityBuilder
 from .user import UserClient
 
 
@@ -12,5 +13,9 @@ __all__: tuple[str, ...] = (
     "RGB_COLOR",
     "Permissions",
     "PermissionBuilder",
-    "UserClient"
+    "UserClient",
+    "ActivityType",
+    "PresencePlatform",
+    "PresenceStatus",
+    "ActivityBuilder"
 )

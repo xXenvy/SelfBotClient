@@ -6,6 +6,7 @@ from websockets import connect, WebSocketClientProtocol, ConnectionClosed, excep
 if TYPE_CHECKING:
     from ..client import Client
     from ..user import UserClient
+    from ..presence import ActivityBuilder
 
 from .response import GatewayResponse, dumps
 from .errors import MissingEventName, InvalidEventName, FunctionIsNotCoroutine
@@ -30,18 +31,17 @@ def parametrized(decorator):
 
 class Gateway:
 
-    def __init__(self, client: Client, gateway_url: str):
+    def __init__(self, client: Client, gateway_url: str, activity: Optional[ActivityBuilder]):
         self.client: Client = client
         self.gateway_url: str = gateway_url
+        self.activity = activity
 
-        self.events: dict[str, Callable] = {
-
-        }
+        self.events: dict[str, Callable] = {}
 
         self.supportted_events: list[str] = [event.value for event in Events]
 
     def run(self):
-        users_gateways = UsersGateways(self.client, self.gateway_url, self)
+        users_gateways = UsersGateways(self.client, self.gateway_url, self, self.activity)
         users_gateways.start()
 
     @parametrized
@@ -64,16 +64,17 @@ class Gateway:
 
 class UsersGateways:
 
-    def __init__(self, client: Client, gateway_url: str, gateway: Gateway):
+    def __init__(self, client: Client, gateway_url: str, gateway: Gateway, activity: Optional[ActivityBuilder]):
         self.client: Client = client
         self.gateway_url: str = gateway_url
         self.gateway: Gateway = gateway
+        self.activity = activity
 
     def start(self):
         tasks: list[Task] = []
         for user in self.client.users:
             connection = GatewayConnection(client=self.client, user=user,
-                                           gateway=self.gateway)
+                                           gateway=self.gateway, activity=self.activity)
 
             task: Task = self.client.loop.create_task(connection.run(self.gateway_url))
             tasks.append(task)
@@ -86,14 +87,16 @@ class UsersGateways:
 
 class GatewayConnection:
 
-    def __init__(self, client: Client, user: UserClient, gateway: Gateway):
+    def __init__(self, client: Client, user: UserClient, gateway: Gateway, activity: Optional[ActivityBuilder]):
         self.client: Client = client
         self.user: UserClient = user
+        self.activity: Optional[ActivityBuilder] = activity
 
         self._gateway: Gateway = gateway
         self._loop: AbstractEventLoop = client.loop
         self._pulse: int = 5
         self._queue: Queue = Queue()
+        self.user.gateway_connection = self
 
         self.websocket: WebSocketClientProtocol = None
 
@@ -123,22 +126,51 @@ class GatewayConnection:
         }
         return headers
 
+    async def begin_presence(self):
+        if self.activity:
+            payload = {
+                "op": 3,
+                "d": {
+                    "since": time(),
+                    "activities": [{
+                        "name": self.activity.activity_name,
+                        "type": self.activity.activity_type,
+                        "created_at": time(),
+                        "since": 0,
+                        "details": self.activity.activity_details
+                    }],
+                    "status": self.activity.user_status,
+                    "afk": False,
+                }
+            }
+            await self.send(payload)
+
     async def login(self):
+        os: str = "Windows Desktop"
+        browser: str = "Chrome"
+        device: str = "Windows"
+
+        if self.activity:
+            if self.activity.user_platform.lower() == "android":
+                os: str = self.activity.user_platform
+                browser: str = f"Discord {os}"
+                device: str = f"Discord {os}"
+
         request = {
             "op": 2,
             "d": {
                 "token": self.user.token,
                 "capabilities": 4093,
                 "properties": {
-                    "os": "linux",
-                    "browser": f"Chrome",
-                    "device": f"Discord Windows"
+                    "os": os,
+                    "browser": browser,
+                    "device": device
                 },
                 "compress": False
             },
             "intents": 98047
         }
-        await self._send(request)
+        await self.send(request)
 
     async def _receive_response(self):
         async for response in self.websocket:
@@ -157,6 +189,7 @@ class GatewayConnection:
                 latency: int = gateway_response.data["heartbeat_interval"] / 1000
                 self._pulse: int = latency
                 await self.login()
+                await self.begin_presence()
 
     async def _send_request(self):
         while True:
@@ -175,7 +208,7 @@ class GatewayConnection:
                 "d": time()
             }
 
-            await self._send(ping_request)
+            await self.send(ping_request)
 
-    async def _send(self, request):
+    async def send(self, request):
         await self._queue.put(request)

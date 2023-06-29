@@ -31,3 +31,15 @@ class InvalidMethodType(SelfBotClientException):
         super().__init__(
             f"Invalid method {method} type. Available methods: POST, DELETE, GET, PATCH"
         )
+
+
+class InvalidStatusType(SelfBotClientException):
+    
+    def __init__(self, excepted, got):
+        super().__init__(f"InvalidStatusType. Expected: {excepted} type got: {got} type.")
+
+
+class MessagesLimitException(SelfBotClientException):
+
+    def __init__(self, message: str):
+        super().__init__(message)
