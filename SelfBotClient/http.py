@@ -221,6 +221,7 @@ class HTTPClient:
             self.logger.debug(f"Sending request: {method} -> {_url}")
 
         response: ClientResponse = await self.session.request(method=method, url=_url, headers=headers, json=data)
+        print(await response.json())
         response.raise_for_status()
 
         return response

@@ -96,7 +96,9 @@ class GatewayConnection:
         self._loop: AbstractEventLoop = client.loop
         self._pulse: int = 5
         self._queue: Queue = Queue()
+
         self.user.gateway_connection = self
+        self.func: Optional[Callable] = None
 
         self.websocket: WebSocketClientProtocol = None
 
@@ -176,6 +178,9 @@ class GatewayConnection:
         async for response in self.websocket:
             gateway_response: GatewayResponse = GatewayResponse(response, self.user)
             if gateway_response.event:
+                if gateway_response.event_name == "GUILD_APPLICATION_COMMANDS_UPDATE":
+                    await self.func(gateway_response.data)
+                    self.func: Optional[Callable] = None
 
                 handler = EventHandler(
                     response=gateway_response,
@@ -211,4 +216,8 @@ class GatewayConnection:
             await self.send(ping_request)
 
     async def send(self, request):
+        await self._queue.put(request)
+
+    async def application_update_request(self, request: dict, func: Callable):
+        self.func: Optional[Callable] = func
         await self._queue.put(request)

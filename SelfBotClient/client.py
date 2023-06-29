@@ -513,4 +513,3 @@ class Client(HTTPClient):
 
     async def on_member_update(self, user: UserClient, member_data: dict) -> None:
         ...
-
