@@ -18,16 +18,16 @@ async def main():
     commands: list[Optional[SlashCommand]] = await app.search_slash_command(
         query="ban",
         user=user,
-        guild_id=983442350963576863
+        guild_id=983442350963576863,
+        limit=1
     )
     for command in commands:
-        if command.command_name == "ban":
-            await command.use_slash_command(
-                user=user,
-                channel_id=123,
-                guild_id=123,
-                inputs={"command_input_name": "command_input_value"}
-            )
+        await command.use_slash_command(
+            user=user,
+            channel_id=123,
+            guild_id=123,
+            inputs={"command_input_name": "command_input_value"}
+        )
 
 
 @client.gateway.event(event_name="on_ready")
