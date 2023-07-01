@@ -18,7 +18,7 @@ async def main():
     commands: list[Optional[SlashCommand]] = await app.search_slash_command(
         query="ban",
         user=user,
-        guild_id=983442350963576863,
+        guild_id=guild_id,
         limit=1
     )
     for command in commands:
