@@ -26,9 +26,12 @@ class Application:
         return f"<DiscordApplication(id={self.application_id})>"
 
     def get_slash_command_from_cache(self, command_name: str) -> Optional[SlashCommand]:
-        for slash in self._cached_commands:
-            if slash.global_name == command_name:
-                return slash
+        if len(self._cached_commands) >= 1:
+            for slash in self._cached_commands:
+                if slash.global_name == command_name:  # pyright: ignore
+                    return slash
+
+        return None
 
     async def search_slash_command(self, user: UserClient, guild_id: int, query: str, limit: int = 3) -> Optional[list[SlashCommand]]:
 

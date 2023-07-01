@@ -22,16 +22,17 @@ class SlashCommand:
         self.command_name: str = self.command_data["name"]
 
         self.sub_command: Optional[str] = self.command_data.get("sub_command")
-        self.global_name: str = self.command_data.get("global_name")
+        self.global_name: str = self.command_data["global_name"]
 
     def __repr__(self):
-        command_name = self.command_name if not self.global_name else self.global_name
-        return f"<SlashCommand(name={command_name}, application_id={self.application_id})>"
+        return f"<SlashCommand(name={self.global_name}, application_id={self.application_id})>"
 
-    async def reformat_data(self, data: dict, nonce: str, inputs: Optional[dict[str, Any]] = None):
+    async def reformat_data(self, data: dict, nonce: str, inputs: Optional[dict[Any, Any]] = None):
 
         new_data: dict = {}
         formatted_options: list[Optional[dict]] = []
+        if not inputs:
+            inputs = {}
 
         version: str = data["version"]
         id: str = data["id"]
