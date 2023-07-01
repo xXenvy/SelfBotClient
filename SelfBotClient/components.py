@@ -81,7 +81,7 @@ class MessageComponents:
         for component in self.components:
             for _comp_data in component["components"]:
                 if _comp_data["type"] == self.types.BUTTON.value:
-                    buttons.append(Button({"component_type": 2, "custom_id": _comp_data["custom_id"],
+                    buttons.append(Button({"component_type": 2, "custom_id": _comp_data.get("custom_id"),
                                            "label": _comp_data["label"]}))
         return buttons
 
