@@ -22,7 +22,7 @@ class SlashCommand:
         self.command_name: str = self.command_data["name"]
 
         self.sub_command: Optional[str] = self.command_data.get("sub_command")
-        self.global_name: Optional[str] = self.command_data.get("global_name")
+        self.global_name: str = self.command_data.get("global_name")
 
     def __repr__(self):
         command_name = self.command_name if not self.global_name else self.global_name

@@ -70,7 +70,7 @@ class Application:
 
                 if isinstance(command_data.get("options"), list):  # Command with subcommand
 
-                    for sub_command_data in command_data.get("options"):
+                    for sub_command_data in command_data["options"]:
 
                         sub_command_data["application_id"] = command_data["application_id"]
                         sub_command_data["version"] = command_data["version"]
