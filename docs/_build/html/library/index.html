@@ -2,11 +2,11 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Client" href="Client.html" /><link rel="prev" title="Installing" href="../installing.html" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Gateway" href="gateway/index.html" /><link rel="prev" title="Installing" href="../installing.html" />
 
-    <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>SelfBotClient Reference - Self Bot library 1.1.2 documentation</title>
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
+        <title>AsyncCore Reference - AsyncCore library 1.2.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
@@ -125,7 +125,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Self Bot library 1.1.2 documentation</div></a>
+      <a href="../index.html"><div class="brand">AsyncCore library 1.2.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -148,7 +148,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">Self Bot library 1.1.2 documentation</span>
+  <span class="sidebar-brand-text">AsyncCore library 1.2.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -159,17 +159,32 @@
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installing.html">Installing</a></li>
-<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">SelfBotClient Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBotClient Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">AsyncCore Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of AsyncCore Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="gateway/index.html">Gateway</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Gateway</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="gateway/Gateway.html">Gateway</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gateway/Enums.html">Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gateway/Event.html">Event</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gateway/Response.html">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="commands/index.html">Commands</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Commands</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="commands/Application.html">Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/SlashCommands.html">SlashCommands</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="Client.html">Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Enums.html">Enums</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Http.html">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Activity.html">Activity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PermissionBuilder.html">PermissionBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Typings.html">Typings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="User.html">UserClient</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Tasks.html">Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Cache.html">Cache</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../examples/basic_spam.html">Basic Spam</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/basic_permissions.html">Basic Permissions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/tasks.html">Tasks</a></li>
@@ -209,37 +224,61 @@
           </label>
         </div>
         <article role="main">
-          <section id="selfbotclient-reference">
-<h1>SelfBotClient Reference<a class="headerlink" href="#selfbotclient-reference" title="Permalink to this heading">#</a></h1>
+          <section id="asynccore-reference">
+<h1>AsyncCore Reference<a class="headerlink" href="#asynccore-reference" title="Permalink to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="gateway/index.html">Gateway</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gateway/Gateway.html">Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gateway/Enums.html">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gateway/Event.html">Event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gateway/Response.html">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="commands/index.html">Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands/Application.html">Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/SlashCommands.html">SlashCommands</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Client.html">Client</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Client.html#a-selfbotclient-client-is-used-to-send-methods-to-all-selfbotclient-user">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.client</span></code> is used to send methods to all <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.user</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Client.html#a-asynccore-client-is-used-to-send-methods-to-all-asynccore-user">A <code class="xref py py-class docutils literal notranslate"><span class="pre">asynccore.client</span></code> is used to send methods to all <code class="xref py py-class docutils literal notranslate"><span class="pre">asynccore.user</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Enums.html">Enums</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Enums.html#a-selfbotclient-enums-contains-channel-types-or-all-permissions">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.enums</span></code> contains channel types or all permissions.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Enums.html#a-asynccore-enums-contains-channel-types-or-all-permissions">A <code class="xref py py-class docutils literal notranslate"><span class="pre">asynccore.enums</span></code> contains channel types or all permissions.</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Http.html">HTTP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Http.html#a-selfbotclient-http-it-mainly-handles-requests-to-discord-or-detect-ratelimit">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.http</span></code> It mainly handles requests to discord or detect ratelimit.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Http.html#a-asynccore-http-it-mainly-handles-requests-to-discord-or-detect-ratelimit">A <code class="xref py py-class docutils literal notranslate"><span class="pre">asynccore.http</span></code> It mainly handles requests to discord or detect ratelimit.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Components.html">Components</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Components.html#a-asynccore-components-allows-you-to-interact-with-buttons-or-selectmenu">A <code class="xref py py-class docutils literal notranslate"><span class="pre">asynccore.components</span></code> allows you to interact with buttons or selectmenu.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Activity.html">Activity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Activity.html#a-asynccore-activity-allows-you-to-construct-the-activity-you-want-to-have-in-your-accounts">A <code class="xref py py-class docutils literal notranslate"><span class="pre">asynccore.activity</span></code> allows you to construct the activity you want to have in your accounts.</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="PermissionBuilder.html">PermissionBuilder</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="PermissionBuilder.html#a-selfbotclient-permissionbuilder-allows-you-to-build-the-permission-value-taken-in-the-arguments-of-some-methods">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.permissionbuilder</span></code> allows you to build the permission value taken in the arguments of some methods.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PermissionBuilder.html#a-asynccore-permissionbuilder-allows-you-to-build-the-permission-value-taken-in-the-arguments-of-some-methods">A <code class="xref py py-class docutils literal notranslate"><span class="pre">asynccore.permissionbuilder</span></code> allows you to build the permission value taken in the arguments of some methods.</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Typings.html">Typings</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Typings.html#a-selfbotclient-typings-it-is-responsible-for-certain-types-of-data-e-g-dict-rgb-color">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.typings</span></code> It is responsible for certain types of data. E.g. Dict RGB COLOR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Typings.html#a-asynccore-typings-it-is-responsible-for-certain-types-of-data-e-g-dict-rgb-color">A <code class="xref py py-class docutils literal notranslate"><span class="pre">asynccore.typings</span></code> It is responsible for certain types of data. E.g. Dict RGB COLOR</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="User.html">UserClient</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="User.html#a-selfbotclient-user-is-the-main-class-of-each-user-here-you-will-find-methods-which-are-executed-only-for-one-user">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.user</span></code> is the main class of each user. Here you will find methods, which are executed only for one user.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="User.html#a-asynccore-user-is-the-main-class-of-each-user-here-you-will-find-methods-which-are-executed-only-for-one-user">A <code class="xref py py-class docutils literal notranslate"><span class="pre">asynccore.user</span></code> is the main class of each user. Here you will find methods, which are executed only for one user.</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Tasks.html">Tasks</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Tasks.html#a-selfbotclient-tasks-function-allows-you-to-run-multiple-tasks-simultaneously">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.tasks</span></code> function allows you to run multiple tasks simultaneously</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tasks.html#a-asynccore-tasks-function-allows-you-to-run-multiple-tasks-simultaneously">A <code class="xref py py-class docutils literal notranslate"><span class="pre">asynccore.tasks</span></code> function allows you to run multiple tasks simultaneously</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Cache.html">Cache</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Cache.html#a-asynccore-cache-is-responsible-for-storing-data-such-as-channels-servers-or-even-messages">A <code class="xref py py-class docutils literal notranslate"><span class="pre">asynccore.cache</span></code> is responsible for storing data such as channels, servers or even messages.</a></li>
 </ul>
 </li>
 </ul>
@@ -251,12 +290,12 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="Client.html">
+          <a class="next-page" href="gateway/index.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Client</div>
+                <div class="title">Gateway</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>

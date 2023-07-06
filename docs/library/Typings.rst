@@ -1,10 +1,10 @@
 Typings
 ======
 
-A :class:`SelfBotClient.typings` It is responsible for certain types of data. E.g. Dict RGB COLOR
+A :class:`asynccore.typings` It is responsible for certain types of data. E.g. Dict RGB COLOR
 ---------------------------
 
-.. automodule:: SelfBotClient.typings
+.. automodule:: asynccore.typings
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,7 +1,0 @@
-Self Bot Client
-=======
-
-.. toctree::
-   :maxdepth: 1
-
-   SelfBotClient

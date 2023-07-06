@@ -2,11 +2,11 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="HTTP" href="Http.html" /><link rel="prev" title="Client" href="Client.html" />
 
-    <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>Enums - Self Bot library 1.1.2 documentation</title>
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
+        <title>Enums - AsyncCore library 1.2.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
@@ -125,7 +125,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Self Bot library 1.1.2 documentation</div></a>
+      <a href="../index.html"><div class="brand">AsyncCore library 1.2.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -148,7 +148,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">Self Bot library 1.1.2 documentation</span>
+  <span class="sidebar-brand-text">AsyncCore library 1.2.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -159,17 +159,24 @@
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installing.html">Installing</a></li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">SelfBotClient Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBotClient Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">AsyncCore Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of AsyncCore Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="gateway/index.html">Gateway</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Gateway</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="gateway/Gateway.html">Gateway</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gateway/Enums.html">Enums</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="Client.html">Client</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Enums</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Http.html">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Activity.html">Activity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PermissionBuilder.html">PermissionBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Typings.html">Typings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="User.html">UserClient</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Tasks.html">Tasks</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../examples/basic_spam.html">Basic Spam</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/basic_permissions.html">Basic Permissions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/tasks.html">Tasks</a></li>
@@ -211,207 +218,285 @@
         <article role="main">
           <section id="enums">
 <h1>Enums<a class="headerlink" href="#enums" title="Permalink to this heading">#</a></h1>
-<section id="a-selfbotclient-enums-contains-channel-types-or-all-permissions">
-<h2>A <a class="reference internal" href="#module-SelfBotClient.enums" title="SelfBotClient.enums"><code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.enums</span></code></a> contains channel types or all permissions.<a class="headerlink" href="#a-selfbotclient-enums-contains-channel-types-or-all-permissions" title="Permalink to this heading">#</a></h2>
-<span class="target" id="module-SelfBotClient.enums"></span><dl class="py class">
-<dt class="sig sig-object py" id="SelfBotClient.enums.ChannelType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.enums.</span></span><span class="sig-name descname"><span class="pre">ChannelType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/enums.html#ChannelType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.enums.ChannelType" title="Permalink to this definition">#</a></dt>
+<section id="a-asynccore-enums-contains-channel-types-or-all-permissions">
+<h2>A <a class="reference internal" href="#module-asynccore.enums" title="asynccore.enums"><code class="xref py py-class docutils literal notranslate"><span class="pre">asynccore.enums</span></code></a> contains channel types or all permissions.<a class="headerlink" href="#a-asynccore-enums-contains-channel-types-or-all-permissions" title="Permalink to this heading">#</a></h2>
+<span class="target" id="module-asynccore.enums"></span><dl class="py class">
+<dt class="sig sig-object py" id="asynccore.enums.ActivityPlatform">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asynccore.enums.</span></span><span class="sig-name descname"><span class="pre">ActivityPlatform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/asynccore/enums.html#ActivityPlatform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#asynccore.enums.ActivityPlatform" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.ChannelType.CATEGORY_CHANNEL">
-<span class="sig-name descname"><span class="pre">CATEGORY_CHANNEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#SelfBotClient.enums.ChannelType.CATEGORY_CHANNEL" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.ActivityPlatform.DESKTOP">
+<span class="sig-name descname"><span class="pre">DESKTOP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Windows'</span></em><a class="headerlink" href="#asynccore.enums.ActivityPlatform.DESKTOP" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.ChannelType.TEXT_CHANNEL">
-<span class="sig-name descname"><span class="pre">TEXT_CHANNEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#SelfBotClient.enums.ChannelType.TEXT_CHANNEL" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.ChannelType.VOICE_CHANNEL">
-<span class="sig-name descname"><span class="pre">VOICE_CHANNEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#SelfBotClient.enums.ChannelType.VOICE_CHANNEL" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.ActivityPlatform.MOBILE">
+<span class="sig-name descname"><span class="pre">MOBILE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Android'</span></em><a class="headerlink" href="#asynccore.enums.ActivityPlatform.MOBILE" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Discord">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.enums.</span></span><span class="sig-name descname"><span class="pre">Discord</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/enums.html#Discord"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.enums.Discord" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.ActivityStatus">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asynccore.enums.</span></span><span class="sig-name descname"><span class="pre">ActivityStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/asynccore/enums.html#ActivityStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#asynccore.enums.ActivityStatus" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Discord.ENDPOINT">
-<span class="sig-name descname"><span class="pre">ENDPOINT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://discord.com/api/v{}/'</span></em><a class="headerlink" href="#SelfBotClient.enums.Discord.ENDPOINT" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.ActivityStatus.DND">
+<span class="sig-name descname"><span class="pre">DND</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dnd'</span></em><a class="headerlink" href="#asynccore.enums.ActivityStatus.DND" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="asynccore.enums.ActivityStatus.IDLE">
+<span class="sig-name descname"><span class="pre">IDLE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'idle'</span></em><a class="headerlink" href="#asynccore.enums.ActivityStatus.IDLE" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="asynccore.enums.ActivityStatus.OFFLINE">
+<span class="sig-name descname"><span class="pre">OFFLINE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'offline'</span></em><a class="headerlink" href="#asynccore.enums.ActivityStatus.OFFLINE" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="asynccore.enums.ActivityStatus.ONLINE">
+<span class="sig-name descname"><span class="pre">ONLINE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'online'</span></em><a class="headerlink" href="#asynccore.enums.ActivityStatus.ONLINE" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SelfBotClient.enums.</span></span><span class="sig-name descname"><span class="pre">Permissions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/SelfBotClient/enums.html#Permissions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SelfBotClient.enums.Permissions" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.ActivityType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asynccore.enums.</span></span><span class="sig-name descname"><span class="pre">ActivityType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/asynccore/enums.html#ActivityType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#asynccore.enums.ActivityType" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.ADD_REACTIONS">
-<span class="sig-name descname"><span class="pre">ADD_REACTIONS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.ADD_REACTIONS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.ActivityType.COMPETING">
+<span class="sig-name descname"><span class="pre">COMPETING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#asynccore.enums.ActivityType.COMPETING" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.ADMINISTRATOR">
-<span class="sig-name descname"><span class="pre">ADMINISTRATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.ADMINISTRATOR" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.ActivityType.GAME">
+<span class="sig-name descname"><span class="pre">GAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#asynccore.enums.ActivityType.GAME" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.ATTACH_FILES">
-<span class="sig-name descname"><span class="pre">ATTACH_FILES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32768</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.ATTACH_FILES" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.ActivityType.LISTENING">
+<span class="sig-name descname"><span class="pre">LISTENING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#asynccore.enums.ActivityType.LISTENING" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.BAN_MEMBERS">
-<span class="sig-name descname"><span class="pre">BAN_MEMBERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.BAN_MEMBERS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.ActivityType.STREAMING">
+<span class="sig-name descname"><span class="pre">STREAMING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#asynccore.enums.ActivityType.STREAMING" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.CHANGE_NICKNAME">
-<span class="sig-name descname"><span class="pre">CHANGE_NICKNAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">67108864</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.CHANGE_NICKNAME" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.ActivityType.WATCHING">
+<span class="sig-name descname"><span class="pre">WATCHING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#asynccore.enums.ActivityType.WATCHING" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asynccore.enums.ChannelType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asynccore.enums.</span></span><span class="sig-name descname"><span class="pre">ChannelType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/asynccore/enums.html#ChannelType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#asynccore.enums.ChannelType" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="asynccore.enums.ChannelType.CATEGORY_CHANNEL">
+<span class="sig-name descname"><span class="pre">CATEGORY_CHANNEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#asynccore.enums.ChannelType.CATEGORY_CHANNEL" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.CONNECT">
-<span class="sig-name descname"><span class="pre">CONNECT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1048576</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.CONNECT" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.ChannelType.TEXT_CHANNEL">
+<span class="sig-name descname"><span class="pre">TEXT_CHANNEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#asynccore.enums.ChannelType.TEXT_CHANNEL" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.CREATE_INSTANT_INVITE">
-<span class="sig-name descname"><span class="pre">CREATE_INSTANT_INVITE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.CREATE_INSTANT_INVITE" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.ChannelType.VOICE_CHANNEL">
+<span class="sig-name descname"><span class="pre">VOICE_CHANNEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#asynccore.enums.ChannelType.VOICE_CHANNEL" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asynccore.enums.Discord">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asynccore.enums.</span></span><span class="sig-name descname"><span class="pre">Discord</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/asynccore/enums.html#Discord"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#asynccore.enums.Discord" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="asynccore.enums.Discord.ENDPOINT">
+<span class="sig-name descname"><span class="pre">ENDPOINT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://discord.com/api/v{}/'</span></em><a class="headerlink" href="#asynccore.enums.Discord.ENDPOINT" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.CREATE_PRIVATE_THREADS">
-<span class="sig-name descname"><span class="pre">CREATE_PRIVATE_THREADS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">68719476736</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.CREATE_PRIVATE_THREADS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Discord.ENDPONT_GATEWAY">
+<span class="sig-name descname"><span class="pre">ENDPONT_GATEWAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'wss://gateway.discord.gg/?v={}&amp;encoding=json'</span></em><a class="headerlink" href="#asynccore.enums.Discord.ENDPONT_GATEWAY" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="asynccore.enums.Permissions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">asynccore.enums.</span></span><span class="sig-name descname"><span class="pre">Permissions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/asynccore/enums.html#Permissions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#asynccore.enums.Permissions" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.ADD_REACTIONS">
+<span class="sig-name descname"><span class="pre">ADD_REACTIONS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#asynccore.enums.Permissions.ADD_REACTIONS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.CREATE_PUBLIC_THREADS">
-<span class="sig-name descname"><span class="pre">CREATE_PUBLIC_THREADS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">34359738368</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.CREATE_PUBLIC_THREADS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.ADMINISTRATOR">
+<span class="sig-name descname"><span class="pre">ADMINISTRATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#asynccore.enums.Permissions.ADMINISTRATOR" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.DEAFEN_MEMBERS">
-<span class="sig-name descname"><span class="pre">DEAFEN_MEMBERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8388608</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.DEAFEN_MEMBERS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.ATTACH_FILES">
+<span class="sig-name descname"><span class="pre">ATTACH_FILES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32768</span></em><a class="headerlink" href="#asynccore.enums.Permissions.ATTACH_FILES" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.EMBED_LINKS">
-<span class="sig-name descname"><span class="pre">EMBED_LINKS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16384</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.EMBED_LINKS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.BAN_MEMBERS">
+<span class="sig-name descname"><span class="pre">BAN_MEMBERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#asynccore.enums.Permissions.BAN_MEMBERS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.KICK_MEMBERS">
-<span class="sig-name descname"><span class="pre">KICK_MEMBERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.KICK_MEMBERS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.CHANGE_NICKNAME">
+<span class="sig-name descname"><span class="pre">CHANGE_NICKNAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">67108864</span></em><a class="headerlink" href="#asynccore.enums.Permissions.CHANGE_NICKNAME" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_CHANNELS">
-<span class="sig-name descname"><span class="pre">MANAGE_CHANNELS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_CHANNELS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.CONNECT">
+<span class="sig-name descname"><span class="pre">CONNECT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1048576</span></em><a class="headerlink" href="#asynccore.enums.Permissions.CONNECT" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_GUILD">
-<span class="sig-name descname"><span class="pre">MANAGE_GUILD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_GUILD" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.CREATE_INSTANT_INVITE">
+<span class="sig-name descname"><span class="pre">CREATE_INSTANT_INVITE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#asynccore.enums.Permissions.CREATE_INSTANT_INVITE" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_MESSAGES">
-<span class="sig-name descname"><span class="pre">MANAGE_MESSAGES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8192</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_MESSAGES" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.CREATE_PRIVATE_THREADS">
+<span class="sig-name descname"><span class="pre">CREATE_PRIVATE_THREADS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">68719476736</span></em><a class="headerlink" href="#asynccore.enums.Permissions.CREATE_PRIVATE_THREADS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_NICKNAMES">
-<span class="sig-name descname"><span class="pre">MANAGE_NICKNAMES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">134217728</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_NICKNAMES" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.CREATE_PUBLIC_THREADS">
+<span class="sig-name descname"><span class="pre">CREATE_PUBLIC_THREADS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">34359738368</span></em><a class="headerlink" href="#asynccore.enums.Permissions.CREATE_PUBLIC_THREADS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_ROLES">
-<span class="sig-name descname"><span class="pre">MANAGE_ROLES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">268435456</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_ROLES" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.DEAFEN_MEMBERS">
+<span class="sig-name descname"><span class="pre">DEAFEN_MEMBERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8388608</span></em><a class="headerlink" href="#asynccore.enums.Permissions.DEAFEN_MEMBERS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_THREADS">
-<span class="sig-name descname"><span class="pre">MANAGE_THREADS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">17179869184</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_THREADS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.EMBED_LINKS">
+<span class="sig-name descname"><span class="pre">EMBED_LINKS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16384</span></em><a class="headerlink" href="#asynccore.enums.Permissions.EMBED_LINKS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MANAGE_WEBHOOKS">
-<span class="sig-name descname"><span class="pre">MANAGE_WEBHOOKS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">536870912</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MANAGE_WEBHOOKS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.KICK_MEMBERS">
+<span class="sig-name descname"><span class="pre">KICK_MEMBERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#asynccore.enums.Permissions.KICK_MEMBERS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MENTION_EVERYONE">
-<span class="sig-name descname"><span class="pre">MENTION_EVERYONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">131072</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MENTION_EVERYONE" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.MANAGE_CHANNELS">
+<span class="sig-name descname"><span class="pre">MANAGE_CHANNELS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#asynccore.enums.Permissions.MANAGE_CHANNELS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MODERATE_MEMBERS">
-<span class="sig-name descname"><span class="pre">MODERATE_MEMBERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1099511627776</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MODERATE_MEMBERS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.MANAGE_GUILD">
+<span class="sig-name descname"><span class="pre">MANAGE_GUILD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#asynccore.enums.Permissions.MANAGE_GUILD" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MOVE_MEMBERS">
-<span class="sig-name descname"><span class="pre">MOVE_MEMBERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16777216</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MOVE_MEMBERS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.MANAGE_MESSAGES">
+<span class="sig-name descname"><span class="pre">MANAGE_MESSAGES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8192</span></em><a class="headerlink" href="#asynccore.enums.Permissions.MANAGE_MESSAGES" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.MUTE_MEMBERS">
-<span class="sig-name descname"><span class="pre">MUTE_MEMBERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4194304</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.MUTE_MEMBERS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.MANAGE_NICKNAMES">
+<span class="sig-name descname"><span class="pre">MANAGE_NICKNAMES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">134217728</span></em><a class="headerlink" href="#asynccore.enums.Permissions.MANAGE_NICKNAMES" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.PRIORITY_SPEAKER">
-<span class="sig-name descname"><span class="pre">PRIORITY_SPEAKER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">256</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.PRIORITY_SPEAKER" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.MANAGE_ROLES">
+<span class="sig-name descname"><span class="pre">MANAGE_ROLES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">268435456</span></em><a class="headerlink" href="#asynccore.enums.Permissions.MANAGE_ROLES" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.READ_MESSAGE_HISTORY">
-<span class="sig-name descname"><span class="pre">READ_MESSAGE_HISTORY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">65536</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.READ_MESSAGE_HISTORY" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.MANAGE_THREADS">
+<span class="sig-name descname"><span class="pre">MANAGE_THREADS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">17179869184</span></em><a class="headerlink" href="#asynccore.enums.Permissions.MANAGE_THREADS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.SEND_MESSAGES">
-<span class="sig-name descname"><span class="pre">SEND_MESSAGES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2048</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.SEND_MESSAGES" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.MANAGE_WEBHOOKS">
+<span class="sig-name descname"><span class="pre">MANAGE_WEBHOOKS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">536870912</span></em><a class="headerlink" href="#asynccore.enums.Permissions.MANAGE_WEBHOOKS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.SEND_TTS_MESSAGES">
-<span class="sig-name descname"><span class="pre">SEND_TTS_MESSAGES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.SEND_TTS_MESSAGES" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.MENTION_EVERYONE">
+<span class="sig-name descname"><span class="pre">MENTION_EVERYONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">131072</span></em><a class="headerlink" href="#asynccore.enums.Permissions.MENTION_EVERYONE" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.SPEAK">
-<span class="sig-name descname"><span class="pre">SPEAK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2097152</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.SPEAK" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.MODERATE_MEMBERS">
+<span class="sig-name descname"><span class="pre">MODERATE_MEMBERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1099511627776</span></em><a class="headerlink" href="#asynccore.enums.Permissions.MODERATE_MEMBERS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.STREAM">
-<span class="sig-name descname"><span class="pre">STREAM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">512</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.STREAM" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.MOVE_MEMBERS">
+<span class="sig-name descname"><span class="pre">MOVE_MEMBERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16777216</span></em><a class="headerlink" href="#asynccore.enums.Permissions.MOVE_MEMBERS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.USE_EXTERNAL_EMOJIS">
-<span class="sig-name descname"><span class="pre">USE_EXTERNAL_EMOJIS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">262144</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.USE_EXTERNAL_EMOJIS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.MUTE_MEMBERS">
+<span class="sig-name descname"><span class="pre">MUTE_MEMBERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4194304</span></em><a class="headerlink" href="#asynccore.enums.Permissions.MUTE_MEMBERS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.VIEW_AUDIT_LOG">
-<span class="sig-name descname"><span class="pre">VIEW_AUDIT_LOG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">128</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.VIEW_AUDIT_LOG" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.PRIORITY_SPEAKER">
+<span class="sig-name descname"><span class="pre">PRIORITY_SPEAKER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">256</span></em><a class="headerlink" href="#asynccore.enums.Permissions.PRIORITY_SPEAKER" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.VIEW_CHANNEL">
-<span class="sig-name descname"><span class="pre">VIEW_CHANNEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1024</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.VIEW_CHANNEL" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.READ_MESSAGE_HISTORY">
+<span class="sig-name descname"><span class="pre">READ_MESSAGE_HISTORY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">65536</span></em><a class="headerlink" href="#asynccore.enums.Permissions.READ_MESSAGE_HISTORY" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="SelfBotClient.enums.Permissions.VIEW_GUILD_INSIGHTS">
-<span class="sig-name descname"><span class="pre">VIEW_GUILD_INSIGHTS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">524288</span></em><a class="headerlink" href="#SelfBotClient.enums.Permissions.VIEW_GUILD_INSIGHTS" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.SEND_MESSAGES">
+<span class="sig-name descname"><span class="pre">SEND_MESSAGES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2048</span></em><a class="headerlink" href="#asynccore.enums.Permissions.SEND_MESSAGES" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.SEND_TTS_MESSAGES">
+<span class="sig-name descname"><span class="pre">SEND_TTS_MESSAGES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#asynccore.enums.Permissions.SEND_TTS_MESSAGES" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.SPEAK">
+<span class="sig-name descname"><span class="pre">SPEAK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2097152</span></em><a class="headerlink" href="#asynccore.enums.Permissions.SPEAK" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.STREAM">
+<span class="sig-name descname"><span class="pre">STREAM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">512</span></em><a class="headerlink" href="#asynccore.enums.Permissions.STREAM" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.USE_EXTERNAL_EMOJIS">
+<span class="sig-name descname"><span class="pre">USE_EXTERNAL_EMOJIS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">262144</span></em><a class="headerlink" href="#asynccore.enums.Permissions.USE_EXTERNAL_EMOJIS" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.VIEW_AUDIT_LOG">
+<span class="sig-name descname"><span class="pre">VIEW_AUDIT_LOG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">128</span></em><a class="headerlink" href="#asynccore.enums.Permissions.VIEW_AUDIT_LOG" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.VIEW_CHANNEL">
+<span class="sig-name descname"><span class="pre">VIEW_CHANNEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1024</span></em><a class="headerlink" href="#asynccore.enums.Permissions.VIEW_CHANNEL" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="asynccore.enums.Permissions.VIEW_GUILD_INSIGHTS">
+<span class="sig-name descname"><span class="pre">VIEW_GUILD_INSIGHTS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">524288</span></em><a class="headerlink" href="#asynccore.enums.Permissions.VIEW_GUILD_INSIGHTS" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -475,51 +560,72 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Enums</a><ul>
-<li><a class="reference internal" href="#a-selfbotclient-enums-contains-channel-types-or-all-permissions">A <code class="xref py py-class docutils literal notranslate"><span class="pre">SelfBotClient.enums</span></code> contains channel types or all permissions.</a><ul>
-<li><a class="reference internal" href="#SelfBotClient.enums.ChannelType"><code class="docutils literal notranslate"><span class="pre">ChannelType</span></code></a><ul>
-<li><a class="reference internal" href="#SelfBotClient.enums.ChannelType.CATEGORY_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.CATEGORY_CHANNEL</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.ChannelType.TEXT_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.TEXT_CHANNEL</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.ChannelType.VOICE_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.VOICE_CHANNEL</span></code></a></li>
+<li><a class="reference internal" href="#a-asynccore-enums-contains-channel-types-or-all-permissions">A <code class="xref py py-class docutils literal notranslate"><span class="pre">asynccore.enums</span></code> contains channel types or all permissions.</a><ul>
+<li><a class="reference internal" href="#asynccore.enums.ActivityPlatform"><code class="docutils literal notranslate"><span class="pre">ActivityPlatform</span></code></a><ul>
+<li><a class="reference internal" href="#asynccore.enums.ActivityPlatform.DESKTOP"><code class="docutils literal notranslate"><span class="pre">ActivityPlatform.DESKTOP</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.ActivityPlatform.MOBILE"><code class="docutils literal notranslate"><span class="pre">ActivityPlatform.MOBILE</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Discord"><code class="docutils literal notranslate"><span class="pre">Discord</span></code></a><ul>
-<li><a class="reference internal" href="#SelfBotClient.enums.Discord.ENDPOINT"><code class="docutils literal notranslate"><span class="pre">Discord.ENDPOINT</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.ActivityStatus"><code class="docutils literal notranslate"><span class="pre">ActivityStatus</span></code></a><ul>
+<li><a class="reference internal" href="#asynccore.enums.ActivityStatus.DND"><code class="docutils literal notranslate"><span class="pre">ActivityStatus.DND</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.ActivityStatus.IDLE"><code class="docutils literal notranslate"><span class="pre">ActivityStatus.IDLE</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.ActivityStatus.OFFLINE"><code class="docutils literal notranslate"><span class="pre">ActivityStatus.OFFLINE</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.ActivityStatus.ONLINE"><code class="docutils literal notranslate"><span class="pre">ActivityStatus.ONLINE</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions"><code class="docutils literal notranslate"><span class="pre">Permissions</span></code></a><ul>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.ADD_REACTIONS"><code class="docutils literal notranslate"><span class="pre">Permissions.ADD_REACTIONS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.ADMINISTRATOR"><code class="docutils literal notranslate"><span class="pre">Permissions.ADMINISTRATOR</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.ATTACH_FILES"><code class="docutils literal notranslate"><span class="pre">Permissions.ATTACH_FILES</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.BAN_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.BAN_MEMBERS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.CHANGE_NICKNAME"><code class="docutils literal notranslate"><span class="pre">Permissions.CHANGE_NICKNAME</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.CONNECT"><code class="docutils literal notranslate"><span class="pre">Permissions.CONNECT</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.CREATE_INSTANT_INVITE"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_INSTANT_INVITE</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.CREATE_PRIVATE_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_PRIVATE_THREADS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.CREATE_PUBLIC_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_PUBLIC_THREADS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.DEAFEN_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.DEAFEN_MEMBERS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.EMBED_LINKS"><code class="docutils literal notranslate"><span class="pre">Permissions.EMBED_LINKS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.KICK_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.KICK_MEMBERS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_CHANNELS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_CHANNELS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_GUILD"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_GUILD</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_MESSAGES</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_NICKNAMES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_NICKNAMES</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_ROLES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_ROLES</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_THREADS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MANAGE_WEBHOOKS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_WEBHOOKS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MENTION_EVERYONE"><code class="docutils literal notranslate"><span class="pre">Permissions.MENTION_EVERYONE</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MODERATE_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.MODERATE_MEMBERS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MOVE_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.MOVE_MEMBERS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.MUTE_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.MUTE_MEMBERS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.PRIORITY_SPEAKER"><code class="docutils literal notranslate"><span class="pre">Permissions.PRIORITY_SPEAKER</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.READ_MESSAGE_HISTORY"><code class="docutils literal notranslate"><span class="pre">Permissions.READ_MESSAGE_HISTORY</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.SEND_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.SEND_MESSAGES</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.SEND_TTS_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.SEND_TTS_MESSAGES</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.SPEAK"><code class="docutils literal notranslate"><span class="pre">Permissions.SPEAK</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.STREAM"><code class="docutils literal notranslate"><span class="pre">Permissions.STREAM</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.USE_EXTERNAL_EMOJIS"><code class="docutils literal notranslate"><span class="pre">Permissions.USE_EXTERNAL_EMOJIS</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.VIEW_AUDIT_LOG"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_AUDIT_LOG</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.VIEW_CHANNEL"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_CHANNEL</span></code></a></li>
-<li><a class="reference internal" href="#SelfBotClient.enums.Permissions.VIEW_GUILD_INSIGHTS"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_GUILD_INSIGHTS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.ActivityType"><code class="docutils literal notranslate"><span class="pre">ActivityType</span></code></a><ul>
+<li><a class="reference internal" href="#asynccore.enums.ActivityType.COMPETING"><code class="docutils literal notranslate"><span class="pre">ActivityType.COMPETING</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.ActivityType.GAME"><code class="docutils literal notranslate"><span class="pre">ActivityType.GAME</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.ActivityType.LISTENING"><code class="docutils literal notranslate"><span class="pre">ActivityType.LISTENING</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.ActivityType.STREAMING"><code class="docutils literal notranslate"><span class="pre">ActivityType.STREAMING</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.ActivityType.WATCHING"><code class="docutils literal notranslate"><span class="pre">ActivityType.WATCHING</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#asynccore.enums.ChannelType"><code class="docutils literal notranslate"><span class="pre">ChannelType</span></code></a><ul>
+<li><a class="reference internal" href="#asynccore.enums.ChannelType.CATEGORY_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.CATEGORY_CHANNEL</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.ChannelType.TEXT_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.TEXT_CHANNEL</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.ChannelType.VOICE_CHANNEL"><code class="docutils literal notranslate"><span class="pre">ChannelType.VOICE_CHANNEL</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#asynccore.enums.Discord"><code class="docutils literal notranslate"><span class="pre">Discord</span></code></a><ul>
+<li><a class="reference internal" href="#asynccore.enums.Discord.ENDPOINT"><code class="docutils literal notranslate"><span class="pre">Discord.ENDPOINT</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Discord.ENDPONT_GATEWAY"><code class="docutils literal notranslate"><span class="pre">Discord.ENDPONT_GATEWAY</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions"><code class="docutils literal notranslate"><span class="pre">Permissions</span></code></a><ul>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.ADD_REACTIONS"><code class="docutils literal notranslate"><span class="pre">Permissions.ADD_REACTIONS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.ADMINISTRATOR"><code class="docutils literal notranslate"><span class="pre">Permissions.ADMINISTRATOR</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.ATTACH_FILES"><code class="docutils literal notranslate"><span class="pre">Permissions.ATTACH_FILES</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.BAN_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.BAN_MEMBERS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.CHANGE_NICKNAME"><code class="docutils literal notranslate"><span class="pre">Permissions.CHANGE_NICKNAME</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.CONNECT"><code class="docutils literal notranslate"><span class="pre">Permissions.CONNECT</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.CREATE_INSTANT_INVITE"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_INSTANT_INVITE</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.CREATE_PRIVATE_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_PRIVATE_THREADS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.CREATE_PUBLIC_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.CREATE_PUBLIC_THREADS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.DEAFEN_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.DEAFEN_MEMBERS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.EMBED_LINKS"><code class="docutils literal notranslate"><span class="pre">Permissions.EMBED_LINKS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.KICK_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.KICK_MEMBERS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.MANAGE_CHANNELS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_CHANNELS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.MANAGE_GUILD"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_GUILD</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.MANAGE_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_MESSAGES</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.MANAGE_NICKNAMES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_NICKNAMES</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.MANAGE_ROLES"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_ROLES</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.MANAGE_THREADS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_THREADS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.MANAGE_WEBHOOKS"><code class="docutils literal notranslate"><span class="pre">Permissions.MANAGE_WEBHOOKS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.MENTION_EVERYONE"><code class="docutils literal notranslate"><span class="pre">Permissions.MENTION_EVERYONE</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.MODERATE_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.MODERATE_MEMBERS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.MOVE_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.MOVE_MEMBERS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.MUTE_MEMBERS"><code class="docutils literal notranslate"><span class="pre">Permissions.MUTE_MEMBERS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.PRIORITY_SPEAKER"><code class="docutils literal notranslate"><span class="pre">Permissions.PRIORITY_SPEAKER</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.READ_MESSAGE_HISTORY"><code class="docutils literal notranslate"><span class="pre">Permissions.READ_MESSAGE_HISTORY</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.SEND_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.SEND_MESSAGES</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.SEND_TTS_MESSAGES"><code class="docutils literal notranslate"><span class="pre">Permissions.SEND_TTS_MESSAGES</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.SPEAK"><code class="docutils literal notranslate"><span class="pre">Permissions.SPEAK</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.STREAM"><code class="docutils literal notranslate"><span class="pre">Permissions.STREAM</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.USE_EXTERNAL_EMOJIS"><code class="docutils literal notranslate"><span class="pre">Permissions.USE_EXTERNAL_EMOJIS</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.VIEW_AUDIT_LOG"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_AUDIT_LOG</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.VIEW_CHANNEL"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_CHANNEL</span></code></a></li>
+<li><a class="reference internal" href="#asynccore.enums.Permissions.VIEW_GUILD_INSIGHTS"><code class="docutils literal notranslate"><span class="pre">Permissions.VIEW_GUILD_INSIGHTS</span></code></a></li>
 </ul>
 </li>
 </ul>

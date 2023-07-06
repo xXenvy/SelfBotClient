@@ -4,10 +4,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
-    <!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>aiohttp.client_reqrep - Self Bot Client 1.0.0 documentation</title>
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
+        <title>aiohttp.client_reqrep - Self Bot library 1.2.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css\rtd_sphinx_search.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -122,7 +124,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">Self Bot Client 1.0.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">Self Bot library 1.2.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -145,7 +147,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
   
-  <span class="sidebar-brand-text">Self Bot Client 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">Self Bot library 1.2.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -155,8 +157,27 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../modules.html">SelfBot</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBot</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../SelfBotClient.html">SelfBotClient package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installing.html">Installing</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../library/index.html">SelfBotClient Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of SelfBotClient Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../library/gateway/index.html">Gateway</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Gateway</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../library/gateway/Gateway.html">Gateway</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Client.html">Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Enums.html">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Http.html">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Activity.html">Presence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/PermissionBuilder.html">PermissionBuilder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Typings.html">Typings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/User.html">UserClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../library/Tasks.html">Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/index.html">Code Examples</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Code Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/basic_spam.html">Basic Spam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/basic_permissions.html">Basic Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/tasks.html">Tasks</a></li>
 </ul>
 </li>
 </ul>
@@ -553,7 +574,7 @@
         <span class="k">return</span> <span class="n">RequestInfo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">original_url</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">update_host</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="n">URL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Update destination host, port and connection type (ssl).&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update destination host, port and connection type (ssl).&quot;&quot;&quot;</span>
         <span class="c1"># get host/port</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">url</span><span class="o">.</span><span class="n">raw_host</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">InvalidURL</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
@@ -564,7 +585,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">BasicAuth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">update_version</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">http</span><span class="o">.</span><span class="n">HttpVersion</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Convert request version to two elements tuple.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert request version to two elements tuple.</span>
 
 <span class="sd">        parser HTTP version &#39;1.1&#39; =&gt; (1, 1)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -575,11 +596,11 @@
             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;Can not parse http version number: </span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+                <span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
 
     <span class="k">def</span> <span class="nf">update_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LooseHeaders</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Update request headers.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update request headers.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span> <span class="n">CIMultiDict</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">CIMultiDict</span><span class="p">()</span>
 
         <span class="c1"># add host</span>
@@ -616,7 +637,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="n">hdrs</span><span class="o">.</span><span class="n">USER_AGENT</span><span class="p">]</span> <span class="o">=</span> <span class="n">SERVER_SOFTWARE</span>
 
     <span class="k">def</span> <span class="nf">update_cookies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cookies</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LooseCookies</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Update request cookies header.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update request cookies header.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">cookies</span><span class="p">:</span>
             <span class="k">return</span>
 
@@ -641,7 +662,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="n">hdrs</span><span class="o">.</span><span class="n">COOKIE</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">header</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">update_content_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Set request content encoding.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set request content encoding.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
 
@@ -658,7 +679,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">chunked</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># enable chunked, no need to deal with length</span>
 
     <span class="k">def</span> <span class="nf">update_transfer_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Analyze transfer-encoding header.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Analyze transfer-encoding header.&quot;&quot;&quot;</span>
         <span class="n">te</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">hdrs</span><span class="o">.</span><span class="n">TRANSFER_ENCODING</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="s2">&quot;chunked&quot;</span> <span class="ow">in</span> <span class="n">te</span><span class="p">:</span>
@@ -680,7 +701,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="n">hdrs</span><span class="o">.</span><span class="n">CONTENT_LENGTH</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">update_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">BasicAuth</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Set basic auth.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set basic auth.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">auth</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">auth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth</span>
         <span class="k">if</span> <span class="n">auth</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -763,7 +784,7 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">write_bytes</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">writer</span><span class="p">:</span> <span class="n">AbstractStreamWriter</span><span class="p">,</span> <span class="n">conn</span><span class="p">:</span> <span class="s2">&quot;Connection&quot;</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Support coroutines that yields bytes objects.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Support coroutines that yields bytes objects.&quot;&quot;&quot;</span>
         <span class="c1"># 100 response</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_continue</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">await</span> <span class="n">writer</span><span class="o">.</span><span class="n">drain</span><span class="p">()</span>
@@ -905,7 +926,7 @@
             <span class="k">await</span> <span class="n">trace</span><span class="o">.</span><span class="n">send_request_headers</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ClientResponse"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.ClientResponse">[docs]</a><span class="k">class</span> <span class="nc">ClientResponse</span><span class="p">(</span><span class="n">HeadersMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="ClientResponse"><a class="viewcode-back" href="../../library/Http.html#selfbotclient.http.ClientResponse">[docs]</a><span class="k">class</span> <span class="nc">ClientResponse</span><span class="p">(</span><span class="n">HeadersMixin</span><span class="p">):</span>
 
     <span class="c1"># from the Status-Line of the response</span>
     <span class="n">version</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># HTTP-Version</span>
@@ -1041,7 +1062,7 @@
 
     <span class="nd">@reify</span>
     <span class="k">def</span> <span class="nf">history</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;ClientResponse&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;A sequence of of responses, if redirects occurred.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;A sequence of of responses, if redirects occurred.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_history</span>
 
     <span class="nd">@reify</span>
@@ -1080,8 +1101,8 @@
 
         <span class="k">return</span> <span class="n">MultiDictProxy</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ClientResponse.start"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.ClientResponse.start">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">:</span> <span class="s2">&quot;Connection&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ClientResponse&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Start response processing.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ClientResponse.start"><a class="viewcode-back" href="../../library/Http.html#selfbotclient.http.ClientResponse.start">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">:</span> <span class="s2">&quot;Connection&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ClientResponse&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Start response processing.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">protocol</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">connection</span>
@@ -1154,7 +1175,7 @@
     <span class="k">def</span> <span class="nf">closed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span>
 
-<div class="viewcode-block" id="ClientResponse.close"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.ClientResponse.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ClientResponse.close"><a class="viewcode-back" href="../../library/Http.html#selfbotclient.http.ClientResponse.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_released</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_notify_content</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span><span class="p">:</span>
@@ -1169,7 +1190,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_cleanup_writer</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="ClientResponse.release"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.ClientResponse.release">[docs]</a>    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<div class="viewcode-block" id="ClientResponse.release"><a class="viewcode-back" href="../../library/Http.html#selfbotclient.http.ClientResponse.release">[docs]</a>    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_released</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_notify_content</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span><span class="p">:</span>
@@ -1185,14 +1206,14 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">ok</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns ``True`` if ``status`` is less than ``400``, ``False`` if not.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns ``True`` if ``status`` is less than ``400``, ``False`` if not.</span>
 
 <span class="sd">        This is **not** a check for ``200 OK`` but a check that the response</span>
 <span class="sd">        status is under 400.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mi">400</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span>
 
-<div class="viewcode-block" id="ClientResponse.raise_for_status"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.ClientResponse.raise_for_status">[docs]</a>    <span class="k">def</span> <span class="nf">raise_for_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ClientResponse.raise_for_status"><a class="viewcode-back" href="../../library/Http.html#selfbotclient.http.ClientResponse.raise_for_status">[docs]</a>    <span class="k">def</span> <span class="nf">raise_for_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
             <span class="c1"># reason should always be not None for a started response</span>
             <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">reason</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -1217,7 +1238,7 @@
             <span class="n">content</span><span class="o">.</span><span class="n">set_exception</span><span class="p">(</span><span class="n">ClientConnectionError</span><span class="p">(</span><span class="s2">&quot;Connection closed&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_released</span> <span class="o">=</span> <span class="kc">True</span>
 
-<div class="viewcode-block" id="ClientResponse.wait_for_close"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.ClientResponse.wait_for_close">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">wait_for_close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ClientResponse.wait_for_close"><a class="viewcode-back" href="../../library/Http.html#selfbotclient.http.ClientResponse.wait_for_close">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">wait_for_close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span>
@@ -1225,8 +1246,8 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="ClientResponse.read"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.ClientResponse.read">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Read response payload.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ClientResponse.read"><a class="viewcode-back" href="../../library/Http.html#selfbotclient.http.ClientResponse.read">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read response payload.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_body</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_body</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
@@ -1242,7 +1263,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_body</span>  <span class="c1"># type: ignore[no-any-return]</span></div>
 
-<div class="viewcode-block" id="ClientResponse.get_encoding"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.ClientResponse.get_encoding">[docs]</a>    <span class="k">def</span> <span class="nf">get_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="ClientResponse.get_encoding"><a class="viewcode-back" href="../../library/Http.html#selfbotclient.http.ClientResponse.get_encoding">[docs]</a>    <span class="k">def</span> <span class="nf">get_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">ctype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">hdrs</span><span class="o">.</span><span class="n">CONTENT_TYPE</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="n">mimetype</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">parse_mimetype</span><span class="p">(</span><span class="n">ctype</span><span class="p">)</span>
 
@@ -1270,8 +1291,8 @@
 
         <span class="k">return</span> <span class="n">encoding</span></div>
 
-<div class="viewcode-block" id="ClientResponse.text"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.ClientResponse.text">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">errors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;strict&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Read response payload and decode.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ClientResponse.text"><a class="viewcode-back" href="../../library/Http.html#selfbotclient.http.ClientResponse.text">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">errors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;strict&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read response payload and decode.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_body</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
@@ -1282,14 +1303,14 @@
             <span class="n">encoding</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="ClientResponse.json"><a class="viewcode-back" href="../../SelfBotClient.html#SelfBotClient.ClientResponse.json">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">json</span><span class="p">(</span>
+<div class="viewcode-block" id="ClientResponse.json"><a class="viewcode-back" href="../../library/Http.html#selfbotclient.http.ClientResponse.json">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">json</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">encoding</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">loads</span><span class="p">:</span> <span class="n">JSONDecoder</span> <span class="o">=</span> <span class="n">DEFAULT_JSON_DECODER</span><span class="p">,</span>
         <span class="n">content_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Read and decodes JSON response.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read and decodes JSON response.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_body</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
@@ -1363,5 +1384,8 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/scripts/furo.js"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script src="../../_static/js\rtd_search_config.js"></script>
+    <script src="../../_static/js\rtd_sphinx_search.min.js"></script>
     </body>
 </html>

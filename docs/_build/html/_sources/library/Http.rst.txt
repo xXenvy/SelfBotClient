@@ -1,10 +1,10 @@
 HTTP
 ======
 
-A :class:`SelfBotClient.http` It mainly handles requests to discord or detect ratelimit.
+A :class:`asynccore.http` It mainly handles requests to discord or detect ratelimit.
 ---------------------------
 
-.. automodule:: SelfBotClient.http
+.. automodule:: asynccore.http
    :members:
    :undoc-members:
    :show-inheritance:

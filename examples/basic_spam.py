@@ -1,4 +1,4 @@
-from SelfBotClient import Client, UserClient, ClientResponse
+from asynccore import Client, UserClient, ClientResponse
 
 tokens = ["TOKEN_1", "TOKEN_2"]
 

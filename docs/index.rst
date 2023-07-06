@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Self Bot Client's documentation!
+Welcome to the documentation of the most powerful selfbotting library!
 ===========================================
 
 .. toctree::

@@ -3,7 +3,7 @@ Basic Spam
 .. code-block:: python
   :linenos:
 
-  from SelfBotClient import Client
+  from asynccore import Client
 
   tokens = ["TOKEN_1", "TOKEN_2"]
 
@@ -12,11 +12,6 @@ Basic Spam
 
 
   async def spam_messages(channel_id: int, message_content: str, times: int) -> None:
-      """
-      methods used by `Client.` call it in all selfbots.
-      """
-
-      times: int = int(times / len(client.users))
 
       for _ in range(times):
           async for response in client.send_message(channel_id=channel_id,
@@ -31,7 +26,7 @@ Basic Spam
 
 
   if __name__ == "__main__":
-      "I recommend that you run asynchrochrochine methods this way."
+      "I recommend that you run async methods this way."
       "I'm not sure how asyncio.run(func), for example, will behave."
 
       client.run_async(main())

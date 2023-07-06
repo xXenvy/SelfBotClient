@@ -1,4 +1,4 @@
-from SelfBotClient import Client, Permissions, PermissionBuilder, RGB_COLOR
+from asynccore import Client, Permissions, PermissionBuilder, RGB_COLOR
 
 tokens = ["TOKEN_1", "TOKEN_2"]
 

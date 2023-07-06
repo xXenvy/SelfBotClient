@@ -8,12 +8,13 @@
 
 import os
 import sys
-from SelfBotClient import Client
 
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.append(os.path.abspath("extensions"))
 
-project = 'Self Bot library'
+from asynccore import Client
+
+project = 'AsyncCore library'
 copyright = '2023, xXenvy'
 author = 'xXenvy'
 release = Client.__version__

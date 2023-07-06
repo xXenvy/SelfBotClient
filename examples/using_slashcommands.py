@@ -1,6 +1,6 @@
-from SelfBotClient import Client, UserClient
+from asynccore import Client, UserClient
 
-from SelfBotClient.commands import Application, SlashCommand
+from asynccore.commands import Application, SlashCommand
 from typing import Optional
 
 

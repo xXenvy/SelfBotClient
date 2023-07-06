@@ -7,14 +7,14 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '1.1.2'
+VERSION = '1.2.0'
 DESCRIPTION = 'Library that will allow you to manage selfbots'
 LONG_DESCRIPTION = 'The library logs into your account thanks to the entered tokens and can manage them. ' \
                    'such as sending messages, deleting roles, etc.'
 
 # Setting up
 setup(
-    name="selfbotclient",
+    name="asynccore",
     version=VERSION,
     author="xXenvy",
     author_email="<xpimepk01@gmail.com>",

@@ -6,10 +6,10 @@ Installing
 
    .. code-block:: powershell
 
-      > pip install -U SelfBotClient
+      > pip install -U AsyncCore
 
 .. tab:: MacOS / Linux
 
    .. code-block:: sh
 
-      $ pip install -U SelfBotClient
+      $ pip install -U AsyncCore

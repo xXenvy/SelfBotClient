@@ -1,10 +1,10 @@
 Client
 ======
 
-A :class:`SelfBotClient.client` is used to send methods to all :class:`SelfBotClient.user`
+A :class:`asynccore.client` is used to send methods to all :class:`asynccore.user`
 ---------------------------
 
-.. automodule:: SelfBotClient.client
+.. automodule:: asynccore.client
    :members:
    :undoc-members:
    :show-inheritance:

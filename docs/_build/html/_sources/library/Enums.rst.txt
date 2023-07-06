@@ -1,9 +1,9 @@
 Enums
 ======
 
-A :class:`SelfBotClient.enums` contains channel types or all permissions.
+A :class:`asynccore.enums` contains channel types or all permissions.
 ---------------------------
 
-.. automodule:: SelfBotClient.enums
+.. automodule:: asynccore.enums
    :undoc-members:
    :show-inheritance:

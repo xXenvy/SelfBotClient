@@ -24,11 +24,12 @@ https://github.com/xXenvy/SelfBotClient/assets/111158232/ede9fb47-d489-4d9a-b58d
 ![Test](https://i.imgur.com/hTUFQKF.png)
 # 🛠️ Installation
 ```shell
-pip install -U selfbotclient
+pip install -U asynccore
 ```
 # 💫 Usage
+
 ```py
-from SelfBotClient import Client
+from asynccore import Client
 
 tokens: list[str] = ["TOKEN_1", "TOKEN_2"]
 

@@ -8,4 +8,5 @@ Code Examples
     basic_spam
     basic_permissions
     tasks
+    slashcommands
 
