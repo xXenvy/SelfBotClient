@@ -1,5 +1,7 @@
 from asynccore import Client, UserClient
 
+# See all events
+# https://asynccore.readthedocs.io/en/latest/library/gateway/Enums.html#asynccore.gateway.enums.Events
 
 """ Normal event handlers """
 client: Client = Client(api_version=10)
