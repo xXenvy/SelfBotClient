@@ -3,7 +3,7 @@ from asynccore import Client, Permissions, PermissionBuilder, RGB_COLOR
 tokens = ["TOKEN_1", "TOKEN_2"]
 
 client = Client(api_version=10)
-client.login(token=tokens)
+client.login(tokens=tokens)
 
 
 async def create_role():
