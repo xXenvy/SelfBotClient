@@ -5,35 +5,30 @@
 ![master](https://img.shields.io/github/last-commit/badges/shields/master)
 ![commits](https://badgen.net/github/commits/xXenvy/selfbotclient/master)
 
-## 🌐 Docs
-https://asynccore.readthedocs.io/en/latest/index.html
+# 🔧 AsyncCore Features
+- Modern Pythonic API using `async` and `await`
+- Proper rate limit handling
+- Optimised in both speed and memory
 
-# ⚡ Fast Self Bot Client
-- Token Checker | `1` token / `140`ms
-- +10 requests / 1s `(using tasks)`
-
+## ⚡ High Speed
 https://github.com/xXenvy/SelfBotClient/assets/111158232/ede9fb47-d489-4d9a-b58d-95c06dea6fe9
 
-
-# 🔧 Full control
+## 🔧 Full control
 - A separate method to send your own requests
 - Ability to manage individual selfbots
+- Simple multi-account management
 
-# 📌 Ratelimit handler
+## 📌 Ratelimit handler
 - The library itself detects whether you have reached the ratelimit of the discord and, if so, forces you to wait a certain time.
 ![Test](https://i.imgur.com/hTUFQKF.png)
+
 # 🛠️ Installation
 ```shell
 pip install -U asynccore
 ```
-# 💫 Usage
+# 💫 Examples
+**See examples on github:** [JUMP!](https://github.com/xXenvy/SelfBotClient/tree/master/examples)
 
-```py
-from asynccore import Client
-
-tokens: list[str] = ["TOKEN_1", "TOKEN_2"]
-
-client: Client = Client(api_version=10)
-client.login(token=tokens)
-```
-**See more examples on github:** [Examples](https://github.com/xXenvy/SelfBotClient/tree/master/examples)
+# 🧷 Links
+- [Documentation](https://asynccore.readthedocs.io/en/latest/index.html)
+- [Report a bug or feature](https://github.com/xXenvy/AsyncCore/issues)
