@@ -31,4 +31,4 @@ pip install -U asynccore
 
 # 🧷 Links
 - [Documentation](https://asynccore.readthedocs.io/en/latest/index.html)
-- [Report a bug or feature](https://github.com/xXenvy/AsyncCore/issues)
+- [Report a bug or feature](https://github.com/xXenvy/AsyncCore/issues/new/choose)
