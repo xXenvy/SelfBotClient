@@ -1,7 +1,7 @@
 from asynccore import Client, UserClient
 
 
-""" Normal events handlers """
+""" Normal event handlers """
 client: Client = Client(api_version=10)
 client.login(tokens=["TOKEN_1", "TOKEN_2"])
 
@@ -18,7 +18,7 @@ async def on_message(user: UserClient, message_data: dict):
 client.gateway.run()
 
 
-""" OOP events handlers """
+""" OOP event handlers """
 
 
 class client(Client):
