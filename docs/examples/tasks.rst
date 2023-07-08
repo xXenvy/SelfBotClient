@@ -8,7 +8,7 @@ Tasks
   tokens = ["TOKEN_1", "TOKEN_2"]
 
   client = Client(api_version=10, use_tasks=True) # Since this is in beta, you must enable this option yourself.
-  client.login(token=tokens)
+  client.login(tokens=tokens)
 
 
   async def spam_messages(channel_id: int, message_content: str, times: int) -> None:

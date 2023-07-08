@@ -8,7 +8,7 @@ Basic Spam
   tokens = ["TOKEN_1", "TOKEN_2"]
 
   client = Client(api_version=10)
-  client.login(token=tokens)
+  client.login(tokens=tokens)
 
 
   async def spam_messages(channel_id: int, message_content: str, times: int) -> None:

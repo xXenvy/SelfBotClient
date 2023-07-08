@@ -17,7 +17,7 @@ setup(
     name="asynccore",
     version=VERSION,
     author="xXenvy",
-    author_email="<xpimepk01@gmail.com>",
+    author_email="<xpimpek01@gmail.com>",
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
     long_description=long_description,
