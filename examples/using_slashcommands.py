@@ -1,10 +1,10 @@
 from asynccore import Client, UserClient
-
 from asynccore.commands import Application, SlashCommand
+
 from typing import Optional
 
 
-client: Client = Client(api_version=10, logger=False)
+client: Client = Client(api_version=10)
 client.login(tokens=["TOKEN_1", "TOKEN_2"])
 
 
