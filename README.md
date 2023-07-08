@@ -1,4 +1,4 @@
-### The most powerful selfbotting library.
+### The most powerful discord selfbotting library.
 > ⚠️ Project only for educational purposes! 🤓
 
 [![Downloads](https://static.pepy.tech/personalized-badge/selfbotclient?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads)](https://pepy.tech/project/selfbotclient)
