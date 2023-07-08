@@ -34,7 +34,7 @@ async def main():
 async def ready(user: UserClient):
     print(f"Account: {user.name} is ready.")
 
-    client.loop.create_task(main())
+    await main()
 
 
 client.gateway.run()
