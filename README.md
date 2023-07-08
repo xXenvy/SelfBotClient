@@ -36,10 +36,8 @@ from asynccore import Client, UserClient
 client: Client = Client(api_version=10)
 client.login(tokens=["TOKEN_1", "TOKEN_2"])
 
-
 async def send_example_message(user: UserClient, channel_id: int) -> None:
     await user.send_message(channel_id=channel_id, message_content="Hi")
-
 
 @client.gateway.event(event_name="on_ready")
 async def ready(user: UserClient):
