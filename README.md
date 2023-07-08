@@ -6,7 +6,7 @@
 ![commits](https://badgen.net/github/commits/xXenvy/selfbotclient/master)
 
 ## 🌐 Docs
-https://selfbotclient.readthedocs.io/en/latest/
+https://asynccore.readthedocs.io/en/latest/index.html
 
 # ⚡ Fast Self Bot Client
 - Token Checker | `1` token / `140`ms
