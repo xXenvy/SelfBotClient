@@ -9,6 +9,7 @@
 - Modern Pythonic API using `async` and `await`
 - Proper rate limit handling
 - Optimised in both speed and memory
+- Properly typehinted
 
 ## ⚡ High Speed
 https://github.com/xXenvy/SelfBotClient/assets/111158232/ede9fb47-d489-4d9a-b58d-95c06dea6fe9
