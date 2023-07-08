@@ -27,8 +27,26 @@ https://github.com/xXenvy/SelfBotClient/assets/111158232/ede9fb47-d489-4d9a-b58d
 ```shell
 pip install -U asynccore
 ```
-# 💫 Examples
-**See examples on github:** [JUMP!](https://github.com/xXenvy/SelfBotClient/tree/master/examples)
+# 💫 Example
+**See more examples on github:** [JUMP!](https://github.com/xXenvy/SelfBotClient/tree/master/examples)
+```py
+from asynccore import Client, UserClient
+
+client: Client = Client(api_version=10)
+client.login(tokens=["TOKEN_1", "TOKEN_2"])
+
+
+async def send_example_message(user: UserClient, channel_id: int) -> None:
+    await user.send_message(channel_id=channel_id, message_content="Hi")
+
+
+@client.gateway.event(event_name="on_ready")
+async def ready(user: UserClient):
+    print(f"Account: {user.name} is ready.")
+    await send_example_message(user=user, channel_id=123)
+
+client.gateway.run(reconnect=True)
+```
 
 # 🧷 Links
 - [Documentation](https://asynccore.readthedocs.io/en/latest/index.html)
