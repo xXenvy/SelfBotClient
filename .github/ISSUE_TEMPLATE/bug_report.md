@@ -26,7 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **information**
  - OS: 
  - Library version:
-> You can check the version of the library using `pip show selfbotclient`
+> You can check the version of the library using `pip show asynccore`
 
 **Additional context**
 Add any other context about the problem here.
