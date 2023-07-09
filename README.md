@@ -1,10 +1,13 @@
 ### The most powerful discord selfbotting library.
 > ⚠️ Project only for educational purposes! 🤓
+> 
+![License](https://img.shields.io/github/license/xXenvy/AsyncCore?style=for-the-badge&color=%2315b328)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/AsyncCore?style=for-the-badge&color=%2315b328)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/xXenvy/AsyncCore?style=for-the-badge&color=%2315b328)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/xXenvy/AsyncCore/master?style=for-the-badge&color=%2315b328)
 
-[![Downloads](https://static.pepy.tech/personalized-badge/selfbotclient?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Downloads)](https://pepy.tech/project/selfbotclient)
-[![Documentation Status](https://readthedocs.org/projects/asynccore/badge/?version=latest)](https://asynccore.readthedocs.io/en/latest/?badge=latest)
-![master](https://img.shields.io/github/last-commit/badges/shields/master)
-![commits](https://badgen.net/github/commits/xXenvy/selfbotclient/master)
+# 💢 Requirements
+> Python 3.9 or newer
 
 # 🔧 AsyncCore Features
 - Modern Pythonic API using `async` and `await`
